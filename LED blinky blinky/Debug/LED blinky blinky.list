@@ -1,0 +1,3290 @@
+
+LED blinky blinky.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   000000c0  08000000  08000000  00010000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00001048  080000c0  080000c0  000100c0  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000030  08001108  08001108  00011108  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  3 .init_array   00000004  08001138  08001138  00011138  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .fini_array   00000004  0800113c  0800113c  0001113c  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  5 .data         00000004  20000000  08001140  00020000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .bss          00000060  20000004  08001144  00020004  2**2
+                  ALLOC
+  7 ._user_heap_stack 00000600  20000064  08001144  00020064  2**0
+                  ALLOC
+  8 .ARM.attributes 00000028  00000000  00000000  00020004  2**0
+                  CONTENTS, READONLY
+  9 .debug_info   0000d257  00000000  00000000  0002002c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_abbrev 00001ac2  00000000  00000000  0002d283  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00005596  00000000  00000000  0002ed45  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_aranges 00000650  00000000  00000000  000342e0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000998  00000000  00000000  00034930  2**3
+                  CONTENTS, READONLY, DEBUGGING
+ 14 .debug_line   000039e2  00000000  00000000  000352c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 15 .debug_str    0000281e  00000000  00000000  00038caa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 16 .comment      0000007c  00000000  00000000  0003b4c8  2**0
+                  CONTENTS, READONLY
+ 17 .debug_frame  00001364  00000000  00000000  0003b544  2**2
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+080000c0 <__do_global_dtors_aux>:
+ 80000c0:	b510      	push	{r4, lr}
+ 80000c2:	4c06      	ldr	r4, [pc, #24]	; (80000dc <__do_global_dtors_aux+0x1c>)
+ 80000c4:	7823      	ldrb	r3, [r4, #0]
+ 80000c6:	2b00      	cmp	r3, #0
+ 80000c8:	d107      	bne.n	80000da <__do_global_dtors_aux+0x1a>
+ 80000ca:	4b05      	ldr	r3, [pc, #20]	; (80000e0 <__do_global_dtors_aux+0x20>)
+ 80000cc:	2b00      	cmp	r3, #0
+ 80000ce:	d002      	beq.n	80000d6 <__do_global_dtors_aux+0x16>
+ 80000d0:	4804      	ldr	r0, [pc, #16]	; (80000e4 <__do_global_dtors_aux+0x24>)
+ 80000d2:	e000      	b.n	80000d6 <__do_global_dtors_aux+0x16>
+ 80000d4:	bf00      	nop
+ 80000d6:	2301      	movs	r3, #1
+ 80000d8:	7023      	strb	r3, [r4, #0]
+ 80000da:	bd10      	pop	{r4, pc}
+ 80000dc:	20000004 	.word	0x20000004
+ 80000e0:	00000000 	.word	0x00000000
+ 80000e4:	080010f0 	.word	0x080010f0
+
+080000e8 <frame_dummy>:
+ 80000e8:	4b04      	ldr	r3, [pc, #16]	; (80000fc <frame_dummy+0x14>)
+ 80000ea:	b510      	push	{r4, lr}
+ 80000ec:	2b00      	cmp	r3, #0
+ 80000ee:	d003      	beq.n	80000f8 <frame_dummy+0x10>
+ 80000f0:	4903      	ldr	r1, [pc, #12]	; (8000100 <frame_dummy+0x18>)
+ 80000f2:	4804      	ldr	r0, [pc, #16]	; (8000104 <frame_dummy+0x1c>)
+ 80000f4:	e000      	b.n	80000f8 <frame_dummy+0x10>
+ 80000f6:	bf00      	nop
+ 80000f8:	bd10      	pop	{r4, pc}
+ 80000fa:	46c0      	nop			; (mov r8, r8)
+ 80000fc:	00000000 	.word	0x00000000
+ 8000100:	20000008 	.word	0x20000008
+ 8000104:	080010f0 	.word	0x080010f0
+
+08000108 <__udivsi3>:
+ 8000108:	2200      	movs	r2, #0
+ 800010a:	0843      	lsrs	r3, r0, #1
+ 800010c:	428b      	cmp	r3, r1
+ 800010e:	d374      	bcc.n	80001fa <__udivsi3+0xf2>
+ 8000110:	0903      	lsrs	r3, r0, #4
+ 8000112:	428b      	cmp	r3, r1
+ 8000114:	d35f      	bcc.n	80001d6 <__udivsi3+0xce>
+ 8000116:	0a03      	lsrs	r3, r0, #8
+ 8000118:	428b      	cmp	r3, r1
+ 800011a:	d344      	bcc.n	80001a6 <__udivsi3+0x9e>
+ 800011c:	0b03      	lsrs	r3, r0, #12
+ 800011e:	428b      	cmp	r3, r1
+ 8000120:	d328      	bcc.n	8000174 <__udivsi3+0x6c>
+ 8000122:	0c03      	lsrs	r3, r0, #16
+ 8000124:	428b      	cmp	r3, r1
+ 8000126:	d30d      	bcc.n	8000144 <__udivsi3+0x3c>
+ 8000128:	22ff      	movs	r2, #255	; 0xff
+ 800012a:	0209      	lsls	r1, r1, #8
+ 800012c:	ba12      	rev	r2, r2
+ 800012e:	0c03      	lsrs	r3, r0, #16
+ 8000130:	428b      	cmp	r3, r1
+ 8000132:	d302      	bcc.n	800013a <__udivsi3+0x32>
+ 8000134:	1212      	asrs	r2, r2, #8
+ 8000136:	0209      	lsls	r1, r1, #8
+ 8000138:	d065      	beq.n	8000206 <__udivsi3+0xfe>
+ 800013a:	0b03      	lsrs	r3, r0, #12
+ 800013c:	428b      	cmp	r3, r1
+ 800013e:	d319      	bcc.n	8000174 <__udivsi3+0x6c>
+ 8000140:	e000      	b.n	8000144 <__udivsi3+0x3c>
+ 8000142:	0a09      	lsrs	r1, r1, #8
+ 8000144:	0bc3      	lsrs	r3, r0, #15
+ 8000146:	428b      	cmp	r3, r1
+ 8000148:	d301      	bcc.n	800014e <__udivsi3+0x46>
+ 800014a:	03cb      	lsls	r3, r1, #15
+ 800014c:	1ac0      	subs	r0, r0, r3
+ 800014e:	4152      	adcs	r2, r2
+ 8000150:	0b83      	lsrs	r3, r0, #14
+ 8000152:	428b      	cmp	r3, r1
+ 8000154:	d301      	bcc.n	800015a <__udivsi3+0x52>
+ 8000156:	038b      	lsls	r3, r1, #14
+ 8000158:	1ac0      	subs	r0, r0, r3
+ 800015a:	4152      	adcs	r2, r2
+ 800015c:	0b43      	lsrs	r3, r0, #13
+ 800015e:	428b      	cmp	r3, r1
+ 8000160:	d301      	bcc.n	8000166 <__udivsi3+0x5e>
+ 8000162:	034b      	lsls	r3, r1, #13
+ 8000164:	1ac0      	subs	r0, r0, r3
+ 8000166:	4152      	adcs	r2, r2
+ 8000168:	0b03      	lsrs	r3, r0, #12
+ 800016a:	428b      	cmp	r3, r1
+ 800016c:	d301      	bcc.n	8000172 <__udivsi3+0x6a>
+ 800016e:	030b      	lsls	r3, r1, #12
+ 8000170:	1ac0      	subs	r0, r0, r3
+ 8000172:	4152      	adcs	r2, r2
+ 8000174:	0ac3      	lsrs	r3, r0, #11
+ 8000176:	428b      	cmp	r3, r1
+ 8000178:	d301      	bcc.n	800017e <__udivsi3+0x76>
+ 800017a:	02cb      	lsls	r3, r1, #11
+ 800017c:	1ac0      	subs	r0, r0, r3
+ 800017e:	4152      	adcs	r2, r2
+ 8000180:	0a83      	lsrs	r3, r0, #10
+ 8000182:	428b      	cmp	r3, r1
+ 8000184:	d301      	bcc.n	800018a <__udivsi3+0x82>
+ 8000186:	028b      	lsls	r3, r1, #10
+ 8000188:	1ac0      	subs	r0, r0, r3
+ 800018a:	4152      	adcs	r2, r2
+ 800018c:	0a43      	lsrs	r3, r0, #9
+ 800018e:	428b      	cmp	r3, r1
+ 8000190:	d301      	bcc.n	8000196 <__udivsi3+0x8e>
+ 8000192:	024b      	lsls	r3, r1, #9
+ 8000194:	1ac0      	subs	r0, r0, r3
+ 8000196:	4152      	adcs	r2, r2
+ 8000198:	0a03      	lsrs	r3, r0, #8
+ 800019a:	428b      	cmp	r3, r1
+ 800019c:	d301      	bcc.n	80001a2 <__udivsi3+0x9a>
+ 800019e:	020b      	lsls	r3, r1, #8
+ 80001a0:	1ac0      	subs	r0, r0, r3
+ 80001a2:	4152      	adcs	r2, r2
+ 80001a4:	d2cd      	bcs.n	8000142 <__udivsi3+0x3a>
+ 80001a6:	09c3      	lsrs	r3, r0, #7
+ 80001a8:	428b      	cmp	r3, r1
+ 80001aa:	d301      	bcc.n	80001b0 <__udivsi3+0xa8>
+ 80001ac:	01cb      	lsls	r3, r1, #7
+ 80001ae:	1ac0      	subs	r0, r0, r3
+ 80001b0:	4152      	adcs	r2, r2
+ 80001b2:	0983      	lsrs	r3, r0, #6
+ 80001b4:	428b      	cmp	r3, r1
+ 80001b6:	d301      	bcc.n	80001bc <__udivsi3+0xb4>
+ 80001b8:	018b      	lsls	r3, r1, #6
+ 80001ba:	1ac0      	subs	r0, r0, r3
+ 80001bc:	4152      	adcs	r2, r2
+ 80001be:	0943      	lsrs	r3, r0, #5
+ 80001c0:	428b      	cmp	r3, r1
+ 80001c2:	d301      	bcc.n	80001c8 <__udivsi3+0xc0>
+ 80001c4:	014b      	lsls	r3, r1, #5
+ 80001c6:	1ac0      	subs	r0, r0, r3
+ 80001c8:	4152      	adcs	r2, r2
+ 80001ca:	0903      	lsrs	r3, r0, #4
+ 80001cc:	428b      	cmp	r3, r1
+ 80001ce:	d301      	bcc.n	80001d4 <__udivsi3+0xcc>
+ 80001d0:	010b      	lsls	r3, r1, #4
+ 80001d2:	1ac0      	subs	r0, r0, r3
+ 80001d4:	4152      	adcs	r2, r2
+ 80001d6:	08c3      	lsrs	r3, r0, #3
+ 80001d8:	428b      	cmp	r3, r1
+ 80001da:	d301      	bcc.n	80001e0 <__udivsi3+0xd8>
+ 80001dc:	00cb      	lsls	r3, r1, #3
+ 80001de:	1ac0      	subs	r0, r0, r3
+ 80001e0:	4152      	adcs	r2, r2
+ 80001e2:	0883      	lsrs	r3, r0, #2
+ 80001e4:	428b      	cmp	r3, r1
+ 80001e6:	d301      	bcc.n	80001ec <__udivsi3+0xe4>
+ 80001e8:	008b      	lsls	r3, r1, #2
+ 80001ea:	1ac0      	subs	r0, r0, r3
+ 80001ec:	4152      	adcs	r2, r2
+ 80001ee:	0843      	lsrs	r3, r0, #1
+ 80001f0:	428b      	cmp	r3, r1
+ 80001f2:	d301      	bcc.n	80001f8 <__udivsi3+0xf0>
+ 80001f4:	004b      	lsls	r3, r1, #1
+ 80001f6:	1ac0      	subs	r0, r0, r3
+ 80001f8:	4152      	adcs	r2, r2
+ 80001fa:	1a41      	subs	r1, r0, r1
+ 80001fc:	d200      	bcs.n	8000200 <__udivsi3+0xf8>
+ 80001fe:	4601      	mov	r1, r0
+ 8000200:	4152      	adcs	r2, r2
+ 8000202:	4610      	mov	r0, r2
+ 8000204:	4770      	bx	lr
+ 8000206:	e7ff      	b.n	8000208 <__udivsi3+0x100>
+ 8000208:	b501      	push	{r0, lr}
+ 800020a:	2000      	movs	r0, #0
+ 800020c:	f000 f806 	bl	800021c <__aeabi_idiv0>
+ 8000210:	bd02      	pop	{r1, pc}
+ 8000212:	46c0      	nop			; (mov r8, r8)
+
+08000214 <__aeabi_uidivmod>:
+ 8000214:	2900      	cmp	r1, #0
+ 8000216:	d0f7      	beq.n	8000208 <__udivsi3+0x100>
+ 8000218:	e776      	b.n	8000108 <__udivsi3>
+ 800021a:	4770      	bx	lr
+
+0800021c <__aeabi_idiv0>:
+ 800021c:	4770      	bx	lr
+ 800021e:	46c0      	nop			; (mov r8, r8)
+
+08000220 <HAL_InitTick>:
+  *       implementation  in user file.
+  * @param TickPriority Tick interrupt priority.
+  * @retval HAL status
+  */
+__weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
+{
+ 8000220:	b510      	push	{r4, lr}
+ 8000222:	0004      	movs	r4, r0
+  /*Configure the SysTick to have interrupt in 1ms time basis*/
+  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000U);
+ 8000224:	f000 fbe4 	bl	80009f0 <HAL_RCC_GetHCLKFreq>
+ 8000228:	21fa      	movs	r1, #250	; 0xfa
+ 800022a:	0089      	lsls	r1, r1, #2
+ 800022c:	f7ff ff6c 	bl	8000108 <__udivsi3>
+ 8000230:	f000 f860 	bl	80002f4 <HAL_SYSTICK_Config>
+
+  /*Configure the SysTick IRQ priority */
+  HAL_NVIC_SetPriority(SysTick_IRQn, TickPriority ,0U);
+ 8000234:	2001      	movs	r0, #1
+ 8000236:	2200      	movs	r2, #0
+ 8000238:	0021      	movs	r1, r4
+ 800023a:	4240      	negs	r0, r0
+ 800023c:	f000 f820 	bl	8000280 <HAL_NVIC_SetPriority>
+
+   /* Return function status */
+  return HAL_OK;
+}
+ 8000240:	2000      	movs	r0, #0
+ 8000242:	bd10      	pop	{r4, pc}
+
+08000244 <HAL_Init>:
+  __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
+ 8000244:	2310      	movs	r3, #16
+ 8000246:	4a06      	ldr	r2, [pc, #24]	; (8000260 <HAL_Init+0x1c>)
+{
+ 8000248:	b510      	push	{r4, lr}
+  __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
+ 800024a:	6811      	ldr	r1, [r2, #0]
+  HAL_InitTick(TICK_INT_PRIORITY);
+ 800024c:	2000      	movs	r0, #0
+  __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
+ 800024e:	430b      	orrs	r3, r1
+ 8000250:	6013      	str	r3, [r2, #0]
+  HAL_InitTick(TICK_INT_PRIORITY);
+ 8000252:	f7ff ffe5 	bl	8000220 <HAL_InitTick>
+  HAL_MspInit();
+ 8000256:	f000 fe77 	bl	8000f48 <HAL_MspInit>
+}
+ 800025a:	2000      	movs	r0, #0
+ 800025c:	bd10      	pop	{r4, pc}
+ 800025e:	46c0      	nop			; (mov r8, r8)
+ 8000260:	40022000 	.word	0x40022000
+
+08000264 <HAL_IncTick>:
+  *       implementations in user file.
+  * @retval None
+  */
+__weak void HAL_IncTick(void)
+{
+  uwTick++;
+ 8000264:	4a02      	ldr	r2, [pc, #8]	; (8000270 <HAL_IncTick+0xc>)
+ 8000266:	6813      	ldr	r3, [r2, #0]
+ 8000268:	3301      	adds	r3, #1
+ 800026a:	6013      	str	r3, [r2, #0]
+}
+ 800026c:	4770      	bx	lr
+ 800026e:	46c0      	nop			; (mov r8, r8)
+ 8000270:	20000020 	.word	0x20000020
+
+08000274 <HAL_GetTick>:
+  *       implementations in user file.
+  * @retval tick value
+  */
+__weak uint32_t HAL_GetTick(void)
+{
+  return uwTick;
+ 8000274:	4b01      	ldr	r3, [pc, #4]	; (800027c <HAL_GetTick+0x8>)
+ 8000276:	6818      	ldr	r0, [r3, #0]
+}
+ 8000278:	4770      	bx	lr
+ 800027a:	46c0      	nop			; (mov r8, r8)
+ 800027c:	20000020 	.word	0x20000020
+
+08000280 <HAL_NVIC_SetPriority>:
+  *         with stm32f0xx devices, this parameter is a dummy value and it is ignored, because 
+  *         no subpriority supported in Cortex M0 based products.   
+  * @retval None
+  */
+void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority)
+{ 
+ 8000280:	b570      	push	{r4, r5, r6, lr}
+ 8000282:	0189      	lsls	r1, r1, #6
+  \param [in]      IRQn  Interrupt number.
+  \param [in]  priority  Priority to set.
+ */
+__STATIC_INLINE void NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+{
+  if ((int32_t)(IRQn) < 0)
+ 8000284:	2800      	cmp	r0, #0
+ 8000286:	da14      	bge.n	80002b2 <HAL_NVIC_SetPriority+0x32>
+  {
+    SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+ 8000288:	230f      	movs	r3, #15
+ 800028a:	b2c0      	uxtb	r0, r0
+ 800028c:	4003      	ands	r3, r0
+ 800028e:	3b08      	subs	r3, #8
+ 8000290:	4a11      	ldr	r2, [pc, #68]	; (80002d8 <HAL_NVIC_SetPriority+0x58>)
+ 8000292:	089b      	lsrs	r3, r3, #2
+ 8000294:	009b      	lsls	r3, r3, #2
+ 8000296:	189b      	adds	r3, r3, r2
+ 8000298:	2203      	movs	r2, #3
+ 800029a:	4010      	ands	r0, r2
+ 800029c:	4090      	lsls	r0, r2
+ 800029e:	32fc      	adds	r2, #252	; 0xfc
+ 80002a0:	0015      	movs	r5, r2
+       (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 80002a2:	4011      	ands	r1, r2
+    SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+ 80002a4:	4085      	lsls	r5, r0
+       (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 80002a6:	4081      	lsls	r1, r0
+    SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+ 80002a8:	69dc      	ldr	r4, [r3, #28]
+ 80002aa:	43ac      	bics	r4, r5
+ 80002ac:	4321      	orrs	r1, r4
+ 80002ae:	61d9      	str	r1, [r3, #28]
+  /* Check the parameters */
+  assert_param(IS_NVIC_PREEMPTION_PRIORITY(PreemptPriority));
+  NVIC_SetPriority(IRQn,PreemptPriority);
+}
+ 80002b0:	bd70      	pop	{r4, r5, r6, pc}
+  }
+  else
+  {
+    NVIC->IP[_IP_IDX(IRQn)]  = ((uint32_t)(NVIC->IP[_IP_IDX(IRQn)]  & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+ 80002b2:	2503      	movs	r5, #3
+ 80002b4:	0883      	lsrs	r3, r0, #2
+ 80002b6:	4028      	ands	r0, r5
+ 80002b8:	40a8      	lsls	r0, r5
+ 80002ba:	35fc      	adds	r5, #252	; 0xfc
+ 80002bc:	002e      	movs	r6, r5
+ 80002be:	4a07      	ldr	r2, [pc, #28]	; (80002dc <HAL_NVIC_SetPriority+0x5c>)
+ 80002c0:	009b      	lsls	r3, r3, #2
+ 80002c2:	189b      	adds	r3, r3, r2
+ 80002c4:	22c0      	movs	r2, #192	; 0xc0
+ 80002c6:	4086      	lsls	r6, r0
+       (((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL) << _BIT_SHIFT(IRQn)));
+ 80002c8:	4029      	ands	r1, r5
+ 80002ca:	4081      	lsls	r1, r0
+    NVIC->IP[_IP_IDX(IRQn)]  = ((uint32_t)(NVIC->IP[_IP_IDX(IRQn)]  & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+ 80002cc:	0092      	lsls	r2, r2, #2
+ 80002ce:	589c      	ldr	r4, [r3, r2]
+ 80002d0:	43b4      	bics	r4, r6
+ 80002d2:	4321      	orrs	r1, r4
+ 80002d4:	5099      	str	r1, [r3, r2]
+ 80002d6:	e7eb      	b.n	80002b0 <HAL_NVIC_SetPriority+0x30>
+ 80002d8:	e000ed00 	.word	0xe000ed00
+ 80002dc:	e000e100 	.word	0xe000e100
+
+080002e0 <HAL_NVIC_EnableIRQ>:
+  NVIC->ISER[0U] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
+ 80002e0:	231f      	movs	r3, #31
+ 80002e2:	4018      	ands	r0, r3
+ 80002e4:	3b1e      	subs	r3, #30
+ 80002e6:	4083      	lsls	r3, r0
+ 80002e8:	4a01      	ldr	r2, [pc, #4]	; (80002f0 <HAL_NVIC_EnableIRQ+0x10>)
+ 80002ea:	6013      	str	r3, [r2, #0]
+  /* Check the parameters */
+  assert_param(IS_NVIC_DEVICE_IRQ(IRQn));
+  
+  /* Enable interrupt */
+  NVIC_EnableIRQ(IRQn);
+}
+ 80002ec:	4770      	bx	lr
+ 80002ee:	46c0      	nop			; (mov r8, r8)
+ 80002f0:	e000e100 	.word	0xe000e100
+
+080002f4 <HAL_SYSTICK_Config>:
+           function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.h</b>
+           must contain a vendor-specific implementation of this function.
+ */
+__STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
+{
+  if ((ticks - 1UL) > SysTick_LOAD_RELOAD_Msk)
+ 80002f4:	4a09      	ldr	r2, [pc, #36]	; (800031c <HAL_SYSTICK_Config+0x28>)
+ 80002f6:	1e43      	subs	r3, r0, #1
+  {
+    return (1UL);                                                   /* Reload value impossible */
+ 80002f8:	2001      	movs	r0, #1
+  if ((ticks - 1UL) > SysTick_LOAD_RELOAD_Msk)
+ 80002fa:	4293      	cmp	r3, r2
+ 80002fc:	d80d      	bhi.n	800031a <HAL_SYSTICK_Config+0x26>
+    SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+ 80002fe:	21c0      	movs	r1, #192	; 0xc0
+  }
+
+  SysTick->LOAD  = (uint32_t)(ticks - 1UL);                         /* set reload register */
+ 8000300:	4a07      	ldr	r2, [pc, #28]	; (8000320 <HAL_SYSTICK_Config+0x2c>)
+    SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+ 8000302:	4808      	ldr	r0, [pc, #32]	; (8000324 <HAL_SYSTICK_Config+0x30>)
+  SysTick->LOAD  = (uint32_t)(ticks - 1UL);                         /* set reload register */
+ 8000304:	6053      	str	r3, [r2, #4]
+    SCB->SHP[_SHP_IDX(IRQn)] = ((uint32_t)(SCB->SHP[_SHP_IDX(IRQn)] & ~(0xFFUL << _BIT_SHIFT(IRQn))) |
+ 8000306:	6a03      	ldr	r3, [r0, #32]
+ 8000308:	0609      	lsls	r1, r1, #24
+ 800030a:	021b      	lsls	r3, r3, #8
+ 800030c:	0a1b      	lsrs	r3, r3, #8
+ 800030e:	430b      	orrs	r3, r1
+ 8000310:	6203      	str	r3, [r0, #32]
+  NVIC_SetPriority (SysTick_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
+  SysTick->VAL   = 0UL;                                             /* Load the SysTick Counter Value */
+ 8000312:	2000      	movs	r0, #0
+  SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
+ 8000314:	2307      	movs	r3, #7
+  SysTick->VAL   = 0UL;                                             /* Load the SysTick Counter Value */
+ 8000316:	6090      	str	r0, [r2, #8]
+  SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
+ 8000318:	6013      	str	r3, [r2, #0]
+  *                  - 1  Function failed.
+  */
+uint32_t HAL_SYSTICK_Config(uint32_t TicksNumb)
+{
+   return SysTick_Config(TicksNumb);
+}
+ 800031a:	4770      	bx	lr
+ 800031c:	00ffffff 	.word	0x00ffffff
+ 8000320:	e000e010 	.word	0xe000e010
+ 8000324:	e000ed00 	.word	0xe000ed00
+
+08000328 <HAL_GPIO_Init>:
+  * @param  GPIO_Init pointer to a GPIO_InitTypeDef structure that contains
+  *         the configuration information for the specified GPIO peripheral.
+  * @retval None
+  */
+void HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init)
+{ 
+ 8000328:	b5f0      	push	{r4, r5, r6, r7, lr}
+  assert_param(IS_GPIO_PIN(GPIO_Init->Pin));
+  assert_param(IS_GPIO_MODE(GPIO_Init->Mode));
+  assert_param(IS_GPIO_PULL(GPIO_Init->Pull)); 
+
+  /* Configure the port pins */
+  while (((GPIO_Init->Pin) >> position) != RESET)
+ 800032a:	680b      	ldr	r3, [r1, #0]
+{ 
+ 800032c:	b087      	sub	sp, #28
+  while (((GPIO_Init->Pin) >> position) != RESET)
+ 800032e:	9302      	str	r3, [sp, #8]
+  uint32_t position = 0x00U;
+ 8000330:	2300      	movs	r3, #0
+{ 
+ 8000332:	9101      	str	r1, [sp, #4]
+  while (((GPIO_Init->Pin) >> position) != RESET)
+ 8000334:	9a02      	ldr	r2, [sp, #8]
+ 8000336:	40da      	lsrs	r2, r3
+ 8000338:	d101      	bne.n	800033e <HAL_GPIO_Init+0x16>
+      }
+    }
+    
+    position++;
+  } 
+}
+ 800033a:	b007      	add	sp, #28
+ 800033c:	bdf0      	pop	{r4, r5, r6, r7, pc}
+    iocurrent = (GPIO_Init->Pin) & (1U << position);
+ 800033e:	2201      	movs	r2, #1
+ 8000340:	409a      	lsls	r2, r3
+ 8000342:	9203      	str	r2, [sp, #12]
+ 8000344:	9903      	ldr	r1, [sp, #12]
+ 8000346:	9a02      	ldr	r2, [sp, #8]
+ 8000348:	400a      	ands	r2, r1
+ 800034a:	9200      	str	r2, [sp, #0]
+    if(iocurrent)
+ 800034c:	d100      	bne.n	8000350 <HAL_GPIO_Init+0x28>
+ 800034e:	e08c      	b.n	800046a <HAL_GPIO_Init+0x142>
+      if((GPIO_Init->Mode == GPIO_MODE_AF_PP) || (GPIO_Init->Mode == GPIO_MODE_AF_OD)) 
+ 8000350:	9a01      	ldr	r2, [sp, #4]
+ 8000352:	2110      	movs	r1, #16
+ 8000354:	6852      	ldr	r2, [r2, #4]
+ 8000356:	0016      	movs	r6, r2
+ 8000358:	438e      	bics	r6, r1
+ 800035a:	2e02      	cmp	r6, #2
+ 800035c:	d10e      	bne.n	800037c <HAL_GPIO_Init+0x54>
+        CLEAR_BIT(temp, 0xFU << ((uint32_t)(position & 0x07U) * 4U)) ;      
+ 800035e:	2507      	movs	r5, #7
+ 8000360:	401d      	ands	r5, r3
+ 8000362:	00ad      	lsls	r5, r5, #2
+ 8000364:	3901      	subs	r1, #1
+ 8000366:	40a9      	lsls	r1, r5
+        temp = GPIOx->AFR[position >> 3];
+ 8000368:	08dc      	lsrs	r4, r3, #3
+ 800036a:	00a4      	lsls	r4, r4, #2
+ 800036c:	1904      	adds	r4, r0, r4
+ 800036e:	6a27      	ldr	r7, [r4, #32]
+        CLEAR_BIT(temp, 0xFU << ((uint32_t)(position & 0x07U) * 4U)) ;      
+ 8000370:	438f      	bics	r7, r1
+        SET_BIT(temp, (uint32_t)(GPIO_Init->Alternate) << (((uint32_t)position & 0x07U) * 4U));       
+ 8000372:	9901      	ldr	r1, [sp, #4]
+ 8000374:	6909      	ldr	r1, [r1, #16]
+ 8000376:	40a9      	lsls	r1, r5
+ 8000378:	430f      	orrs	r7, r1
+        GPIOx->AFR[position >> 3U] = temp;
+ 800037a:	6227      	str	r7, [r4, #32]
+      CLEAR_BIT(temp, GPIO_MODER_MODER0 << (position * 2U));   
+ 800037c:	2403      	movs	r4, #3
+ 800037e:	005f      	lsls	r7, r3, #1
+ 8000380:	40bc      	lsls	r4, r7
+ 8000382:	43e4      	mvns	r4, r4
+      temp = GPIOx->MODER;
+ 8000384:	6805      	ldr	r5, [r0, #0]
+      if ((GPIO_Init->Mode == GPIO_MODE_OUTPUT_PP) || (GPIO_Init->Mode == GPIO_MODE_AF_PP) ||
+ 8000386:	3e01      	subs	r6, #1
+      CLEAR_BIT(temp, GPIO_MODER_MODER0 << (position * 2U));   
+ 8000388:	4025      	ands	r5, r4
+ 800038a:	46ac      	mov	ip, r5
+      SET_BIT(temp, (GPIO_Init->Mode & GPIO_MODE) << (position * 2U));
+ 800038c:	2503      	movs	r5, #3
+ 800038e:	4015      	ands	r5, r2
+ 8000390:	40bd      	lsls	r5, r7
+ 8000392:	4661      	mov	r1, ip
+ 8000394:	430d      	orrs	r5, r1
+      GPIOx->MODER = temp;
+ 8000396:	6005      	str	r5, [r0, #0]
+      if ((GPIO_Init->Mode == GPIO_MODE_OUTPUT_PP) || (GPIO_Init->Mode == GPIO_MODE_AF_PP) ||
+ 8000398:	2e01      	cmp	r6, #1
+ 800039a:	d80f      	bhi.n	80003bc <HAL_GPIO_Init+0x94>
+        SET_BIT(temp, GPIO_Init->Speed << (position * 2U));
+ 800039c:	9901      	ldr	r1, [sp, #4]
+        temp = GPIOx->OSPEEDR; 
+ 800039e:	6886      	ldr	r6, [r0, #8]
+        SET_BIT(temp, GPIO_Init->Speed << (position * 2U));
+ 80003a0:	68cd      	ldr	r5, [r1, #12]
+        CLEAR_BIT(temp, GPIO_OSPEEDER_OSPEEDR0 << (position * 2U));
+ 80003a2:	4026      	ands	r6, r4
+        SET_BIT(temp, GPIO_Init->Speed << (position * 2U));
+ 80003a4:	40bd      	lsls	r5, r7
+ 80003a6:	4335      	orrs	r5, r6
+        GPIOx->OSPEEDR = temp;
+ 80003a8:	6085      	str	r5, [r0, #8]
+        temp = GPIOx->OTYPER;
+ 80003aa:	6846      	ldr	r6, [r0, #4]
+        CLEAR_BIT(temp, GPIO_OTYPER_OT_0 << position) ;
+ 80003ac:	9903      	ldr	r1, [sp, #12]
+        SET_BIT(temp, ((GPIO_Init->Mode & GPIO_OUTPUT_TYPE) >> 4U) << position);
+ 80003ae:	0915      	lsrs	r5, r2, #4
+        CLEAR_BIT(temp, GPIO_OTYPER_OT_0 << position) ;
+ 80003b0:	438e      	bics	r6, r1
+        SET_BIT(temp, ((GPIO_Init->Mode & GPIO_OUTPUT_TYPE) >> 4U) << position);
+ 80003b2:	2101      	movs	r1, #1
+ 80003b4:	400d      	ands	r5, r1
+ 80003b6:	409d      	lsls	r5, r3
+ 80003b8:	4335      	orrs	r5, r6
+        GPIOx->OTYPER = temp;
+ 80003ba:	6045      	str	r5, [r0, #4]
+      temp = GPIOx->PUPDR;
+ 80003bc:	68c5      	ldr	r5, [r0, #12]
+      SET_BIT(temp, (GPIO_Init->Pull) << (position * 2U));
+ 80003be:	9901      	ldr	r1, [sp, #4]
+      CLEAR_BIT(temp, GPIO_PUPDR_PUPDR0 << (position * 2U));
+ 80003c0:	402c      	ands	r4, r5
+      SET_BIT(temp, (GPIO_Init->Pull) << (position * 2U));
+ 80003c2:	688d      	ldr	r5, [r1, #8]
+      if((GPIO_Init->Mode & EXTI_MODE) == EXTI_MODE) 
+ 80003c4:	2180      	movs	r1, #128	; 0x80
+      SET_BIT(temp, (GPIO_Init->Pull) << (position * 2U));
+ 80003c6:	40bd      	lsls	r5, r7
+      if((GPIO_Init->Mode & EXTI_MODE) == EXTI_MODE) 
+ 80003c8:	0549      	lsls	r1, r1, #21
+      SET_BIT(temp, (GPIO_Init->Pull) << (position * 2U));
+ 80003ca:	432c      	orrs	r4, r5
+      GPIOx->PUPDR = temp;
+ 80003cc:	60c4      	str	r4, [r0, #12]
+      if((GPIO_Init->Mode & EXTI_MODE) == EXTI_MODE) 
+ 80003ce:	420a      	tst	r2, r1
+ 80003d0:	d04b      	beq.n	800046a <HAL_GPIO_Init+0x142>
+        __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 80003d2:	2101      	movs	r1, #1
+ 80003d4:	4c26      	ldr	r4, [pc, #152]	; (8000470 <HAL_GPIO_Init+0x148>)
+        CLEAR_BIT(temp, (0x0FU) << (4U * (position & 0x03U)));
+ 80003d6:	2603      	movs	r6, #3
+        __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 80003d8:	69a5      	ldr	r5, [r4, #24]
+        CLEAR_BIT(temp, (0x0FU) << (4U * (position & 0x03U)));
+ 80003da:	401e      	ands	r6, r3
+        __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 80003dc:	430d      	orrs	r5, r1
+ 80003de:	61a5      	str	r5, [r4, #24]
+ 80003e0:	69a4      	ldr	r4, [r4, #24]
+        temp = SYSCFG->EXTICR[position >> 2];
+ 80003e2:	089d      	lsrs	r5, r3, #2
+        __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 80003e4:	400c      	ands	r4, r1
+ 80003e6:	9405      	str	r4, [sp, #20]
+ 80003e8:	9c05      	ldr	r4, [sp, #20]
+        CLEAR_BIT(temp, (0x0FU) << (4U * (position & 0x03U)));
+ 80003ea:	240f      	movs	r4, #15
+ 80003ec:	4921      	ldr	r1, [pc, #132]	; (8000474 <HAL_GPIO_Init+0x14c>)
+ 80003ee:	00ad      	lsls	r5, r5, #2
+ 80003f0:	00b6      	lsls	r6, r6, #2
+ 80003f2:	186d      	adds	r5, r5, r1
+ 80003f4:	40b4      	lsls	r4, r6
+        SET_BIT(temp, (GPIO_GET_INDEX(GPIOx)) << (4U * (position & 0x03U)));
+ 80003f6:	2190      	movs	r1, #144	; 0x90
+        temp = SYSCFG->EXTICR[position >> 2];
+ 80003f8:	68af      	ldr	r7, [r5, #8]
+        SET_BIT(temp, (GPIO_GET_INDEX(GPIOx)) << (4U * (position & 0x03U)));
+ 80003fa:	05c9      	lsls	r1, r1, #23
+        CLEAR_BIT(temp, (0x0FU) << (4U * (position & 0x03U)));
+ 80003fc:	43a7      	bics	r7, r4
+        SET_BIT(temp, (GPIO_GET_INDEX(GPIOx)) << (4U * (position & 0x03U)));
+ 80003fe:	2400      	movs	r4, #0
+ 8000400:	4288      	cmp	r0, r1
+ 8000402:	d00c      	beq.n	800041e <HAL_GPIO_Init+0xf6>
+ 8000404:	491c      	ldr	r1, [pc, #112]	; (8000478 <HAL_GPIO_Init+0x150>)
+ 8000406:	3401      	adds	r4, #1
+ 8000408:	4288      	cmp	r0, r1
+ 800040a:	d008      	beq.n	800041e <HAL_GPIO_Init+0xf6>
+ 800040c:	491b      	ldr	r1, [pc, #108]	; (800047c <HAL_GPIO_Init+0x154>)
+ 800040e:	3401      	adds	r4, #1
+ 8000410:	4288      	cmp	r0, r1
+ 8000412:	d004      	beq.n	800041e <HAL_GPIO_Init+0xf6>
+ 8000414:	491a      	ldr	r1, [pc, #104]	; (8000480 <HAL_GPIO_Init+0x158>)
+ 8000416:	3403      	adds	r4, #3
+ 8000418:	4288      	cmp	r0, r1
+ 800041a:	d100      	bne.n	800041e <HAL_GPIO_Init+0xf6>
+ 800041c:	3c02      	subs	r4, #2
+ 800041e:	40b4      	lsls	r4, r6
+        CLEAR_BIT(temp, (uint32_t)iocurrent);
+ 8000420:	9900      	ldr	r1, [sp, #0]
+        SET_BIT(temp, (GPIO_GET_INDEX(GPIOx)) << (4U * (position & 0x03U)));
+ 8000422:	433c      	orrs	r4, r7
+          SET_BIT(temp, iocurrent); 
+ 8000424:	000e      	movs	r6, r1
+        SYSCFG->EXTICR[position >> 2] = temp;
+ 8000426:	60ac      	str	r4, [r5, #8]
+        temp = EXTI->IMR;
+ 8000428:	4c16      	ldr	r4, [pc, #88]	; (8000484 <HAL_GPIO_Init+0x15c>)
+        CLEAR_BIT(temp, (uint32_t)iocurrent);
+ 800042a:	43cd      	mvns	r5, r1
+        temp = EXTI->IMR;
+ 800042c:	6827      	ldr	r7, [r4, #0]
+          SET_BIT(temp, iocurrent); 
+ 800042e:	433e      	orrs	r6, r7
+        if((GPIO_Init->Mode & GPIO_MODE_IT) == GPIO_MODE_IT)
+ 8000430:	03d1      	lsls	r1, r2, #15
+ 8000432:	d401      	bmi.n	8000438 <HAL_GPIO_Init+0x110>
+        CLEAR_BIT(temp, (uint32_t)iocurrent);
+ 8000434:	003e      	movs	r6, r7
+ 8000436:	402e      	ands	r6, r5
+        EXTI->IMR = temp;
+ 8000438:	6026      	str	r6, [r4, #0]
+        temp = EXTI->EMR;
+ 800043a:	6867      	ldr	r7, [r4, #4]
+          SET_BIT(temp, iocurrent); 
+ 800043c:	9e00      	ldr	r6, [sp, #0]
+ 800043e:	433e      	orrs	r6, r7
+        if((GPIO_Init->Mode & GPIO_MODE_EVT) == GPIO_MODE_EVT)
+ 8000440:	0391      	lsls	r1, r2, #14
+ 8000442:	d401      	bmi.n	8000448 <HAL_GPIO_Init+0x120>
+        CLEAR_BIT(temp, (uint32_t)iocurrent);      
+ 8000444:	003e      	movs	r6, r7
+ 8000446:	402e      	ands	r6, r5
+        EXTI->EMR = temp;
+ 8000448:	6066      	str	r6, [r4, #4]
+        temp = EXTI->RTSR;
+ 800044a:	68a7      	ldr	r7, [r4, #8]
+          SET_BIT(temp, iocurrent); 
+ 800044c:	9e00      	ldr	r6, [sp, #0]
+ 800044e:	433e      	orrs	r6, r7
+        if((GPIO_Init->Mode & RISING_EDGE) == RISING_EDGE)
+ 8000450:	02d1      	lsls	r1, r2, #11
+ 8000452:	d401      	bmi.n	8000458 <HAL_GPIO_Init+0x130>
+        CLEAR_BIT(temp, (uint32_t)iocurrent); 
+ 8000454:	003e      	movs	r6, r7
+ 8000456:	402e      	ands	r6, r5
+        EXTI->RTSR = temp;
+ 8000458:	60a6      	str	r6, [r4, #8]
+        temp = EXTI->FTSR;
+ 800045a:	68e6      	ldr	r6, [r4, #12]
+          SET_BIT(temp, iocurrent); 
+ 800045c:	9f00      	ldr	r7, [sp, #0]
+ 800045e:	4337      	orrs	r7, r6
+        if((GPIO_Init->Mode & FALLING_EDGE) == FALLING_EDGE)
+ 8000460:	0292      	lsls	r2, r2, #10
+ 8000462:	d401      	bmi.n	8000468 <HAL_GPIO_Init+0x140>
+        CLEAR_BIT(temp, (uint32_t)iocurrent); 
+ 8000464:	402e      	ands	r6, r5
+ 8000466:	0037      	movs	r7, r6
+        EXTI->FTSR = temp;
+ 8000468:	60e7      	str	r7, [r4, #12]
+    position++;
+ 800046a:	3301      	adds	r3, #1
+ 800046c:	e762      	b.n	8000334 <HAL_GPIO_Init+0xc>
+ 800046e:	46c0      	nop			; (mov r8, r8)
+ 8000470:	40021000 	.word	0x40021000
+ 8000474:	40010000 	.word	0x40010000
+ 8000478:	48000400 	.word	0x48000400
+ 800047c:	48000800 	.word	0x48000800
+ 8000480:	48000c00 	.word	0x48000c00
+ 8000484:	40010400 	.word	0x40010400
+
+08000488 <HAL_GPIO_WritePin>:
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+  assert_param(IS_GPIO_PIN_ACTION(PinState));
+
+  if (PinState != GPIO_PIN_RESET)
+ 8000488:	2a00      	cmp	r2, #0
+ 800048a:	d001      	beq.n	8000490 <HAL_GPIO_WritePin+0x8>
+  {
+    GPIOx->BSRR = (uint32_t)GPIO_Pin;
+ 800048c:	6181      	str	r1, [r0, #24]
+  }
+  else
+  {
+    GPIOx->BRR = (uint32_t)GPIO_Pin;
+  }
+}
+ 800048e:	4770      	bx	lr
+    GPIOx->BRR = (uint32_t)GPIO_Pin;
+ 8000490:	6281      	str	r1, [r0, #40]	; 0x28
+}
+ 8000492:	e7fc      	b.n	800048e <HAL_GPIO_WritePin+0x6>
+
+08000494 <HAL_GPIO_TogglePin>:
+void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+  /* Check the parameters */
+  assert_param(IS_GPIO_PIN(GPIO_Pin));
+
+  GPIOx->ODR ^= GPIO_Pin;
+ 8000494:	6943      	ldr	r3, [r0, #20]
+ 8000496:	4059      	eors	r1, r3
+ 8000498:	6141      	str	r1, [r0, #20]
+}
+ 800049a:	4770      	bx	lr
+
+0800049c <HAL_RCC_OscConfig>:
+  *         supported by this macro. User should request a transition to HSE Off
+  *         first and then HSE On or HSE Bypass.
+  * @retval HAL status
+  */
+HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef  *RCC_OscInitStruct)
+{
+ 800049c:	b5f0      	push	{r4, r5, r6, r7, lr}
+  /* Check the parameters */
+  assert_param(RCC_OscInitStruct != NULL);
+  assert_param(IS_RCC_OSCILLATORTYPE(RCC_OscInitStruct->OscillatorType));
+
+  /*------------------------------- HSE Configuration ------------------------*/ 
+  if(((RCC_OscInitStruct->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
+ 800049e:	6803      	ldr	r3, [r0, #0]
+{
+ 80004a0:	b085      	sub	sp, #20
+ 80004a2:	0005      	movs	r5, r0
+  if(((RCC_OscInitStruct->OscillatorType) & RCC_OSCILLATORTYPE_HSE) == RCC_OSCILLATORTYPE_HSE)
+ 80004a4:	07db      	lsls	r3, r3, #31
+ 80004a6:	d42f      	bmi.n	8000508 <HAL_RCC_OscConfig+0x6c>
+        }
+      }
+    }
+  }
+  /*----------------------------- HSI Configuration --------------------------*/ 
+  if(((RCC_OscInitStruct->OscillatorType) & RCC_OSCILLATORTYPE_HSI) == RCC_OSCILLATORTYPE_HSI)
+ 80004a8:	682b      	ldr	r3, [r5, #0]
+ 80004aa:	079b      	lsls	r3, r3, #30
+ 80004ac:	d500      	bpl.n	80004b0 <HAL_RCC_OscConfig+0x14>
+ 80004ae:	e081      	b.n	80005b4 <HAL_RCC_OscConfig+0x118>
+        }
+      }
+    }
+  }
+  /*------------------------------ LSI Configuration -------------------------*/ 
+  if(((RCC_OscInitStruct->OscillatorType) & RCC_OSCILLATORTYPE_LSI) == RCC_OSCILLATORTYPE_LSI)
+ 80004b0:	682b      	ldr	r3, [r5, #0]
+ 80004b2:	071b      	lsls	r3, r3, #28
+ 80004b4:	d500      	bpl.n	80004b8 <HAL_RCC_OscConfig+0x1c>
+ 80004b6:	e0bc      	b.n	8000632 <HAL_RCC_OscConfig+0x196>
+        }
+      }
+    }
+  }
+  /*------------------------------ LSE Configuration -------------------------*/ 
+  if(((RCC_OscInitStruct->OscillatorType) & RCC_OSCILLATORTYPE_LSE) == RCC_OSCILLATORTYPE_LSE)
+ 80004b8:	682b      	ldr	r3, [r5, #0]
+ 80004ba:	075b      	lsls	r3, r3, #29
+ 80004bc:	d500      	bpl.n	80004c0 <HAL_RCC_OscConfig+0x24>
+ 80004be:	e0df      	b.n	8000680 <HAL_RCC_OscConfig+0x1e4>
+      __HAL_RCC_PWR_CLK_DISABLE();
+    }
+  }
+
+  /*----------------------------- HSI14 Configuration --------------------------*/
+  if(((RCC_OscInitStruct->OscillatorType) & RCC_OSCILLATORTYPE_HSI14) == RCC_OSCILLATORTYPE_HSI14)
+ 80004c0:	682b      	ldr	r3, [r5, #0]
+ 80004c2:	06db      	lsls	r3, r3, #27
+ 80004c4:	d51a      	bpl.n	80004fc <HAL_RCC_OscConfig+0x60>
+    /* Check the parameters */
+    assert_param(IS_RCC_HSI14(RCC_OscInitStruct->HSI14State));
+    assert_param(IS_RCC_CALIBRATION_VALUE(RCC_OscInitStruct->HSI14CalibrationValue));
+
+    /* Check the HSI14 State */
+    if(RCC_OscInitStruct->HSI14State == RCC_HSI14_ON)
+ 80004c6:	696a      	ldr	r2, [r5, #20]
+ 80004c8:	4cb5      	ldr	r4, [pc, #724]	; (80007a0 <HAL_RCC_OscConfig+0x304>)
+ 80004ca:	2304      	movs	r3, #4
+ 80004cc:	2a01      	cmp	r2, #1
+ 80004ce:	d000      	beq.n	80004d2 <HAL_RCC_OscConfig+0x36>
+ 80004d0:	e14b      	b.n	800076a <HAL_RCC_OscConfig+0x2ce>
+    {
+      /* Disable ADC control of the Internal High Speed oscillator HSI14 */
+      __HAL_RCC_HSI14ADC_DISABLE();
+ 80004d2:	6b61      	ldr	r1, [r4, #52]	; 0x34
+
+      /* Get Start Tick */
+      tickstart = HAL_GetTick();
+      
+      /* Wait till HSI is ready */  
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSI14RDY) == RESET)
+ 80004d4:	2602      	movs	r6, #2
+      __HAL_RCC_HSI14ADC_DISABLE();
+ 80004d6:	430b      	orrs	r3, r1
+ 80004d8:	6363      	str	r3, [r4, #52]	; 0x34
+      __HAL_RCC_HSI14_ENABLE();
+ 80004da:	6b63      	ldr	r3, [r4, #52]	; 0x34
+ 80004dc:	431a      	orrs	r2, r3
+ 80004de:	6362      	str	r2, [r4, #52]	; 0x34
+      tickstart = HAL_GetTick();
+ 80004e0:	f7ff fec8 	bl	8000274 <HAL_GetTick>
+ 80004e4:	0007      	movs	r7, r0
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSI14RDY) == RESET)
+ 80004e6:	6b63      	ldr	r3, [r4, #52]	; 0x34
+ 80004e8:	4233      	tst	r3, r6
+ 80004ea:	d100      	bne.n	80004ee <HAL_RCC_OscConfig+0x52>
+ 80004ec:	e136      	b.n	800075c <HAL_RCC_OscConfig+0x2c0>
+    {
+      /* Enable ADC control of the Internal High Speed oscillator HSI14 */
+      __HAL_RCC_HSI14ADC_ENABLE();
+
+      /* Adjusts the Internal High Speed oscillator 14Mhz (HSI14) calibration value. */
+      __HAL_RCC_HSI14_CALIBRATIONVALUE_ADJUST(RCC_OscInitStruct->HSI14CalibrationValue);
+ 80004ee:	21f8      	movs	r1, #248	; 0xf8
+ 80004f0:	6b62      	ldr	r2, [r4, #52]	; 0x34
+ 80004f2:	69ab      	ldr	r3, [r5, #24]
+ 80004f4:	438a      	bics	r2, r1
+ 80004f6:	00db      	lsls	r3, r3, #3
+ 80004f8:	4313      	orrs	r3, r2
+ 80004fa:	6363      	str	r3, [r4, #52]	; 0x34
+#endif /* RCC_HSI48_SUPPORT */
+       
+  /*-------------------------------- PLL Configuration -----------------------*/
+  /* Check the parameters */
+  assert_param(IS_RCC_PLL(RCC_OscInitStruct->PLL.PLLState));
+  if ((RCC_OscInitStruct->PLL.PLLState) != RCC_PLL_NONE)
+ 80004fc:	6a29      	ldr	r1, [r5, #32]
+ 80004fe:	2900      	cmp	r1, #0
+ 8000500:	d000      	beq.n	8000504 <HAL_RCC_OscConfig+0x68>
+ 8000502:	e159      	b.n	80007b8 <HAL_RCC_OscConfig+0x31c>
+    {
+      return HAL_ERROR;
+    }
+  }
+  
+  return HAL_OK;
+ 8000504:	2000      	movs	r0, #0
+ 8000506:	e013      	b.n	8000530 <HAL_RCC_OscConfig+0x94>
+    if((__HAL_RCC_GET_SYSCLK_SOURCE() == RCC_SYSCLKSOURCE_STATUS_HSE) 
+ 8000508:	210c      	movs	r1, #12
+ 800050a:	4ca5      	ldr	r4, [pc, #660]	; (80007a0 <HAL_RCC_OscConfig+0x304>)
+ 800050c:	6862      	ldr	r2, [r4, #4]
+ 800050e:	400a      	ands	r2, r1
+ 8000510:	2a04      	cmp	r2, #4
+ 8000512:	d006      	beq.n	8000522 <HAL_RCC_OscConfig+0x86>
+       || ((__HAL_RCC_GET_SYSCLK_SOURCE() == RCC_SYSCLKSOURCE_STATUS_PLLCLK) && (__HAL_RCC_GET_PLL_OSCSOURCE() == RCC_PLLSOURCE_HSE)))
+ 8000514:	6863      	ldr	r3, [r4, #4]
+ 8000516:	400b      	ands	r3, r1
+ 8000518:	2b08      	cmp	r3, #8
+ 800051a:	d10b      	bne.n	8000534 <HAL_RCC_OscConfig+0x98>
+ 800051c:	6863      	ldr	r3, [r4, #4]
+ 800051e:	03db      	lsls	r3, r3, #15
+ 8000520:	d508      	bpl.n	8000534 <HAL_RCC_OscConfig+0x98>
+      if((__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) != RESET) && (RCC_OscInitStruct->HSEState == RCC_HSE_OFF))
+ 8000522:	6823      	ldr	r3, [r4, #0]
+ 8000524:	039b      	lsls	r3, r3, #14
+ 8000526:	d5bf      	bpl.n	80004a8 <HAL_RCC_OscConfig+0xc>
+ 8000528:	686b      	ldr	r3, [r5, #4]
+ 800052a:	2b00      	cmp	r3, #0
+ 800052c:	d1bc      	bne.n	80004a8 <HAL_RCC_OscConfig+0xc>
+        return HAL_ERROR;
+ 800052e:	2001      	movs	r0, #1
+}
+ 8000530:	b005      	add	sp, #20
+ 8000532:	bdf0      	pop	{r4, r5, r6, r7, pc}
+      __HAL_RCC_HSE_CONFIG(RCC_OscInitStruct->HSEState);
+ 8000534:	686b      	ldr	r3, [r5, #4]
+ 8000536:	2b01      	cmp	r3, #1
+ 8000538:	d113      	bne.n	8000562 <HAL_RCC_OscConfig+0xc6>
+ 800053a:	2380      	movs	r3, #128	; 0x80
+ 800053c:	6822      	ldr	r2, [r4, #0]
+ 800053e:	025b      	lsls	r3, r3, #9
+ 8000540:	4313      	orrs	r3, r2
+ 8000542:	6023      	str	r3, [r4, #0]
+        tickstart = HAL_GetTick();
+ 8000544:	f7ff fe96 	bl	8000274 <HAL_GetTick>
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) == RESET)
+ 8000548:	2680      	movs	r6, #128	; 0x80
+        tickstart = HAL_GetTick();
+ 800054a:	0007      	movs	r7, r0
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) == RESET)
+ 800054c:	02b6      	lsls	r6, r6, #10
+ 800054e:	6823      	ldr	r3, [r4, #0]
+ 8000550:	4233      	tst	r3, r6
+ 8000552:	d1a9      	bne.n	80004a8 <HAL_RCC_OscConfig+0xc>
+          if((HAL_GetTick() - tickstart ) > HSE_TIMEOUT_VALUE)
+ 8000554:	f7ff fe8e 	bl	8000274 <HAL_GetTick>
+ 8000558:	1bc0      	subs	r0, r0, r7
+ 800055a:	2864      	cmp	r0, #100	; 0x64
+ 800055c:	d9f7      	bls.n	800054e <HAL_RCC_OscConfig+0xb2>
+            return HAL_TIMEOUT;
+ 800055e:	2003      	movs	r0, #3
+ 8000560:	e7e6      	b.n	8000530 <HAL_RCC_OscConfig+0x94>
+      __HAL_RCC_HSE_CONFIG(RCC_OscInitStruct->HSEState);
+ 8000562:	2b00      	cmp	r3, #0
+ 8000564:	d116      	bne.n	8000594 <HAL_RCC_OscConfig+0xf8>
+ 8000566:	6823      	ldr	r3, [r4, #0]
+ 8000568:	4a8e      	ldr	r2, [pc, #568]	; (80007a4 <HAL_RCC_OscConfig+0x308>)
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) != RESET)
+ 800056a:	2680      	movs	r6, #128	; 0x80
+      __HAL_RCC_HSE_CONFIG(RCC_OscInitStruct->HSEState);
+ 800056c:	4013      	ands	r3, r2
+ 800056e:	6023      	str	r3, [r4, #0]
+ 8000570:	6823      	ldr	r3, [r4, #0]
+ 8000572:	4a8d      	ldr	r2, [pc, #564]	; (80007a8 <HAL_RCC_OscConfig+0x30c>)
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) != RESET)
+ 8000574:	02b6      	lsls	r6, r6, #10
+      __HAL_RCC_HSE_CONFIG(RCC_OscInitStruct->HSEState);
+ 8000576:	4013      	ands	r3, r2
+ 8000578:	6023      	str	r3, [r4, #0]
+        tickstart = HAL_GetTick();
+ 800057a:	f7ff fe7b 	bl	8000274 <HAL_GetTick>
+ 800057e:	0007      	movs	r7, r0
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) != RESET)
+ 8000580:	6823      	ldr	r3, [r4, #0]
+ 8000582:	4233      	tst	r3, r6
+ 8000584:	d100      	bne.n	8000588 <HAL_RCC_OscConfig+0xec>
+ 8000586:	e78f      	b.n	80004a8 <HAL_RCC_OscConfig+0xc>
+           if((HAL_GetTick() - tickstart ) > HSE_TIMEOUT_VALUE)
+ 8000588:	f7ff fe74 	bl	8000274 <HAL_GetTick>
+ 800058c:	1bc0      	subs	r0, r0, r7
+ 800058e:	2864      	cmp	r0, #100	; 0x64
+ 8000590:	d9f6      	bls.n	8000580 <HAL_RCC_OscConfig+0xe4>
+ 8000592:	e7e4      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+      __HAL_RCC_HSE_CONFIG(RCC_OscInitStruct->HSEState);
+ 8000594:	2b05      	cmp	r3, #5
+ 8000596:	d105      	bne.n	80005a4 <HAL_RCC_OscConfig+0x108>
+ 8000598:	2380      	movs	r3, #128	; 0x80
+ 800059a:	6822      	ldr	r2, [r4, #0]
+ 800059c:	02db      	lsls	r3, r3, #11
+ 800059e:	4313      	orrs	r3, r2
+ 80005a0:	6023      	str	r3, [r4, #0]
+ 80005a2:	e7ca      	b.n	800053a <HAL_RCC_OscConfig+0x9e>
+ 80005a4:	6823      	ldr	r3, [r4, #0]
+ 80005a6:	4a7f      	ldr	r2, [pc, #508]	; (80007a4 <HAL_RCC_OscConfig+0x308>)
+ 80005a8:	4013      	ands	r3, r2
+ 80005aa:	6023      	str	r3, [r4, #0]
+ 80005ac:	6823      	ldr	r3, [r4, #0]
+ 80005ae:	4a7e      	ldr	r2, [pc, #504]	; (80007a8 <HAL_RCC_OscConfig+0x30c>)
+ 80005b0:	4013      	ands	r3, r2
+ 80005b2:	e7c6      	b.n	8000542 <HAL_RCC_OscConfig+0xa6>
+    if((__HAL_RCC_GET_SYSCLK_SOURCE() == RCC_SYSCLKSOURCE_STATUS_HSI) 
+ 80005b4:	220c      	movs	r2, #12
+ 80005b6:	4c7a      	ldr	r4, [pc, #488]	; (80007a0 <HAL_RCC_OscConfig+0x304>)
+ 80005b8:	6863      	ldr	r3, [r4, #4]
+ 80005ba:	4213      	tst	r3, r2
+ 80005bc:	d006      	beq.n	80005cc <HAL_RCC_OscConfig+0x130>
+       || ((__HAL_RCC_GET_SYSCLK_SOURCE() == RCC_SYSCLKSOURCE_STATUS_PLLCLK) && (__HAL_RCC_GET_PLL_OSCSOURCE() == RCC_PLLSOURCE_HSI)))
+ 80005be:	6863      	ldr	r3, [r4, #4]
+ 80005c0:	4013      	ands	r3, r2
+ 80005c2:	2b08      	cmp	r3, #8
+ 80005c4:	d110      	bne.n	80005e8 <HAL_RCC_OscConfig+0x14c>
+ 80005c6:	6863      	ldr	r3, [r4, #4]
+ 80005c8:	03db      	lsls	r3, r3, #15
+ 80005ca:	d40d      	bmi.n	80005e8 <HAL_RCC_OscConfig+0x14c>
+      if((__HAL_RCC_GET_FLAG(RCC_FLAG_HSIRDY) != RESET) && (RCC_OscInitStruct->HSIState != RCC_HSI_ON))
+ 80005cc:	6823      	ldr	r3, [r4, #0]
+ 80005ce:	079b      	lsls	r3, r3, #30
+ 80005d0:	d502      	bpl.n	80005d8 <HAL_RCC_OscConfig+0x13c>
+ 80005d2:	68eb      	ldr	r3, [r5, #12]
+ 80005d4:	2b01      	cmp	r3, #1
+ 80005d6:	d1aa      	bne.n	800052e <HAL_RCC_OscConfig+0x92>
+        __HAL_RCC_HSI_CALIBRATIONVALUE_ADJUST(RCC_OscInitStruct->HSICalibrationValue);
+ 80005d8:	21f8      	movs	r1, #248	; 0xf8
+ 80005da:	6822      	ldr	r2, [r4, #0]
+ 80005dc:	692b      	ldr	r3, [r5, #16]
+ 80005de:	438a      	bics	r2, r1
+ 80005e0:	00db      	lsls	r3, r3, #3
+ 80005e2:	4313      	orrs	r3, r2
+ 80005e4:	6023      	str	r3, [r4, #0]
+ 80005e6:	e763      	b.n	80004b0 <HAL_RCC_OscConfig+0x14>
+      if(RCC_OscInitStruct->HSIState != RCC_HSI_OFF)
+ 80005e8:	68ea      	ldr	r2, [r5, #12]
+ 80005ea:	2301      	movs	r3, #1
+ 80005ec:	2a00      	cmp	r2, #0
+ 80005ee:	d00f      	beq.n	8000610 <HAL_RCC_OscConfig+0x174>
+        __HAL_RCC_HSI_ENABLE();
+ 80005f0:	6822      	ldr	r2, [r4, #0]
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSIRDY) == RESET)
+ 80005f2:	2602      	movs	r6, #2
+        __HAL_RCC_HSI_ENABLE();
+ 80005f4:	4313      	orrs	r3, r2
+ 80005f6:	6023      	str	r3, [r4, #0]
+        tickstart = HAL_GetTick();
+ 80005f8:	f7ff fe3c 	bl	8000274 <HAL_GetTick>
+ 80005fc:	0007      	movs	r7, r0
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSIRDY) == RESET)
+ 80005fe:	6823      	ldr	r3, [r4, #0]
+ 8000600:	4233      	tst	r3, r6
+ 8000602:	d1e9      	bne.n	80005d8 <HAL_RCC_OscConfig+0x13c>
+          if((HAL_GetTick() - tickstart ) > HSI_TIMEOUT_VALUE)
+ 8000604:	f7ff fe36 	bl	8000274 <HAL_GetTick>
+ 8000608:	1bc0      	subs	r0, r0, r7
+ 800060a:	2802      	cmp	r0, #2
+ 800060c:	d9f7      	bls.n	80005fe <HAL_RCC_OscConfig+0x162>
+ 800060e:	e7a6      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+        __HAL_RCC_HSI_DISABLE();
+ 8000610:	6822      	ldr	r2, [r4, #0]
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSIRDY) != RESET)
+ 8000612:	2602      	movs	r6, #2
+        __HAL_RCC_HSI_DISABLE();
+ 8000614:	439a      	bics	r2, r3
+ 8000616:	6022      	str	r2, [r4, #0]
+        tickstart = HAL_GetTick();
+ 8000618:	f7ff fe2c 	bl	8000274 <HAL_GetTick>
+ 800061c:	0007      	movs	r7, r0
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSIRDY) != RESET)
+ 800061e:	6823      	ldr	r3, [r4, #0]
+ 8000620:	4233      	tst	r3, r6
+ 8000622:	d100      	bne.n	8000626 <HAL_RCC_OscConfig+0x18a>
+ 8000624:	e744      	b.n	80004b0 <HAL_RCC_OscConfig+0x14>
+          if((HAL_GetTick() - tickstart ) > HSI_TIMEOUT_VALUE)
+ 8000626:	f7ff fe25 	bl	8000274 <HAL_GetTick>
+ 800062a:	1bc0      	subs	r0, r0, r7
+ 800062c:	2802      	cmp	r0, #2
+ 800062e:	d9f6      	bls.n	800061e <HAL_RCC_OscConfig+0x182>
+ 8000630:	e795      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+    if(RCC_OscInitStruct->LSIState != RCC_LSI_OFF)
+ 8000632:	69ea      	ldr	r2, [r5, #28]
+ 8000634:	2301      	movs	r3, #1
+ 8000636:	4c5a      	ldr	r4, [pc, #360]	; (80007a0 <HAL_RCC_OscConfig+0x304>)
+ 8000638:	2a00      	cmp	r2, #0
+ 800063a:	d010      	beq.n	800065e <HAL_RCC_OscConfig+0x1c2>
+      __HAL_RCC_LSI_ENABLE();
+ 800063c:	6a62      	ldr	r2, [r4, #36]	; 0x24
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSIRDY) == RESET)
+ 800063e:	2602      	movs	r6, #2
+      __HAL_RCC_LSI_ENABLE();
+ 8000640:	4313      	orrs	r3, r2
+ 8000642:	6263      	str	r3, [r4, #36]	; 0x24
+      tickstart = HAL_GetTick();
+ 8000644:	f7ff fe16 	bl	8000274 <HAL_GetTick>
+ 8000648:	0007      	movs	r7, r0
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSIRDY) == RESET)
+ 800064a:	6a63      	ldr	r3, [r4, #36]	; 0x24
+ 800064c:	4233      	tst	r3, r6
+ 800064e:	d000      	beq.n	8000652 <HAL_RCC_OscConfig+0x1b6>
+ 8000650:	e732      	b.n	80004b8 <HAL_RCC_OscConfig+0x1c>
+        if((HAL_GetTick() - tickstart ) > LSI_TIMEOUT_VALUE)
+ 8000652:	f7ff fe0f 	bl	8000274 <HAL_GetTick>
+ 8000656:	1bc0      	subs	r0, r0, r7
+ 8000658:	2802      	cmp	r0, #2
+ 800065a:	d9f6      	bls.n	800064a <HAL_RCC_OscConfig+0x1ae>
+ 800065c:	e77f      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+      __HAL_RCC_LSI_DISABLE();
+ 800065e:	6a62      	ldr	r2, [r4, #36]	; 0x24
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSIRDY) != RESET)
+ 8000660:	2602      	movs	r6, #2
+      __HAL_RCC_LSI_DISABLE();
+ 8000662:	439a      	bics	r2, r3
+ 8000664:	6262      	str	r2, [r4, #36]	; 0x24
+      tickstart = HAL_GetTick();
+ 8000666:	f7ff fe05 	bl	8000274 <HAL_GetTick>
+ 800066a:	0007      	movs	r7, r0
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSIRDY) != RESET)
+ 800066c:	6a63      	ldr	r3, [r4, #36]	; 0x24
+ 800066e:	4233      	tst	r3, r6
+ 8000670:	d100      	bne.n	8000674 <HAL_RCC_OscConfig+0x1d8>
+ 8000672:	e721      	b.n	80004b8 <HAL_RCC_OscConfig+0x1c>
+        if((HAL_GetTick() - tickstart ) > LSI_TIMEOUT_VALUE)
+ 8000674:	f7ff fdfe 	bl	8000274 <HAL_GetTick>
+ 8000678:	1bc0      	subs	r0, r0, r7
+ 800067a:	2802      	cmp	r0, #2
+ 800067c:	d9f6      	bls.n	800066c <HAL_RCC_OscConfig+0x1d0>
+ 800067e:	e76e      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+    if(__HAL_RCC_PWR_IS_CLK_DISABLED())
+ 8000680:	2280      	movs	r2, #128	; 0x80
+    FlagStatus       pwrclkchanged = RESET;
+ 8000682:	2100      	movs	r1, #0
+    if(__HAL_RCC_PWR_IS_CLK_DISABLED())
+ 8000684:	4c46      	ldr	r4, [pc, #280]	; (80007a0 <HAL_RCC_OscConfig+0x304>)
+ 8000686:	0552      	lsls	r2, r2, #21
+ 8000688:	69e3      	ldr	r3, [r4, #28]
+    FlagStatus       pwrclkchanged = RESET;
+ 800068a:	9100      	str	r1, [sp, #0]
+    if(__HAL_RCC_PWR_IS_CLK_DISABLED())
+ 800068c:	4213      	tst	r3, r2
+ 800068e:	d108      	bne.n	80006a2 <HAL_RCC_OscConfig+0x206>
+      __HAL_RCC_PWR_CLK_ENABLE();
+ 8000690:	69e3      	ldr	r3, [r4, #28]
+ 8000692:	4313      	orrs	r3, r2
+ 8000694:	61e3      	str	r3, [r4, #28]
+ 8000696:	69e3      	ldr	r3, [r4, #28]
+ 8000698:	4013      	ands	r3, r2
+ 800069a:	9303      	str	r3, [sp, #12]
+ 800069c:	9b03      	ldr	r3, [sp, #12]
+      pwrclkchanged = SET;
+ 800069e:	2301      	movs	r3, #1
+ 80006a0:	9300      	str	r3, [sp, #0]
+    if(HAL_IS_BIT_CLR(PWR->CR, PWR_CR_DBP))
+ 80006a2:	2780      	movs	r7, #128	; 0x80
+ 80006a4:	4e41      	ldr	r6, [pc, #260]	; (80007ac <HAL_RCC_OscConfig+0x310>)
+ 80006a6:	007f      	lsls	r7, r7, #1
+ 80006a8:	6833      	ldr	r3, [r6, #0]
+ 80006aa:	423b      	tst	r3, r7
+ 80006ac:	d006      	beq.n	80006bc <HAL_RCC_OscConfig+0x220>
+    __HAL_RCC_LSE_CONFIG(RCC_OscInitStruct->LSEState);
+ 80006ae:	68ab      	ldr	r3, [r5, #8]
+ 80006b0:	2b01      	cmp	r3, #1
+ 80006b2:	d113      	bne.n	80006dc <HAL_RCC_OscConfig+0x240>
+ 80006b4:	6a22      	ldr	r2, [r4, #32]
+ 80006b6:	4313      	orrs	r3, r2
+ 80006b8:	6223      	str	r3, [r4, #32]
+ 80006ba:	e030      	b.n	800071e <HAL_RCC_OscConfig+0x282>
+      SET_BIT(PWR->CR, PWR_CR_DBP);
+ 80006bc:	6833      	ldr	r3, [r6, #0]
+ 80006be:	433b      	orrs	r3, r7
+ 80006c0:	6033      	str	r3, [r6, #0]
+      tickstart = HAL_GetTick();
+ 80006c2:	f7ff fdd7 	bl	8000274 <HAL_GetTick>
+ 80006c6:	9001      	str	r0, [sp, #4]
+      while(HAL_IS_BIT_CLR(PWR->CR, PWR_CR_DBP))
+ 80006c8:	6833      	ldr	r3, [r6, #0]
+ 80006ca:	423b      	tst	r3, r7
+ 80006cc:	d1ef      	bne.n	80006ae <HAL_RCC_OscConfig+0x212>
+        if((HAL_GetTick() - tickstart) > RCC_DBP_TIMEOUT_VALUE)
+ 80006ce:	f7ff fdd1 	bl	8000274 <HAL_GetTick>
+ 80006d2:	9b01      	ldr	r3, [sp, #4]
+ 80006d4:	1ac0      	subs	r0, r0, r3
+ 80006d6:	2864      	cmp	r0, #100	; 0x64
+ 80006d8:	d9f6      	bls.n	80006c8 <HAL_RCC_OscConfig+0x22c>
+ 80006da:	e740      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+ 80006dc:	2201      	movs	r2, #1
+    __HAL_RCC_LSE_CONFIG(RCC_OscInitStruct->LSEState);
+ 80006de:	2b00      	cmp	r3, #0
+ 80006e0:	d114      	bne.n	800070c <HAL_RCC_OscConfig+0x270>
+ 80006e2:	6a23      	ldr	r3, [r4, #32]
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSERDY) != RESET)
+ 80006e4:	2702      	movs	r7, #2
+    __HAL_RCC_LSE_CONFIG(RCC_OscInitStruct->LSEState);
+ 80006e6:	4393      	bics	r3, r2
+ 80006e8:	6223      	str	r3, [r4, #32]
+ 80006ea:	6a23      	ldr	r3, [r4, #32]
+ 80006ec:	3203      	adds	r2, #3
+ 80006ee:	4393      	bics	r3, r2
+ 80006f0:	6223      	str	r3, [r4, #32]
+      tickstart = HAL_GetTick();
+ 80006f2:	f7ff fdbf 	bl	8000274 <HAL_GetTick>
+ 80006f6:	0006      	movs	r6, r0
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSERDY) != RESET)
+ 80006f8:	6a23      	ldr	r3, [r4, #32]
+ 80006fa:	423b      	tst	r3, r7
+ 80006fc:	d025      	beq.n	800074a <HAL_RCC_OscConfig+0x2ae>
+        if((HAL_GetTick() - tickstart ) > RCC_LSE_TIMEOUT_VALUE)
+ 80006fe:	f7ff fdb9 	bl	8000274 <HAL_GetTick>
+ 8000702:	4b2b      	ldr	r3, [pc, #172]	; (80007b0 <HAL_RCC_OscConfig+0x314>)
+ 8000704:	1b80      	subs	r0, r0, r6
+ 8000706:	4298      	cmp	r0, r3
+ 8000708:	d9f6      	bls.n	80006f8 <HAL_RCC_OscConfig+0x25c>
+ 800070a:	e728      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+    __HAL_RCC_LSE_CONFIG(RCC_OscInitStruct->LSEState);
+ 800070c:	2b05      	cmp	r3, #5
+ 800070e:	d10b      	bne.n	8000728 <HAL_RCC_OscConfig+0x28c>
+ 8000710:	6a21      	ldr	r1, [r4, #32]
+ 8000712:	3b01      	subs	r3, #1
+ 8000714:	430b      	orrs	r3, r1
+ 8000716:	6223      	str	r3, [r4, #32]
+ 8000718:	6a23      	ldr	r3, [r4, #32]
+ 800071a:	431a      	orrs	r2, r3
+ 800071c:	6222      	str	r2, [r4, #32]
+      tickstart = HAL_GetTick();
+ 800071e:	f7ff fda9 	bl	8000274 <HAL_GetTick>
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSERDY) == RESET)
+ 8000722:	2702      	movs	r7, #2
+      tickstart = HAL_GetTick();
+ 8000724:	0006      	movs	r6, r0
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSERDY) == RESET)
+ 8000726:	e00d      	b.n	8000744 <HAL_RCC_OscConfig+0x2a8>
+    __HAL_RCC_LSE_CONFIG(RCC_OscInitStruct->LSEState);
+ 8000728:	6a23      	ldr	r3, [r4, #32]
+ 800072a:	4393      	bics	r3, r2
+ 800072c:	2204      	movs	r2, #4
+ 800072e:	6223      	str	r3, [r4, #32]
+ 8000730:	6a23      	ldr	r3, [r4, #32]
+ 8000732:	4393      	bics	r3, r2
+ 8000734:	e7c0      	b.n	80006b8 <HAL_RCC_OscConfig+0x21c>
+        if((HAL_GetTick() - tickstart ) > RCC_LSE_TIMEOUT_VALUE)
+ 8000736:	f7ff fd9d 	bl	8000274 <HAL_GetTick>
+ 800073a:	4b1d      	ldr	r3, [pc, #116]	; (80007b0 <HAL_RCC_OscConfig+0x314>)
+ 800073c:	1b80      	subs	r0, r0, r6
+ 800073e:	4298      	cmp	r0, r3
+ 8000740:	d900      	bls.n	8000744 <HAL_RCC_OscConfig+0x2a8>
+ 8000742:	e70c      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_LSERDY) == RESET)
+ 8000744:	6a23      	ldr	r3, [r4, #32]
+ 8000746:	423b      	tst	r3, r7
+ 8000748:	d0f5      	beq.n	8000736 <HAL_RCC_OscConfig+0x29a>
+    if(pwrclkchanged == SET)
+ 800074a:	9b00      	ldr	r3, [sp, #0]
+ 800074c:	2b01      	cmp	r3, #1
+ 800074e:	d000      	beq.n	8000752 <HAL_RCC_OscConfig+0x2b6>
+ 8000750:	e6b6      	b.n	80004c0 <HAL_RCC_OscConfig+0x24>
+      __HAL_RCC_PWR_CLK_DISABLE();
+ 8000752:	69e3      	ldr	r3, [r4, #28]
+ 8000754:	4a17      	ldr	r2, [pc, #92]	; (80007b4 <HAL_RCC_OscConfig+0x318>)
+ 8000756:	4013      	ands	r3, r2
+ 8000758:	61e3      	str	r3, [r4, #28]
+ 800075a:	e6b1      	b.n	80004c0 <HAL_RCC_OscConfig+0x24>
+        if((HAL_GetTick() - tickstart) > HSI14_TIMEOUT_VALUE)
+ 800075c:	f7ff fd8a 	bl	8000274 <HAL_GetTick>
+ 8000760:	1bc0      	subs	r0, r0, r7
+ 8000762:	2802      	cmp	r0, #2
+ 8000764:	d800      	bhi.n	8000768 <HAL_RCC_OscConfig+0x2cc>
+ 8000766:	e6be      	b.n	80004e6 <HAL_RCC_OscConfig+0x4a>
+ 8000768:	e6f9      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+    else if(RCC_OscInitStruct->HSI14State == RCC_HSI14_ADC_CONTROL)
+ 800076a:	3205      	adds	r2, #5
+ 800076c:	d103      	bne.n	8000776 <HAL_RCC_OscConfig+0x2da>
+      __HAL_RCC_HSI14ADC_ENABLE();
+ 800076e:	6b62      	ldr	r2, [r4, #52]	; 0x34
+ 8000770:	439a      	bics	r2, r3
+ 8000772:	6362      	str	r2, [r4, #52]	; 0x34
+ 8000774:	e6bb      	b.n	80004ee <HAL_RCC_OscConfig+0x52>
+      __HAL_RCC_HSI14ADC_DISABLE();
+ 8000776:	6b62      	ldr	r2, [r4, #52]	; 0x34
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSI14RDY) != RESET)
+ 8000778:	2602      	movs	r6, #2
+      __HAL_RCC_HSI14ADC_DISABLE();
+ 800077a:	4313      	orrs	r3, r2
+      __HAL_RCC_HSI14_DISABLE();
+ 800077c:	2201      	movs	r2, #1
+      __HAL_RCC_HSI14ADC_DISABLE();
+ 800077e:	6363      	str	r3, [r4, #52]	; 0x34
+      __HAL_RCC_HSI14_DISABLE();
+ 8000780:	6b63      	ldr	r3, [r4, #52]	; 0x34
+ 8000782:	4393      	bics	r3, r2
+ 8000784:	6363      	str	r3, [r4, #52]	; 0x34
+      tickstart = HAL_GetTick();
+ 8000786:	f7ff fd75 	bl	8000274 <HAL_GetTick>
+ 800078a:	0007      	movs	r7, r0
+      while(__HAL_RCC_GET_FLAG(RCC_FLAG_HSI14RDY) != RESET)
+ 800078c:	6b63      	ldr	r3, [r4, #52]	; 0x34
+ 800078e:	4233      	tst	r3, r6
+ 8000790:	d100      	bne.n	8000794 <HAL_RCC_OscConfig+0x2f8>
+ 8000792:	e6b3      	b.n	80004fc <HAL_RCC_OscConfig+0x60>
+        if((HAL_GetTick() - tickstart) > HSI14_TIMEOUT_VALUE)
+ 8000794:	f7ff fd6e 	bl	8000274 <HAL_GetTick>
+ 8000798:	1bc0      	subs	r0, r0, r7
+ 800079a:	2802      	cmp	r0, #2
+ 800079c:	d9f6      	bls.n	800078c <HAL_RCC_OscConfig+0x2f0>
+ 800079e:	e6de      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+ 80007a0:	40021000 	.word	0x40021000
+ 80007a4:	fffeffff 	.word	0xfffeffff
+ 80007a8:	fffbffff 	.word	0xfffbffff
+ 80007ac:	40007000 	.word	0x40007000
+ 80007b0:	00001388 	.word	0x00001388
+ 80007b4:	efffffff 	.word	0xefffffff
+    if(__HAL_RCC_GET_SYSCLK_SOURCE() != RCC_SYSCLKSOURCE_STATUS_PLLCLK)
+ 80007b8:	220c      	movs	r2, #12
+ 80007ba:	4c26      	ldr	r4, [pc, #152]	; (8000854 <HAL_RCC_OscConfig+0x3b8>)
+      return HAL_ERROR;
+ 80007bc:	2001      	movs	r0, #1
+    if(__HAL_RCC_GET_SYSCLK_SOURCE() != RCC_SYSCLKSOURCE_STATUS_PLLCLK)
+ 80007be:	6863      	ldr	r3, [r4, #4]
+ 80007c0:	4013      	ands	r3, r2
+ 80007c2:	2b08      	cmp	r3, #8
+ 80007c4:	d100      	bne.n	80007c8 <HAL_RCC_OscConfig+0x32c>
+ 80007c6:	e6b3      	b.n	8000530 <HAL_RCC_OscConfig+0x94>
+        __HAL_RCC_PLL_DISABLE();
+ 80007c8:	6823      	ldr	r3, [r4, #0]
+ 80007ca:	4a23      	ldr	r2, [pc, #140]	; (8000858 <HAL_RCC_OscConfig+0x3bc>)
+ 80007cc:	4013      	ands	r3, r2
+ 80007ce:	6023      	str	r3, [r4, #0]
+      if((RCC_OscInitStruct->PLL.PLLState) == RCC_PLL_ON)
+ 80007d0:	2902      	cmp	r1, #2
+ 80007d2:	d12f      	bne.n	8000834 <HAL_RCC_OscConfig+0x398>
+        tickstart = HAL_GetTick();
+ 80007d4:	f7ff fd4e 	bl	8000274 <HAL_GetTick>
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY)  != RESET)
+ 80007d8:	2680      	movs	r6, #128	; 0x80
+        tickstart = HAL_GetTick();
+ 80007da:	0007      	movs	r7, r0
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY)  != RESET)
+ 80007dc:	04b6      	lsls	r6, r6, #18
+ 80007de:	6823      	ldr	r3, [r4, #0]
+ 80007e0:	4233      	tst	r3, r6
+ 80007e2:	d121      	bne.n	8000828 <HAL_RCC_OscConfig+0x38c>
+        __HAL_RCC_PLL_CONFIG(RCC_OscInitStruct->PLL.PLLSource,
+ 80007e4:	220f      	movs	r2, #15
+ 80007e6:	6ae3      	ldr	r3, [r4, #44]	; 0x2c
+ 80007e8:	4393      	bics	r3, r2
+ 80007ea:	6aea      	ldr	r2, [r5, #44]	; 0x2c
+ 80007ec:	4313      	orrs	r3, r2
+ 80007ee:	62e3      	str	r3, [r4, #44]	; 0x2c
+ 80007f0:	6a69      	ldr	r1, [r5, #36]	; 0x24
+ 80007f2:	6aab      	ldr	r3, [r5, #40]	; 0x28
+ 80007f4:	6862      	ldr	r2, [r4, #4]
+ 80007f6:	430b      	orrs	r3, r1
+ 80007f8:	4918      	ldr	r1, [pc, #96]	; (800085c <HAL_RCC_OscConfig+0x3c0>)
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY)  == RESET)
+ 80007fa:	2580      	movs	r5, #128	; 0x80
+        __HAL_RCC_PLL_CONFIG(RCC_OscInitStruct->PLL.PLLSource,
+ 80007fc:	400a      	ands	r2, r1
+ 80007fe:	4313      	orrs	r3, r2
+ 8000800:	6063      	str	r3, [r4, #4]
+        __HAL_RCC_PLL_ENABLE();
+ 8000802:	2380      	movs	r3, #128	; 0x80
+ 8000804:	6822      	ldr	r2, [r4, #0]
+ 8000806:	045b      	lsls	r3, r3, #17
+ 8000808:	4313      	orrs	r3, r2
+ 800080a:	6023      	str	r3, [r4, #0]
+        tickstart = HAL_GetTick();
+ 800080c:	f7ff fd32 	bl	8000274 <HAL_GetTick>
+ 8000810:	0006      	movs	r6, r0
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY)  == RESET)
+ 8000812:	04ad      	lsls	r5, r5, #18
+ 8000814:	6823      	ldr	r3, [r4, #0]
+ 8000816:	422b      	tst	r3, r5
+ 8000818:	d000      	beq.n	800081c <HAL_RCC_OscConfig+0x380>
+ 800081a:	e673      	b.n	8000504 <HAL_RCC_OscConfig+0x68>
+          if((HAL_GetTick() - tickstart ) > PLL_TIMEOUT_VALUE)
+ 800081c:	f7ff fd2a 	bl	8000274 <HAL_GetTick>
+ 8000820:	1b80      	subs	r0, r0, r6
+ 8000822:	2802      	cmp	r0, #2
+ 8000824:	d9f6      	bls.n	8000814 <HAL_RCC_OscConfig+0x378>
+ 8000826:	e69a      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+          if((HAL_GetTick() - tickstart ) > PLL_TIMEOUT_VALUE)
+ 8000828:	f7ff fd24 	bl	8000274 <HAL_GetTick>
+ 800082c:	1bc0      	subs	r0, r0, r7
+ 800082e:	2802      	cmp	r0, #2
+ 8000830:	d9d5      	bls.n	80007de <HAL_RCC_OscConfig+0x342>
+ 8000832:	e694      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+        tickstart = HAL_GetTick();
+ 8000834:	f7ff fd1e 	bl	8000274 <HAL_GetTick>
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY)  != RESET)
+ 8000838:	2580      	movs	r5, #128	; 0x80
+        tickstart = HAL_GetTick();
+ 800083a:	0006      	movs	r6, r0
+        while(__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY)  != RESET)
+ 800083c:	04ad      	lsls	r5, r5, #18
+ 800083e:	6823      	ldr	r3, [r4, #0]
+ 8000840:	422b      	tst	r3, r5
+ 8000842:	d100      	bne.n	8000846 <HAL_RCC_OscConfig+0x3aa>
+ 8000844:	e65e      	b.n	8000504 <HAL_RCC_OscConfig+0x68>
+          if((HAL_GetTick() - tickstart ) > PLL_TIMEOUT_VALUE)
+ 8000846:	f7ff fd15 	bl	8000274 <HAL_GetTick>
+ 800084a:	1b80      	subs	r0, r0, r6
+ 800084c:	2802      	cmp	r0, #2
+ 800084e:	d9f6      	bls.n	800083e <HAL_RCC_OscConfig+0x3a2>
+ 8000850:	e685      	b.n	800055e <HAL_RCC_OscConfig+0xc2>
+ 8000852:	46c0      	nop			; (mov r8, r8)
+ 8000854:	40021000 	.word	0x40021000
+ 8000858:	feffffff 	.word	0xfeffffff
+ 800085c:	ffc2ffff 	.word	0xffc2ffff
+
+08000860 <HAL_RCC_GetSysClockFreq>:
+  *         right SYSCLK value. Otherwise, any configuration based on this function will be incorrect.
+  *         
+  * @retval SYSCLK frequency
+  */
+uint32_t HAL_RCC_GetSysClockFreq(void)
+{
+ 8000860:	b570      	push	{r4, r5, r6, lr}
+  const uint8_t aPLLMULFactorTable[16] = { 2U,  3U,  4U,  5U,  6U,  7U,  8U,  9U,
+ 8000862:	4c14      	ldr	r4, [pc, #80]	; (80008b4 <HAL_RCC_GetSysClockFreq+0x54>)
+{
+ 8000864:	b088      	sub	sp, #32
+  const uint8_t aPLLMULFactorTable[16] = { 2U,  3U,  4U,  5U,  6U,  7U,  8U,  9U,
+ 8000866:	2210      	movs	r2, #16
+ 8000868:	0021      	movs	r1, r4
+ 800086a:	4668      	mov	r0, sp
+ 800086c:	f000 fc2e 	bl	80010cc <memcpy>
+                                         10U, 11U, 12U, 13U, 14U, 15U, 16U, 16U};
+  const uint8_t aPredivFactorTable[16] = { 1U, 2U,  3U,  4U,  5U,  6U,  7U,  8U,
+ 8000870:	0021      	movs	r1, r4
+ 8000872:	ad04      	add	r5, sp, #16
+ 8000874:	2210      	movs	r2, #16
+ 8000876:	3110      	adds	r1, #16
+ 8000878:	0028      	movs	r0, r5
+ 800087a:	f000 fc27 	bl	80010cc <memcpy>
+  uint32_t sysclockfreq = 0U;
+  
+  tmpreg = RCC->CFGR;
+  
+  /* Get SYSCLK source -------------------------------------------------------*/
+  switch (tmpreg & RCC_CFGR_SWS)
+ 800087e:	220c      	movs	r2, #12
+  tmpreg = RCC->CFGR;
+ 8000880:	4e0d      	ldr	r6, [pc, #52]	; (80008b8 <HAL_RCC_GetSysClockFreq+0x58>)
+ 8000882:	6873      	ldr	r3, [r6, #4]
+  switch (tmpreg & RCC_CFGR_SWS)
+ 8000884:	401a      	ands	r2, r3
+ 8000886:	2a08      	cmp	r2, #8
+ 8000888:	d111      	bne.n	80008ae <HAL_RCC_GetSysClockFreq+0x4e>
+      sysclockfreq = HSE_VALUE;
+      break;
+    }
+    case RCC_SYSCLKSOURCE_STATUS_PLLCLK:  /* PLL used as system clock */
+    {
+      pllmul = aPLLMULFactorTable[(uint32_t)(tmpreg & RCC_CFGR_PLLMUL) >> RCC_CFGR_PLLMUL_BITNUMBER];
+ 800088a:	200f      	movs	r0, #15
+ 800088c:	466a      	mov	r2, sp
+ 800088e:	0c99      	lsrs	r1, r3, #18
+ 8000890:	4001      	ands	r1, r0
+ 8000892:	5c54      	ldrb	r4, [r2, r1]
+      prediv = aPredivFactorTable[(uint32_t)(RCC->CFGR2 & RCC_CFGR2_PREDIV) >> RCC_CFGR2_PREDIV_BITNUMBER];
+ 8000894:	6af2      	ldr	r2, [r6, #44]	; 0x2c
+ 8000896:	4002      	ands	r2, r0
+ 8000898:	5ca9      	ldrb	r1, [r5, r2]
+      if ((tmpreg & RCC_CFGR_PLLSRC) == RCC_PLLSOURCE_HSE)
+ 800089a:	03db      	lsls	r3, r3, #15
+ 800089c:	d505      	bpl.n	80008aa <HAL_RCC_GetSysClockFreq+0x4a>
+      {
+        /* HSE used as PLL clock source : PLLCLK = HSE/PREDIV * PLLMUL */
+        pllclk = (HSE_VALUE / prediv) * pllmul;
+ 800089e:	4807      	ldr	r0, [pc, #28]	; (80008bc <HAL_RCC_GetSysClockFreq+0x5c>)
+ 80008a0:	f7ff fc32 	bl	8000108 <__udivsi3>
+#if  (defined(STM32F042x6) || defined(STM32F048xx) || defined(STM32F070x6) || defined(STM32F071xB) || defined(STM32F072xB) || defined(STM32F078xx) || defined(STM32F070xB) || defined(STM32F091xC) || defined(STM32F098xx) || defined(STM32F030xC))
+        /* HSI used as PLL clock source : PLLCLK = HSI/PREDIV * PLLMUL */
+        pllclk = (HSI_VALUE / prediv) * pllmul;
+#else
+        /* HSI used as PLL clock source : PLLCLK = HSI/2 * PLLMUL */
+        pllclk = (uint32_t)((HSI_VALUE >> 1U) * pllmul);
+ 80008a4:	4360      	muls	r0, r4
+      sysclockfreq = HSI_VALUE;
+      break;
+    }
+  }
+  return sysclockfreq;
+}
+ 80008a6:	b008      	add	sp, #32
+ 80008a8:	bd70      	pop	{r4, r5, r6, pc}
+        pllclk = (uint32_t)((HSI_VALUE >> 1U) * pllmul);
+ 80008aa:	4805      	ldr	r0, [pc, #20]	; (80008c0 <HAL_RCC_GetSysClockFreq+0x60>)
+ 80008ac:	e7fa      	b.n	80008a4 <HAL_RCC_GetSysClockFreq+0x44>
+      sysclockfreq = HSE_VALUE;
+ 80008ae:	4803      	ldr	r0, [pc, #12]	; (80008bc <HAL_RCC_GetSysClockFreq+0x5c>)
+  return sysclockfreq;
+ 80008b0:	e7f9      	b.n	80008a6 <HAL_RCC_GetSysClockFreq+0x46>
+ 80008b2:	46c0      	nop			; (mov r8, r8)
+ 80008b4:	08001108 	.word	0x08001108
+ 80008b8:	40021000 	.word	0x40021000
+ 80008bc:	007a1200 	.word	0x007a1200
+ 80008c0:	003d0900 	.word	0x003d0900
+
+080008c4 <HAL_RCC_ClockConfig>:
+{
+ 80008c4:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+  if(FLatency > (FLASH->ACR & FLASH_ACR_LATENCY))
+ 80008c6:	2201      	movs	r2, #1
+ 80008c8:	4c43      	ldr	r4, [pc, #268]	; (80009d8 <HAL_RCC_ClockConfig+0x114>)
+{
+ 80008ca:	0006      	movs	r6, r0
+  if(FLatency > (FLASH->ACR & FLASH_ACR_LATENCY))
+ 80008cc:	6823      	ldr	r3, [r4, #0]
+{
+ 80008ce:	000f      	movs	r7, r1
+  if(FLatency > (FLASH->ACR & FLASH_ACR_LATENCY))
+ 80008d0:	4013      	ands	r3, r2
+ 80008d2:	428b      	cmp	r3, r1
+ 80008d4:	d31c      	bcc.n	8000910 <HAL_RCC_ClockConfig+0x4c>
+  if(((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_HCLK) == RCC_CLOCKTYPE_HCLK)
+ 80008d6:	6832      	ldr	r2, [r6, #0]
+ 80008d8:	0793      	lsls	r3, r2, #30
+ 80008da:	d423      	bmi.n	8000924 <HAL_RCC_ClockConfig+0x60>
+  if(((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_SYSCLK) == RCC_CLOCKTYPE_SYSCLK)
+ 80008dc:	07d3      	lsls	r3, r2, #31
+ 80008de:	d429      	bmi.n	8000934 <HAL_RCC_ClockConfig+0x70>
+  if(FLatency < (FLASH->ACR & FLASH_ACR_LATENCY))
+ 80008e0:	2301      	movs	r3, #1
+ 80008e2:	6822      	ldr	r2, [r4, #0]
+ 80008e4:	401a      	ands	r2, r3
+ 80008e6:	4297      	cmp	r7, r2
+ 80008e8:	d367      	bcc.n	80009ba <HAL_RCC_ClockConfig+0xf6>
+  if(((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK1)
+ 80008ea:	6833      	ldr	r3, [r6, #0]
+ 80008ec:	4c3b      	ldr	r4, [pc, #236]	; (80009dc <HAL_RCC_ClockConfig+0x118>)
+ 80008ee:	075b      	lsls	r3, r3, #29
+ 80008f0:	d46a      	bmi.n	80009c8 <HAL_RCC_ClockConfig+0x104>
+  SystemCoreClock = HAL_RCC_GetSysClockFreq() >> AHBPrescTable[(RCC->CFGR & RCC_CFGR_HPRE)>> RCC_CFGR_HPRE_BITNUMBER];
+ 80008f2:	f7ff ffb5 	bl	8000860 <HAL_RCC_GetSysClockFreq>
+ 80008f6:	6863      	ldr	r3, [r4, #4]
+ 80008f8:	4a39      	ldr	r2, [pc, #228]	; (80009e0 <HAL_RCC_ClockConfig+0x11c>)
+ 80008fa:	061b      	lsls	r3, r3, #24
+ 80008fc:	0f1b      	lsrs	r3, r3, #28
+ 80008fe:	5cd3      	ldrb	r3, [r2, r3]
+ 8000900:	40d8      	lsrs	r0, r3
+ 8000902:	4b38      	ldr	r3, [pc, #224]	; (80009e4 <HAL_RCC_ClockConfig+0x120>)
+ 8000904:	6018      	str	r0, [r3, #0]
+  HAL_InitTick (TICK_INT_PRIORITY);
+ 8000906:	2000      	movs	r0, #0
+ 8000908:	f7ff fc8a 	bl	8000220 <HAL_InitTick>
+  return HAL_OK;
+ 800090c:	2000      	movs	r0, #0
+ 800090e:	e008      	b.n	8000922 <HAL_RCC_ClockConfig+0x5e>
+    __HAL_FLASH_SET_LATENCY(FLatency);
+ 8000910:	6823      	ldr	r3, [r4, #0]
+ 8000912:	4393      	bics	r3, r2
+ 8000914:	430b      	orrs	r3, r1
+ 8000916:	6023      	str	r3, [r4, #0]
+    if((FLASH->ACR & FLASH_ACR_LATENCY) != FLatency)
+ 8000918:	6823      	ldr	r3, [r4, #0]
+ 800091a:	4013      	ands	r3, r2
+ 800091c:	4299      	cmp	r1, r3
+ 800091e:	d0da      	beq.n	80008d6 <HAL_RCC_ClockConfig+0x12>
+      return HAL_ERROR;
+ 8000920:	2001      	movs	r0, #1
+}
+ 8000922:	bdfe      	pop	{r1, r2, r3, r4, r5, r6, r7, pc}
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_HPRE, RCC_ClkInitStruct->AHBCLKDivider);
+ 8000924:	20f0      	movs	r0, #240	; 0xf0
+ 8000926:	492d      	ldr	r1, [pc, #180]	; (80009dc <HAL_RCC_ClockConfig+0x118>)
+ 8000928:	684b      	ldr	r3, [r1, #4]
+ 800092a:	4383      	bics	r3, r0
+ 800092c:	68b0      	ldr	r0, [r6, #8]
+ 800092e:	4303      	orrs	r3, r0
+ 8000930:	604b      	str	r3, [r1, #4]
+ 8000932:	e7d3      	b.n	80008dc <HAL_RCC_ClockConfig+0x18>
+ 8000934:	4d29      	ldr	r5, [pc, #164]	; (80009dc <HAL_RCC_ClockConfig+0x118>)
+    if(RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_HSE)
+ 8000936:	6872      	ldr	r2, [r6, #4]
+      if(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) == RESET)
+ 8000938:	682b      	ldr	r3, [r5, #0]
+    if(RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_HSE)
+ 800093a:	2a01      	cmp	r2, #1
+ 800093c:	d11a      	bne.n	8000974 <HAL_RCC_ClockConfig+0xb0>
+      if(__HAL_RCC_GET_FLAG(RCC_FLAG_HSERDY) == RESET)
+ 800093e:	039b      	lsls	r3, r3, #14
+ 8000940:	d5ee      	bpl.n	8000920 <HAL_RCC_ClockConfig+0x5c>
+    __HAL_RCC_SYSCLK_CONFIG(RCC_ClkInitStruct->SYSCLKSource);
+ 8000942:	2103      	movs	r1, #3
+ 8000944:	686b      	ldr	r3, [r5, #4]
+ 8000946:	438b      	bics	r3, r1
+ 8000948:	4313      	orrs	r3, r2
+ 800094a:	606b      	str	r3, [r5, #4]
+    tickstart = HAL_GetTick();
+ 800094c:	f7ff fc92 	bl	8000274 <HAL_GetTick>
+    if(RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_HSE)
+ 8000950:	6873      	ldr	r3, [r6, #4]
+    tickstart = HAL_GetTick();
+ 8000952:	9001      	str	r0, [sp, #4]
+    if(RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_HSE)
+ 8000954:	2b01      	cmp	r3, #1
+ 8000956:	d115      	bne.n	8000984 <HAL_RCC_ClockConfig+0xc0>
+      while (__HAL_RCC_GET_SYSCLK_SOURCE() != RCC_SYSCLKSOURCE_STATUS_HSE)
+ 8000958:	220c      	movs	r2, #12
+ 800095a:	686b      	ldr	r3, [r5, #4]
+ 800095c:	4013      	ands	r3, r2
+ 800095e:	2b04      	cmp	r3, #4
+ 8000960:	d0be      	beq.n	80008e0 <HAL_RCC_ClockConfig+0x1c>
+        if((HAL_GetTick() - tickstart ) > CLOCKSWITCH_TIMEOUT_VALUE)
+ 8000962:	f7ff fc87 	bl	8000274 <HAL_GetTick>
+ 8000966:	9b01      	ldr	r3, [sp, #4]
+ 8000968:	1ac0      	subs	r0, r0, r3
+ 800096a:	4b1f      	ldr	r3, [pc, #124]	; (80009e8 <HAL_RCC_ClockConfig+0x124>)
+ 800096c:	4298      	cmp	r0, r3
+ 800096e:	d9f3      	bls.n	8000958 <HAL_RCC_ClockConfig+0x94>
+          return HAL_TIMEOUT;
+ 8000970:	2003      	movs	r0, #3
+ 8000972:	e7d6      	b.n	8000922 <HAL_RCC_ClockConfig+0x5e>
+    else if(RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_PLLCLK)
+ 8000974:	2a02      	cmp	r2, #2
+ 8000976:	d102      	bne.n	800097e <HAL_RCC_ClockConfig+0xba>
+      if(__HAL_RCC_GET_FLAG(RCC_FLAG_PLLRDY) == RESET)
+ 8000978:	019b      	lsls	r3, r3, #6
+ 800097a:	d4e2      	bmi.n	8000942 <HAL_RCC_ClockConfig+0x7e>
+ 800097c:	e7d0      	b.n	8000920 <HAL_RCC_ClockConfig+0x5c>
+      if(__HAL_RCC_GET_FLAG(RCC_FLAG_HSIRDY) == RESET)
+ 800097e:	079b      	lsls	r3, r3, #30
+ 8000980:	d4df      	bmi.n	8000942 <HAL_RCC_ClockConfig+0x7e>
+ 8000982:	e7cd      	b.n	8000920 <HAL_RCC_ClockConfig+0x5c>
+    else if(RCC_ClkInitStruct->SYSCLKSource == RCC_SYSCLKSOURCE_PLLCLK)
+ 8000984:	2b02      	cmp	r3, #2
+ 8000986:	d012      	beq.n	80009ae <HAL_RCC_ClockConfig+0xea>
+      while (__HAL_RCC_GET_SYSCLK_SOURCE() != RCC_SYSCLKSOURCE_STATUS_HSI)
+ 8000988:	220c      	movs	r2, #12
+ 800098a:	686b      	ldr	r3, [r5, #4]
+ 800098c:	4213      	tst	r3, r2
+ 800098e:	d0a7      	beq.n	80008e0 <HAL_RCC_ClockConfig+0x1c>
+        if((HAL_GetTick() - tickstart ) > CLOCKSWITCH_TIMEOUT_VALUE)
+ 8000990:	f7ff fc70 	bl	8000274 <HAL_GetTick>
+ 8000994:	9b01      	ldr	r3, [sp, #4]
+ 8000996:	1ac0      	subs	r0, r0, r3
+ 8000998:	4b13      	ldr	r3, [pc, #76]	; (80009e8 <HAL_RCC_ClockConfig+0x124>)
+ 800099a:	4298      	cmp	r0, r3
+ 800099c:	d9f4      	bls.n	8000988 <HAL_RCC_ClockConfig+0xc4>
+ 800099e:	e7e7      	b.n	8000970 <HAL_RCC_ClockConfig+0xac>
+        if((HAL_GetTick() - tickstart ) > CLOCKSWITCH_TIMEOUT_VALUE)
+ 80009a0:	f7ff fc68 	bl	8000274 <HAL_GetTick>
+ 80009a4:	9b01      	ldr	r3, [sp, #4]
+ 80009a6:	1ac0      	subs	r0, r0, r3
+ 80009a8:	4b0f      	ldr	r3, [pc, #60]	; (80009e8 <HAL_RCC_ClockConfig+0x124>)
+ 80009aa:	4298      	cmp	r0, r3
+ 80009ac:	d8e0      	bhi.n	8000970 <HAL_RCC_ClockConfig+0xac>
+      while (__HAL_RCC_GET_SYSCLK_SOURCE() != RCC_SYSCLKSOURCE_STATUS_PLLCLK)
+ 80009ae:	220c      	movs	r2, #12
+ 80009b0:	686b      	ldr	r3, [r5, #4]
+ 80009b2:	4013      	ands	r3, r2
+ 80009b4:	2b08      	cmp	r3, #8
+ 80009b6:	d1f3      	bne.n	80009a0 <HAL_RCC_ClockConfig+0xdc>
+ 80009b8:	e792      	b.n	80008e0 <HAL_RCC_ClockConfig+0x1c>
+    __HAL_FLASH_SET_LATENCY(FLatency);
+ 80009ba:	6822      	ldr	r2, [r4, #0]
+ 80009bc:	439a      	bics	r2, r3
+ 80009be:	6022      	str	r2, [r4, #0]
+    if((FLASH->ACR & FLASH_ACR_LATENCY) != FLatency)
+ 80009c0:	6822      	ldr	r2, [r4, #0]
+ 80009c2:	421a      	tst	r2, r3
+ 80009c4:	d1ac      	bne.n	8000920 <HAL_RCC_ClockConfig+0x5c>
+ 80009c6:	e790      	b.n	80008ea <HAL_RCC_ClockConfig+0x26>
+    MODIFY_REG(RCC->CFGR, RCC_CFGR_PPRE, RCC_ClkInitStruct->APB1CLKDivider);
+ 80009c8:	6863      	ldr	r3, [r4, #4]
+ 80009ca:	4a08      	ldr	r2, [pc, #32]	; (80009ec <HAL_RCC_ClockConfig+0x128>)
+ 80009cc:	4013      	ands	r3, r2
+ 80009ce:	68f2      	ldr	r2, [r6, #12]
+ 80009d0:	4313      	orrs	r3, r2
+ 80009d2:	6063      	str	r3, [r4, #4]
+ 80009d4:	e78d      	b.n	80008f2 <HAL_RCC_ClockConfig+0x2e>
+ 80009d6:	46c0      	nop			; (mov r8, r8)
+ 80009d8:	40022000 	.word	0x40022000
+ 80009dc:	40021000 	.word	0x40021000
+ 80009e0:	08001128 	.word	0x08001128
+ 80009e4:	20000000 	.word	0x20000000
+ 80009e8:	00001388 	.word	0x00001388
+ 80009ec:	fffff8ff 	.word	0xfffff8ff
+
+080009f0 <HAL_RCC_GetHCLKFreq>:
+  *         and updated within this function
+  * @retval HCLK frequency
+  */
+uint32_t HAL_RCC_GetHCLKFreq(void)
+{
+  return SystemCoreClock;
+ 80009f0:	4b01      	ldr	r3, [pc, #4]	; (80009f8 <HAL_RCC_GetHCLKFreq+0x8>)
+ 80009f2:	6818      	ldr	r0, [r3, #0]
+}
+ 80009f4:	4770      	bx	lr
+ 80009f6:	46c0      	nop			; (mov r8, r8)
+ 80009f8:	20000000 	.word	0x20000000
+
+080009fc <HAL_TIM_Base_Start_IT>:
+{
+  /* Check the parameters */
+  assert_param(IS_TIM_INSTANCE(htim->Instance));
+
+   /* Enable the TIM Update interrupt */
+   __HAL_TIM_ENABLE_IT(htim, TIM_IT_UPDATE);
+ 80009fc:	2201      	movs	r2, #1
+ 80009fe:	6803      	ldr	r3, [r0, #0]
+ 8000a00:	68d9      	ldr	r1, [r3, #12]
+   /* Enable the Peripheral */
+  __HAL_TIM_ENABLE(htim);
+
+  /* Return function status */
+  return HAL_OK;
+}
+ 8000a02:	2000      	movs	r0, #0
+   __HAL_TIM_ENABLE_IT(htim, TIM_IT_UPDATE);
+ 8000a04:	4311      	orrs	r1, r2
+ 8000a06:	60d9      	str	r1, [r3, #12]
+  __HAL_TIM_ENABLE(htim);
+ 8000a08:	6819      	ldr	r1, [r3, #0]
+ 8000a0a:	430a      	orrs	r2, r1
+ 8000a0c:	601a      	str	r2, [r3, #0]
+}
+ 8000a0e:	4770      	bx	lr
+
+08000a10 <HAL_TIM_OC_DelayElapsedCallback>:
+ 8000a10:	4770      	bx	lr
+
+08000a12 <HAL_TIM_IC_CaptureCallback>:
+ 8000a12:	4770      	bx	lr
+
+08000a14 <HAL_TIM_PWM_PulseFinishedCallback>:
+ 8000a14:	4770      	bx	lr
+
+08000a16 <HAL_TIM_TriggerCallback>:
+ 8000a16:	4770      	bx	lr
+
+08000a18 <HAL_TIM_IRQHandler>:
+  * @retval None
+  */
+void HAL_TIM_IRQHandler(TIM_HandleTypeDef *htim)
+{
+  /* Capture compare 1 event */
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_CC1) != RESET)
+ 8000a18:	2202      	movs	r2, #2
+ 8000a1a:	6803      	ldr	r3, [r0, #0]
+{
+ 8000a1c:	b510      	push	{r4, lr}
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_CC1) != RESET)
+ 8000a1e:	6919      	ldr	r1, [r3, #16]
+{
+ 8000a20:	0004      	movs	r4, r0
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_CC1) != RESET)
+ 8000a22:	4211      	tst	r1, r2
+ 8000a24:	d00e      	beq.n	8000a44 <HAL_TIM_IRQHandler+0x2c>
+  {
+    if(__HAL_TIM_GET_IT_SOURCE(htim, TIM_IT_CC1) !=RESET)
+ 8000a26:	68d9      	ldr	r1, [r3, #12]
+ 8000a28:	4211      	tst	r1, r2
+ 8000a2a:	d00b      	beq.n	8000a44 <HAL_TIM_IRQHandler+0x2c>
+    {
+      {
+        __HAL_TIM_CLEAR_IT(htim, TIM_IT_CC1);
+ 8000a2c:	3a05      	subs	r2, #5
+ 8000a2e:	611a      	str	r2, [r3, #16]
+        htim->Channel = HAL_TIM_ACTIVE_CHANNEL_1;
+
+        /* Input capture event */
+        if((htim->Instance->CCMR1 & TIM_CCMR1_CC1S) != 0x00U)
+ 8000a30:	699b      	ldr	r3, [r3, #24]
+        htim->Channel = HAL_TIM_ACTIVE_CHANNEL_1;
+ 8000a32:	3204      	adds	r2, #4
+ 8000a34:	7702      	strb	r2, [r0, #28]
+        if((htim->Instance->CCMR1 & TIM_CCMR1_CC1S) != 0x00U)
+ 8000a36:	079b      	lsls	r3, r3, #30
+ 8000a38:	d100      	bne.n	8000a3c <HAL_TIM_IRQHandler+0x24>
+ 8000a3a:	e079      	b.n	8000b30 <HAL_TIM_IRQHandler+0x118>
+        {
+          HAL_TIM_IC_CaptureCallback(htim);
+ 8000a3c:	f7ff ffe9 	bl	8000a12 <HAL_TIM_IC_CaptureCallback>
+        else
+        {
+          HAL_TIM_OC_DelayElapsedCallback(htim);
+          HAL_TIM_PWM_PulseFinishedCallback(htim);
+        }
+        htim->Channel = HAL_TIM_ACTIVE_CHANNEL_CLEARED;
+ 8000a40:	2300      	movs	r3, #0
+ 8000a42:	7723      	strb	r3, [r4, #28]
+      }
+    }
+  }
+  /* Capture compare 2 event */
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_CC2) != RESET)
+ 8000a44:	2204      	movs	r2, #4
+ 8000a46:	6823      	ldr	r3, [r4, #0]
+ 8000a48:	6919      	ldr	r1, [r3, #16]
+ 8000a4a:	4211      	tst	r1, r2
+ 8000a4c:	d010      	beq.n	8000a70 <HAL_TIM_IRQHandler+0x58>
+  {
+    if(__HAL_TIM_GET_IT_SOURCE(htim, TIM_IT_CC2) !=RESET)
+ 8000a4e:	68d9      	ldr	r1, [r3, #12]
+ 8000a50:	4211      	tst	r1, r2
+ 8000a52:	d00d      	beq.n	8000a70 <HAL_TIM_IRQHandler+0x58>
+    {
+      __HAL_TIM_CLEAR_IT(htim, TIM_IT_CC2);
+ 8000a54:	3a09      	subs	r2, #9
+ 8000a56:	611a      	str	r2, [r3, #16]
+      htim->Channel = HAL_TIM_ACTIVE_CHANNEL_2;
+ 8000a58:	3207      	adds	r2, #7
+ 8000a5a:	7722      	strb	r2, [r4, #28]
+      /* Input capture event */
+      if((htim->Instance->CCMR1 & TIM_CCMR1_CC2S) != 0x00U)
+ 8000a5c:	699a      	ldr	r2, [r3, #24]
+ 8000a5e:	23c0      	movs	r3, #192	; 0xc0
+ 8000a60:	009b      	lsls	r3, r3, #2
+      {
+        HAL_TIM_IC_CaptureCallback(htim);
+ 8000a62:	0020      	movs	r0, r4
+      if((htim->Instance->CCMR1 & TIM_CCMR1_CC2S) != 0x00U)
+ 8000a64:	421a      	tst	r2, r3
+ 8000a66:	d069      	beq.n	8000b3c <HAL_TIM_IRQHandler+0x124>
+        HAL_TIM_IC_CaptureCallback(htim);
+ 8000a68:	f7ff ffd3 	bl	8000a12 <HAL_TIM_IC_CaptureCallback>
+      else
+      {
+        HAL_TIM_OC_DelayElapsedCallback(htim);
+        HAL_TIM_PWM_PulseFinishedCallback(htim);
+      }
+      htim->Channel = HAL_TIM_ACTIVE_CHANNEL_CLEARED;
+ 8000a6c:	2300      	movs	r3, #0
+ 8000a6e:	7723      	strb	r3, [r4, #28]
+    }
+  }
+  /* Capture compare 3 event */
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_CC3) != RESET)
+ 8000a70:	2208      	movs	r2, #8
+ 8000a72:	6823      	ldr	r3, [r4, #0]
+ 8000a74:	6919      	ldr	r1, [r3, #16]
+ 8000a76:	4211      	tst	r1, r2
+ 8000a78:	d00e      	beq.n	8000a98 <HAL_TIM_IRQHandler+0x80>
+  {
+    if(__HAL_TIM_GET_IT_SOURCE(htim, TIM_IT_CC3) !=RESET)
+ 8000a7a:	68d9      	ldr	r1, [r3, #12]
+ 8000a7c:	4211      	tst	r1, r2
+ 8000a7e:	d00b      	beq.n	8000a98 <HAL_TIM_IRQHandler+0x80>
+    {
+      __HAL_TIM_CLEAR_IT(htim, TIM_IT_CC3);
+ 8000a80:	3a11      	subs	r2, #17
+ 8000a82:	611a      	str	r2, [r3, #16]
+      htim->Channel = HAL_TIM_ACTIVE_CHANNEL_3;
+      /* Input capture event */
+      if((htim->Instance->CCMR2 & TIM_CCMR2_CC3S) != 0x00U)
+ 8000a84:	69db      	ldr	r3, [r3, #28]
+      htim->Channel = HAL_TIM_ACTIVE_CHANNEL_3;
+ 8000a86:	320d      	adds	r2, #13
+ 8000a88:	7722      	strb	r2, [r4, #28]
+      {
+        HAL_TIM_IC_CaptureCallback(htim);
+ 8000a8a:	0020      	movs	r0, r4
+      if((htim->Instance->CCMR2 & TIM_CCMR2_CC3S) != 0x00U)
+ 8000a8c:	079b      	lsls	r3, r3, #30
+ 8000a8e:	d05b      	beq.n	8000b48 <HAL_TIM_IRQHandler+0x130>
+        HAL_TIM_IC_CaptureCallback(htim);
+ 8000a90:	f7ff ffbf 	bl	8000a12 <HAL_TIM_IC_CaptureCallback>
+      else
+      {
+        HAL_TIM_OC_DelayElapsedCallback(htim);
+        HAL_TIM_PWM_PulseFinishedCallback(htim);
+      }
+      htim->Channel = HAL_TIM_ACTIVE_CHANNEL_CLEARED;
+ 8000a94:	2300      	movs	r3, #0
+ 8000a96:	7723      	strb	r3, [r4, #28]
+    }
+  }
+  /* Capture compare 4 event */
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_CC4) != RESET)
+ 8000a98:	2210      	movs	r2, #16
+ 8000a9a:	6823      	ldr	r3, [r4, #0]
+ 8000a9c:	6919      	ldr	r1, [r3, #16]
+ 8000a9e:	4211      	tst	r1, r2
+ 8000aa0:	d010      	beq.n	8000ac4 <HAL_TIM_IRQHandler+0xac>
+  {
+    if(__HAL_TIM_GET_IT_SOURCE(htim, TIM_IT_CC4) !=RESET)
+ 8000aa2:	68d9      	ldr	r1, [r3, #12]
+ 8000aa4:	4211      	tst	r1, r2
+ 8000aa6:	d00d      	beq.n	8000ac4 <HAL_TIM_IRQHandler+0xac>
+    {
+      __HAL_TIM_CLEAR_IT(htim, TIM_IT_CC4);
+ 8000aa8:	3a21      	subs	r2, #33	; 0x21
+ 8000aaa:	611a      	str	r2, [r3, #16]
+      htim->Channel = HAL_TIM_ACTIVE_CHANNEL_4;
+ 8000aac:	3219      	adds	r2, #25
+ 8000aae:	7722      	strb	r2, [r4, #28]
+      /* Input capture event */
+      if((htim->Instance->CCMR2 & TIM_CCMR2_CC4S) != 0x00U)
+ 8000ab0:	69da      	ldr	r2, [r3, #28]
+ 8000ab2:	23c0      	movs	r3, #192	; 0xc0
+ 8000ab4:	009b      	lsls	r3, r3, #2
+      {
+        HAL_TIM_IC_CaptureCallback(htim);
+ 8000ab6:	0020      	movs	r0, r4
+      if((htim->Instance->CCMR2 & TIM_CCMR2_CC4S) != 0x00U)
+ 8000ab8:	421a      	tst	r2, r3
+ 8000aba:	d04b      	beq.n	8000b54 <HAL_TIM_IRQHandler+0x13c>
+        HAL_TIM_IC_CaptureCallback(htim);
+ 8000abc:	f7ff ffa9 	bl	8000a12 <HAL_TIM_IC_CaptureCallback>
+      else
+      {
+        HAL_TIM_OC_DelayElapsedCallback(htim);
+        HAL_TIM_PWM_PulseFinishedCallback(htim);
+      }
+      htim->Channel = HAL_TIM_ACTIVE_CHANNEL_CLEARED;
+ 8000ac0:	2300      	movs	r3, #0
+ 8000ac2:	7723      	strb	r3, [r4, #28]
+    }
+  }
+  /* TIM Update event */
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_UPDATE) != RESET)
+ 8000ac4:	2201      	movs	r2, #1
+ 8000ac6:	6823      	ldr	r3, [r4, #0]
+ 8000ac8:	6919      	ldr	r1, [r3, #16]
+ 8000aca:	4211      	tst	r1, r2
+ 8000acc:	d007      	beq.n	8000ade <HAL_TIM_IRQHandler+0xc6>
+  {
+    if(__HAL_TIM_GET_IT_SOURCE(htim, TIM_IT_UPDATE) !=RESET)
+ 8000ace:	68d9      	ldr	r1, [r3, #12]
+ 8000ad0:	4211      	tst	r1, r2
+ 8000ad2:	d004      	beq.n	8000ade <HAL_TIM_IRQHandler+0xc6>
+    {
+      __HAL_TIM_CLEAR_IT(htim, TIM_IT_UPDATE);
+ 8000ad4:	3a03      	subs	r2, #3
+ 8000ad6:	611a      	str	r2, [r3, #16]
+      HAL_TIM_PeriodElapsedCallback(htim);
+ 8000ad8:	0020      	movs	r0, r4
+ 8000ada:	f000 fa2b 	bl	8000f34 <HAL_TIM_PeriodElapsedCallback>
+    }
+  }
+  /* TIM Break input event */
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_BREAK) != RESET)
+ 8000ade:	2280      	movs	r2, #128	; 0x80
+ 8000ae0:	6823      	ldr	r3, [r4, #0]
+ 8000ae2:	6919      	ldr	r1, [r3, #16]
+ 8000ae4:	4211      	tst	r1, r2
+ 8000ae6:	d008      	beq.n	8000afa <HAL_TIM_IRQHandler+0xe2>
+  {
+    if(__HAL_TIM_GET_IT_SOURCE(htim, TIM_IT_BREAK) !=RESET)
+ 8000ae8:	68d9      	ldr	r1, [r3, #12]
+ 8000aea:	4211      	tst	r1, r2
+ 8000aec:	d005      	beq.n	8000afa <HAL_TIM_IRQHandler+0xe2>
+    {
+      __HAL_TIM_CLEAR_IT(htim, TIM_IT_BREAK);
+ 8000aee:	3a02      	subs	r2, #2
+ 8000af0:	3aff      	subs	r2, #255	; 0xff
+ 8000af2:	611a      	str	r2, [r3, #16]
+      HAL_TIMEx_BreakCallback(htim);
+ 8000af4:	0020      	movs	r0, r4
+ 8000af6:	f000 f981 	bl	8000dfc <HAL_TIMEx_BreakCallback>
+    }
+  }
+  /* TIM Trigger detection event */
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_TRIGGER) != RESET)
+ 8000afa:	2240      	movs	r2, #64	; 0x40
+ 8000afc:	6823      	ldr	r3, [r4, #0]
+ 8000afe:	6919      	ldr	r1, [r3, #16]
+ 8000b00:	4211      	tst	r1, r2
+ 8000b02:	d007      	beq.n	8000b14 <HAL_TIM_IRQHandler+0xfc>
+  {
+    if(__HAL_TIM_GET_IT_SOURCE(htim, TIM_IT_TRIGGER) !=RESET)
+ 8000b04:	68d9      	ldr	r1, [r3, #12]
+ 8000b06:	4211      	tst	r1, r2
+ 8000b08:	d004      	beq.n	8000b14 <HAL_TIM_IRQHandler+0xfc>
+    {
+      __HAL_TIM_CLEAR_IT(htim, TIM_IT_TRIGGER);
+ 8000b0a:	3a81      	subs	r2, #129	; 0x81
+ 8000b0c:	611a      	str	r2, [r3, #16]
+      HAL_TIM_TriggerCallback(htim);
+ 8000b0e:	0020      	movs	r0, r4
+ 8000b10:	f7ff ff81 	bl	8000a16 <HAL_TIM_TriggerCallback>
+    }
+  }
+  /* TIM commutation event */
+  if(__HAL_TIM_GET_FLAG(htim, TIM_FLAG_COM) != RESET)
+ 8000b14:	2220      	movs	r2, #32
+ 8000b16:	6823      	ldr	r3, [r4, #0]
+ 8000b18:	6919      	ldr	r1, [r3, #16]
+ 8000b1a:	4211      	tst	r1, r2
+ 8000b1c:	d007      	beq.n	8000b2e <HAL_TIM_IRQHandler+0x116>
+  {
+    if(__HAL_TIM_GET_IT_SOURCE(htim, TIM_IT_COM) !=RESET)
+ 8000b1e:	68d9      	ldr	r1, [r3, #12]
+ 8000b20:	4211      	tst	r1, r2
+ 8000b22:	d004      	beq.n	8000b2e <HAL_TIM_IRQHandler+0x116>
+    {
+      __HAL_TIM_CLEAR_IT(htim, TIM_FLAG_COM);
+ 8000b24:	3a41      	subs	r2, #65	; 0x41
+ 8000b26:	611a      	str	r2, [r3, #16]
+      HAL_TIMEx_CommutationCallback(htim);
+ 8000b28:	0020      	movs	r0, r4
+ 8000b2a:	f000 f966 	bl	8000dfa <HAL_TIMEx_CommutationCallback>
+    }
+  }
+}
+ 8000b2e:	bd10      	pop	{r4, pc}
+          HAL_TIM_OC_DelayElapsedCallback(htim);
+ 8000b30:	f7ff ff6e 	bl	8000a10 <HAL_TIM_OC_DelayElapsedCallback>
+          HAL_TIM_PWM_PulseFinishedCallback(htim);
+ 8000b34:	0020      	movs	r0, r4
+ 8000b36:	f7ff ff6d 	bl	8000a14 <HAL_TIM_PWM_PulseFinishedCallback>
+ 8000b3a:	e781      	b.n	8000a40 <HAL_TIM_IRQHandler+0x28>
+        HAL_TIM_OC_DelayElapsedCallback(htim);
+ 8000b3c:	f7ff ff68 	bl	8000a10 <HAL_TIM_OC_DelayElapsedCallback>
+        HAL_TIM_PWM_PulseFinishedCallback(htim);
+ 8000b40:	0020      	movs	r0, r4
+ 8000b42:	f7ff ff67 	bl	8000a14 <HAL_TIM_PWM_PulseFinishedCallback>
+ 8000b46:	e791      	b.n	8000a6c <HAL_TIM_IRQHandler+0x54>
+        HAL_TIM_OC_DelayElapsedCallback(htim);
+ 8000b48:	f7ff ff62 	bl	8000a10 <HAL_TIM_OC_DelayElapsedCallback>
+        HAL_TIM_PWM_PulseFinishedCallback(htim);
+ 8000b4c:	0020      	movs	r0, r4
+ 8000b4e:	f7ff ff61 	bl	8000a14 <HAL_TIM_PWM_PulseFinishedCallback>
+ 8000b52:	e79f      	b.n	8000a94 <HAL_TIM_IRQHandler+0x7c>
+        HAL_TIM_OC_DelayElapsedCallback(htim);
+ 8000b54:	f7ff ff5c 	bl	8000a10 <HAL_TIM_OC_DelayElapsedCallback>
+        HAL_TIM_PWM_PulseFinishedCallback(htim);
+ 8000b58:	0020      	movs	r0, r4
+ 8000b5a:	f7ff ff5b 	bl	8000a14 <HAL_TIM_PWM_PulseFinishedCallback>
+ 8000b5e:	e7af      	b.n	8000ac0 <HAL_TIM_IRQHandler+0xa8>
+
+08000b60 <TIM_Base_SetConfig>:
+{
+  uint32_t tmpcr1 = 0U;
+  tmpcr1 = TIMx->CR1;
+
+  /* Set TIM Time Base Unit parameters ---------------------------------------*/
+  if (IS_TIM_COUNTER_MODE_SELECT_INSTANCE(TIMx))
+ 8000b60:	4a20      	ldr	r2, [pc, #128]	; (8000be4 <TIM_Base_SetConfig+0x84>)
+{
+ 8000b62:	b510      	push	{r4, lr}
+  tmpcr1 = TIMx->CR1;
+ 8000b64:	6803      	ldr	r3, [r0, #0]
+  if (IS_TIM_COUNTER_MODE_SELECT_INSTANCE(TIMx))
+ 8000b66:	4290      	cmp	r0, r2
+ 8000b68:	d006      	beq.n	8000b78 <TIM_Base_SetConfig+0x18>
+ 8000b6a:	2480      	movs	r4, #128	; 0x80
+ 8000b6c:	05e4      	lsls	r4, r4, #23
+ 8000b6e:	42a0      	cmp	r0, r4
+ 8000b70:	d002      	beq.n	8000b78 <TIM_Base_SetConfig+0x18>
+ 8000b72:	4c1d      	ldr	r4, [pc, #116]	; (8000be8 <TIM_Base_SetConfig+0x88>)
+ 8000b74:	42a0      	cmp	r0, r4
+ 8000b76:	d10c      	bne.n	8000b92 <TIM_Base_SetConfig+0x32>
+  {
+    /* Select the Counter Mode */
+    tmpcr1 &= ~(TIM_CR1_DIR | TIM_CR1_CMS);
+ 8000b78:	2470      	movs	r4, #112	; 0x70
+ 8000b7a:	43a3      	bics	r3, r4
+    tmpcr1 |= Structure->CounterMode;
+ 8000b7c:	684c      	ldr	r4, [r1, #4]
+ 8000b7e:	4323      	orrs	r3, r4
+  }
+
+  if(IS_TIM_CLOCK_DIVISION_INSTANCE(TIMx))
+ 8000b80:	4290      	cmp	r0, r2
+ 8000b82:	d012      	beq.n	8000baa <TIM_Base_SetConfig+0x4a>
+ 8000b84:	2480      	movs	r4, #128	; 0x80
+ 8000b86:	05e4      	lsls	r4, r4, #23
+ 8000b88:	42a0      	cmp	r0, r4
+ 8000b8a:	d00e      	beq.n	8000baa <TIM_Base_SetConfig+0x4a>
+ 8000b8c:	4c16      	ldr	r4, [pc, #88]	; (8000be8 <TIM_Base_SetConfig+0x88>)
+ 8000b8e:	42a0      	cmp	r0, r4
+ 8000b90:	d00b      	beq.n	8000baa <TIM_Base_SetConfig+0x4a>
+ 8000b92:	4c16      	ldr	r4, [pc, #88]	; (8000bec <TIM_Base_SetConfig+0x8c>)
+ 8000b94:	42a0      	cmp	r0, r4
+ 8000b96:	d008      	beq.n	8000baa <TIM_Base_SetConfig+0x4a>
+ 8000b98:	4c15      	ldr	r4, [pc, #84]	; (8000bf0 <TIM_Base_SetConfig+0x90>)
+ 8000b9a:	42a0      	cmp	r0, r4
+ 8000b9c:	d005      	beq.n	8000baa <TIM_Base_SetConfig+0x4a>
+ 8000b9e:	4c15      	ldr	r4, [pc, #84]	; (8000bf4 <TIM_Base_SetConfig+0x94>)
+ 8000ba0:	42a0      	cmp	r0, r4
+ 8000ba2:	d002      	beq.n	8000baa <TIM_Base_SetConfig+0x4a>
+ 8000ba4:	4c14      	ldr	r4, [pc, #80]	; (8000bf8 <TIM_Base_SetConfig+0x98>)
+ 8000ba6:	42a0      	cmp	r0, r4
+ 8000ba8:	d103      	bne.n	8000bb2 <TIM_Base_SetConfig+0x52>
+  {
+    /* Set the clock division */
+    tmpcr1 &= ~TIM_CR1_CKD;
+ 8000baa:	4c14      	ldr	r4, [pc, #80]	; (8000bfc <TIM_Base_SetConfig+0x9c>)
+ 8000bac:	4023      	ands	r3, r4
+    tmpcr1 |= (uint32_t)Structure->ClockDivision;
+ 8000bae:	68cc      	ldr	r4, [r1, #12]
+ 8000bb0:	4323      	orrs	r3, r4
+  }
+
+  /* Set the auto-reload preload */
+  MODIFY_REG(tmpcr1, TIM_CR1_ARPE, Structure->AutoReloadPreload);
+ 8000bb2:	2480      	movs	r4, #128	; 0x80
+ 8000bb4:	43a3      	bics	r3, r4
+ 8000bb6:	694c      	ldr	r4, [r1, #20]
+ 8000bb8:	4323      	orrs	r3, r4
+
+  TIMx->CR1 = tmpcr1;
+ 8000bba:	6003      	str	r3, [r0, #0]
+
+  /* Set the Autoreload value */
+  TIMx->ARR = (uint32_t)Structure->Period ;
+ 8000bbc:	688b      	ldr	r3, [r1, #8]
+ 8000bbe:	62c3      	str	r3, [r0, #44]	; 0x2c
+
+  /* Set the Prescaler value */
+  TIMx->PSC = (uint32_t)Structure->Prescaler;
+ 8000bc0:	680b      	ldr	r3, [r1, #0]
+ 8000bc2:	6283      	str	r3, [r0, #40]	; 0x28
+
+  if (IS_TIM_REPETITION_COUNTER_INSTANCE(TIMx))
+ 8000bc4:	4290      	cmp	r0, r2
+ 8000bc6:	d008      	beq.n	8000bda <TIM_Base_SetConfig+0x7a>
+ 8000bc8:	4b09      	ldr	r3, [pc, #36]	; (8000bf0 <TIM_Base_SetConfig+0x90>)
+ 8000bca:	4298      	cmp	r0, r3
+ 8000bcc:	d005      	beq.n	8000bda <TIM_Base_SetConfig+0x7a>
+ 8000bce:	4b09      	ldr	r3, [pc, #36]	; (8000bf4 <TIM_Base_SetConfig+0x94>)
+ 8000bd0:	4298      	cmp	r0, r3
+ 8000bd2:	d002      	beq.n	8000bda <TIM_Base_SetConfig+0x7a>
+ 8000bd4:	4b08      	ldr	r3, [pc, #32]	; (8000bf8 <TIM_Base_SetConfig+0x98>)
+ 8000bd6:	4298      	cmp	r0, r3
+ 8000bd8:	d101      	bne.n	8000bde <TIM_Base_SetConfig+0x7e>
+  {
+    /* Set the Repetition Counter value */
+    TIMx->RCR = Structure->RepetitionCounter;
+ 8000bda:	690b      	ldr	r3, [r1, #16]
+ 8000bdc:	6303      	str	r3, [r0, #48]	; 0x30
+  }
+
+  /* Generate an update event to reload the Prescaler 
+     and the repetition counter(only for TIM1 and TIM8) value immediatly */
+  TIMx->EGR = TIM_EGR_UG;
+ 8000bde:	2301      	movs	r3, #1
+ 8000be0:	6143      	str	r3, [r0, #20]
+}
+ 8000be2:	bd10      	pop	{r4, pc}
+ 8000be4:	40012c00 	.word	0x40012c00
+ 8000be8:	40000400 	.word	0x40000400
+ 8000bec:	40002000 	.word	0x40002000
+ 8000bf0:	40014000 	.word	0x40014000
+ 8000bf4:	40014400 	.word	0x40014400
+ 8000bf8:	40014800 	.word	0x40014800
+ 8000bfc:	fffffcff 	.word	0xfffffcff
+
+08000c00 <HAL_TIM_Base_Init>:
+{
+ 8000c00:	b570      	push	{r4, r5, r6, lr}
+ 8000c02:	0004      	movs	r4, r0
+    return HAL_ERROR;
+ 8000c04:	2001      	movs	r0, #1
+  if(htim == NULL)
+ 8000c06:	2c00      	cmp	r4, #0
+ 8000c08:	d014      	beq.n	8000c34 <HAL_TIM_Base_Init+0x34>
+  if(htim->State == HAL_TIM_STATE_RESET)
+ 8000c0a:	0025      	movs	r5, r4
+ 8000c0c:	353d      	adds	r5, #61	; 0x3d
+ 8000c0e:	782b      	ldrb	r3, [r5, #0]
+ 8000c10:	b2db      	uxtb	r3, r3
+ 8000c12:	2b00      	cmp	r3, #0
+ 8000c14:	d105      	bne.n	8000c22 <HAL_TIM_Base_Init+0x22>
+    htim->Lock = HAL_UNLOCKED;
+ 8000c16:	0022      	movs	r2, r4
+ 8000c18:	323c      	adds	r2, #60	; 0x3c
+ 8000c1a:	7013      	strb	r3, [r2, #0]
+    HAL_TIM_Base_MspInit(htim);
+ 8000c1c:	0020      	movs	r0, r4
+ 8000c1e:	f000 f9ab 	bl	8000f78 <HAL_TIM_Base_MspInit>
+  htim->State= HAL_TIM_STATE_BUSY;
+ 8000c22:	2302      	movs	r3, #2
+  TIM_Base_SetConfig(htim->Instance, &htim->Init);
+ 8000c24:	6820      	ldr	r0, [r4, #0]
+  htim->State= HAL_TIM_STATE_BUSY;
+ 8000c26:	702b      	strb	r3, [r5, #0]
+  TIM_Base_SetConfig(htim->Instance, &htim->Init);
+ 8000c28:	1d21      	adds	r1, r4, #4
+ 8000c2a:	f7ff ff99 	bl	8000b60 <TIM_Base_SetConfig>
+  htim->State= HAL_TIM_STATE_READY;
+ 8000c2e:	2301      	movs	r3, #1
+  return HAL_OK;
+ 8000c30:	2000      	movs	r0, #0
+  htim->State= HAL_TIM_STATE_READY;
+ 8000c32:	702b      	strb	r3, [r5, #0]
+}
+ 8000c34:	bd70      	pop	{r4, r5, r6, pc}
+	...
+
+08000c38 <TIM_ETR_SetConfig>:
+  *          This parameter must be a value between 0x00 and 0x0F
+  * @retval None
+  */
+void TIM_ETR_SetConfig(TIM_TypeDef* TIMx, uint32_t TIM_ExtTRGPrescaler,
+                       uint32_t TIM_ExtTRGPolarity, uint32_t ExtTRGFilter)
+{
+ 8000c38:	b530      	push	{r4, r5, lr}
+  uint32_t tmpsmcr = 0U;
+
+  tmpsmcr = TIMx->SMCR;
+ 8000c3a:	6884      	ldr	r4, [r0, #8]
+
+  /* Reset the ETR Bits */
+  tmpsmcr &= ~(TIM_SMCR_ETF | TIM_SMCR_ETPS | TIM_SMCR_ECE | TIM_SMCR_ETP);
+ 8000c3c:	4d03      	ldr	r5, [pc, #12]	; (8000c4c <TIM_ETR_SetConfig+0x14>)
+
+  /* Set the Prescaler, the Filter value and the Polarity */
+  tmpsmcr |= (uint32_t)(TIM_ExtTRGPrescaler | (TIM_ExtTRGPolarity | (ExtTRGFilter << 8U)));
+ 8000c3e:	430a      	orrs	r2, r1
+ 8000c40:	021b      	lsls	r3, r3, #8
+  tmpsmcr &= ~(TIM_SMCR_ETF | TIM_SMCR_ETPS | TIM_SMCR_ECE | TIM_SMCR_ETP);
+ 8000c42:	402c      	ands	r4, r5
+  tmpsmcr |= (uint32_t)(TIM_ExtTRGPrescaler | (TIM_ExtTRGPolarity | (ExtTRGFilter << 8U)));
+ 8000c44:	4313      	orrs	r3, r2
+ 8000c46:	4323      	orrs	r3, r4
+
+  /* Write to TIMx SMCR */
+  TIMx->SMCR = tmpsmcr;
+ 8000c48:	6083      	str	r3, [r0, #8]
+}
+ 8000c4a:	bd30      	pop	{r4, r5, pc}
+ 8000c4c:	ffff00ff 	.word	0xffff00ff
+
+08000c50 <HAL_TIM_ConfigClockSource>:
+{
+ 8000c50:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+  __HAL_LOCK(htim);
+ 8000c52:	0005      	movs	r5, r0
+ 8000c54:	2302      	movs	r3, #2
+ 8000c56:	353c      	adds	r5, #60	; 0x3c
+ 8000c58:	782a      	ldrb	r2, [r5, #0]
+{
+ 8000c5a:	0004      	movs	r4, r0
+  __HAL_LOCK(htim);
+ 8000c5c:	0018      	movs	r0, r3
+ 8000c5e:	2a01      	cmp	r2, #1
+ 8000c60:	d019      	beq.n	8000c96 <HAL_TIM_ConfigClockSource+0x46>
+  htim->State = HAL_TIM_STATE_BUSY;
+ 8000c62:	0026      	movs	r6, r4
+  __HAL_LOCK(htim);
+ 8000c64:	2701      	movs	r7, #1
+  tmpsmcr = htim->Instance->SMCR;
+ 8000c66:	6820      	ldr	r0, [r4, #0]
+  htim->State = HAL_TIM_STATE_BUSY;
+ 8000c68:	363d      	adds	r6, #61	; 0x3d
+  __HAL_LOCK(htim);
+ 8000c6a:	702f      	strb	r7, [r5, #0]
+  htim->State = HAL_TIM_STATE_BUSY;
+ 8000c6c:	7033      	strb	r3, [r6, #0]
+  tmpsmcr = htim->Instance->SMCR;
+ 8000c6e:	6883      	ldr	r3, [r0, #8]
+  tmpsmcr &= ~(TIM_SMCR_ETF | TIM_SMCR_ETPS | TIM_SMCR_ECE | TIM_SMCR_ETP);
+ 8000c70:	4a4f      	ldr	r2, [pc, #316]	; (8000db0 <HAL_TIM_ConfigClockSource+0x160>)
+ 8000c72:	4013      	ands	r3, r2
+  htim->Instance->SMCR = tmpsmcr;
+ 8000c74:	6083      	str	r3, [r0, #8]
+  switch (sClockSourceConfig->ClockSource)
+ 8000c76:	680b      	ldr	r3, [r1, #0]
+ 8000c78:	2b40      	cmp	r3, #64	; 0x40
+ 8000c7a:	d100      	bne.n	8000c7e <HAL_TIM_ConfigClockSource+0x2e>
+ 8000c7c:	e06f      	b.n	8000d5e <HAL_TIM_ConfigClockSource+0x10e>
+ 8000c7e:	d816      	bhi.n	8000cae <HAL_TIM_ConfigClockSource+0x5e>
+ 8000c80:	2b10      	cmp	r3, #16
+ 8000c82:	d100      	bne.n	8000c86 <HAL_TIM_ConfigClockSource+0x36>
+ 8000c84:	e087      	b.n	8000d96 <HAL_TIM_ConfigClockSource+0x146>
+ 8000c86:	d807      	bhi.n	8000c98 <HAL_TIM_ConfigClockSource+0x48>
+ 8000c88:	2b00      	cmp	r3, #0
+ 8000c8a:	d100      	bne.n	8000c8e <HAL_TIM_ConfigClockSource+0x3e>
+ 8000c8c:	e07d      	b.n	8000d8a <HAL_TIM_ConfigClockSource+0x13a>
+  htim->State = HAL_TIM_STATE_READY;
+ 8000c8e:	2301      	movs	r3, #1
+  __HAL_UNLOCK(htim);
+ 8000c90:	2000      	movs	r0, #0
+  htim->State = HAL_TIM_STATE_READY;
+ 8000c92:	7033      	strb	r3, [r6, #0]
+  __HAL_UNLOCK(htim);
+ 8000c94:	7028      	strb	r0, [r5, #0]
+}
+ 8000c96:	bdf8      	pop	{r3, r4, r5, r6, r7, pc}
+  switch (sClockSourceConfig->ClockSource)
+ 8000c98:	2b20      	cmp	r3, #32
+ 8000c9a:	d100      	bne.n	8000c9e <HAL_TIM_ConfigClockSource+0x4e>
+ 8000c9c:	e081      	b.n	8000da2 <HAL_TIM_ConfigClockSource+0x152>
+ 8000c9e:	2b30      	cmp	r3, #48	; 0x30
+ 8000ca0:	d1f5      	bne.n	8000c8e <HAL_TIM_ConfigClockSource+0x3e>
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000ca2:	2270      	movs	r2, #112	; 0x70
+   tmpsmcr = TIMx->SMCR;
+ 8000ca4:	6883      	ldr	r3, [r0, #8]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000ca6:	4393      	bics	r3, r2
+ 8000ca8:	001a      	movs	r2, r3
+   tmpsmcr |= InputTriggerSource | TIM_SLAVEMODE_EXTERNAL1;
+ 8000caa:	2337      	movs	r3, #55	; 0x37
+ 8000cac:	e055      	b.n	8000d5a <HAL_TIM_ConfigClockSource+0x10a>
+  switch (sClockSourceConfig->ClockSource)
+ 8000cae:	2b70      	cmp	r3, #112	; 0x70
+ 8000cb0:	d033      	beq.n	8000d1a <HAL_TIM_ConfigClockSource+0xca>
+ 8000cb2:	d81b      	bhi.n	8000cec <HAL_TIM_ConfigClockSource+0x9c>
+ 8000cb4:	2b50      	cmp	r3, #80	; 0x50
+ 8000cb6:	d03b      	beq.n	8000d30 <HAL_TIM_ConfigClockSource+0xe0>
+ 8000cb8:	2b60      	cmp	r3, #96	; 0x60
+ 8000cba:	d1e8      	bne.n	8000c8e <HAL_TIM_ConfigClockSource+0x3e>
+  TIMx->CCER &= ~TIM_CCER_CC2E;
+ 8000cbc:	2410      	movs	r4, #16
+      TIM_TI2_ConfigInputStage(htim->Instance,
+ 8000cbe:	684b      	ldr	r3, [r1, #4]
+ 8000cc0:	68ca      	ldr	r2, [r1, #12]
+  TIMx->CCER &= ~TIM_CCER_CC2E;
+ 8000cc2:	6a01      	ldr	r1, [r0, #32]
+  tmpccmr1 &= ~TIM_CCMR1_IC2F;
+ 8000cc4:	4f3b      	ldr	r7, [pc, #236]	; (8000db4 <HAL_TIM_ConfigClockSource+0x164>)
+  TIMx->CCER &= ~TIM_CCER_CC2E;
+ 8000cc6:	43a1      	bics	r1, r4
+ 8000cc8:	6201      	str	r1, [r0, #32]
+  tmpccmr1 = TIMx->CCMR1;
+ 8000cca:	6984      	ldr	r4, [r0, #24]
+  tmpccmr1 |= (TIM_ICFilter << 12U);
+ 8000ccc:	0312      	lsls	r2, r2, #12
+  tmpccmr1 &= ~TIM_CCMR1_IC2F;
+ 8000cce:	403c      	ands	r4, r7
+  tmpccmr1 |= (TIM_ICFilter << 12U);
+ 8000cd0:	4322      	orrs	r2, r4
+  tmpccer &= ~(TIM_CCER_CC2P | TIM_CCER_CC2NP);
+ 8000cd2:	24a0      	movs	r4, #160	; 0xa0
+  tmpccer = TIMx->CCER;
+ 8000cd4:	6a01      	ldr	r1, [r0, #32]
+  TIMx->CCMR1 = tmpccmr1 ;
+ 8000cd6:	6182      	str	r2, [r0, #24]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000cd8:	2270      	movs	r2, #112	; 0x70
+  tmpccer &= ~(TIM_CCER_CC2P | TIM_CCER_CC2NP);
+ 8000cda:	43a1      	bics	r1, r4
+  tmpccer |= (TIM_ICPolarity << 4U);
+ 8000cdc:	011b      	lsls	r3, r3, #4
+ 8000cde:	430b      	orrs	r3, r1
+  TIMx->CCER = tmpccer;
+ 8000ce0:	6203      	str	r3, [r0, #32]
+   tmpsmcr = TIMx->SMCR;
+ 8000ce2:	6883      	ldr	r3, [r0, #8]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000ce4:	4393      	bics	r3, r2
+ 8000ce6:	001a      	movs	r2, r3
+   tmpsmcr |= InputTriggerSource | TIM_SLAVEMODE_EXTERNAL1;
+ 8000ce8:	2367      	movs	r3, #103	; 0x67
+ 8000cea:	e036      	b.n	8000d5a <HAL_TIM_ConfigClockSource+0x10a>
+  switch (sClockSourceConfig->ClockSource)
+ 8000cec:	2280      	movs	r2, #128	; 0x80
+ 8000cee:	0152      	lsls	r2, r2, #5
+ 8000cf0:	4293      	cmp	r3, r2
+ 8000cf2:	d00d      	beq.n	8000d10 <HAL_TIM_ConfigClockSource+0xc0>
+ 8000cf4:	2280      	movs	r2, #128	; 0x80
+ 8000cf6:	0192      	lsls	r2, r2, #6
+ 8000cf8:	4293      	cmp	r3, r2
+ 8000cfa:	d1c8      	bne.n	8000c8e <HAL_TIM_ConfigClockSource+0x3e>
+      TIM_ETR_SetConfig(htim->Instance,
+ 8000cfc:	68cb      	ldr	r3, [r1, #12]
+ 8000cfe:	684a      	ldr	r2, [r1, #4]
+ 8000d00:	6889      	ldr	r1, [r1, #8]
+ 8000d02:	f7ff ff99 	bl	8000c38 <TIM_ETR_SetConfig>
+      htim->Instance->SMCR |= TIM_SMCR_ECE;
+ 8000d06:	2380      	movs	r3, #128	; 0x80
+ 8000d08:	6822      	ldr	r2, [r4, #0]
+ 8000d0a:	01db      	lsls	r3, r3, #7
+ 8000d0c:	6891      	ldr	r1, [r2, #8]
+ 8000d0e:	e00c      	b.n	8000d2a <HAL_TIM_ConfigClockSource+0xda>
+      htim->Instance->SMCR &= ~TIM_SMCR_SMS;
+ 8000d10:	2207      	movs	r2, #7
+ 8000d12:	6883      	ldr	r3, [r0, #8]
+ 8000d14:	4393      	bics	r3, r2
+   TIMx->SMCR = tmpsmcr;
+ 8000d16:	6083      	str	r3, [r0, #8]
+ 8000d18:	e7b9      	b.n	8000c8e <HAL_TIM_ConfigClockSource+0x3e>
+      TIM_ETR_SetConfig(htim->Instance,
+ 8000d1a:	68cb      	ldr	r3, [r1, #12]
+ 8000d1c:	684a      	ldr	r2, [r1, #4]
+ 8000d1e:	6889      	ldr	r1, [r1, #8]
+ 8000d20:	f7ff ff8a 	bl	8000c38 <TIM_ETR_SetConfig>
+      tmpsmcr &= ~(TIM_SMCR_SMS | TIM_SMCR_TS);
+ 8000d24:	2177      	movs	r1, #119	; 0x77
+      tmpsmcr = htim->Instance->SMCR;
+ 8000d26:	6822      	ldr	r2, [r4, #0]
+ 8000d28:	6893      	ldr	r3, [r2, #8]
+      htim->Instance->SMCR |= TIM_SMCR_ECE;
+ 8000d2a:	430b      	orrs	r3, r1
+ 8000d2c:	6093      	str	r3, [r2, #8]
+    break;
+ 8000d2e:	e7ae      	b.n	8000c8e <HAL_TIM_ConfigClockSource+0x3e>
+      TIM_TI1_ConfigInputStage(htim->Instance,
+ 8000d30:	684a      	ldr	r2, [r1, #4]
+ 8000d32:	68cb      	ldr	r3, [r1, #12]
+  tmpccer = TIMx->CCER;
+ 8000d34:	6a01      	ldr	r1, [r0, #32]
+  TIMx->CCER &= ~TIM_CCER_CC1E;
+ 8000d36:	6a04      	ldr	r4, [r0, #32]
+  tmpccmr1 |= (TIM_ICFilter << 4U);
+ 8000d38:	011b      	lsls	r3, r3, #4
+  TIMx->CCER &= ~TIM_CCER_CC1E;
+ 8000d3a:	43bc      	bics	r4, r7
+  tmpccmr1 &= ~TIM_CCMR1_IC1F;
+ 8000d3c:	27f0      	movs	r7, #240	; 0xf0
+  TIMx->CCER &= ~TIM_CCER_CC1E;
+ 8000d3e:	6204      	str	r4, [r0, #32]
+  tmpccmr1 = TIMx->CCMR1;
+ 8000d40:	6984      	ldr	r4, [r0, #24]
+  tmpccmr1 &= ~TIM_CCMR1_IC1F;
+ 8000d42:	43bc      	bics	r4, r7
+  tmpccmr1 |= (TIM_ICFilter << 4U);
+ 8000d44:	4323      	orrs	r3, r4
+  tmpccer &= ~(TIM_CCER_CC1P | TIM_CCER_CC1NP);
+ 8000d46:	240a      	movs	r4, #10
+ 8000d48:	43a1      	bics	r1, r4
+  tmpccer |= TIM_ICPolarity;
+ 8000d4a:	430a      	orrs	r2, r1
+  TIMx->CCMR1 = tmpccmr1;
+ 8000d4c:	6183      	str	r3, [r0, #24]
+  TIMx->CCER = tmpccer;
+ 8000d4e:	6202      	str	r2, [r0, #32]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000d50:	2270      	movs	r2, #112	; 0x70
+   tmpsmcr = TIMx->SMCR;
+ 8000d52:	6883      	ldr	r3, [r0, #8]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000d54:	4393      	bics	r3, r2
+ 8000d56:	001a      	movs	r2, r3
+   tmpsmcr |= InputTriggerSource | TIM_SLAVEMODE_EXTERNAL1;
+ 8000d58:	2357      	movs	r3, #87	; 0x57
+ 8000d5a:	4313      	orrs	r3, r2
+ 8000d5c:	e7db      	b.n	8000d16 <HAL_TIM_ConfigClockSource+0xc6>
+      TIM_TI1_ConfigInputStage(htim->Instance,
+ 8000d5e:	684a      	ldr	r2, [r1, #4]
+ 8000d60:	68cb      	ldr	r3, [r1, #12]
+  tmpccer = TIMx->CCER;
+ 8000d62:	6a01      	ldr	r1, [r0, #32]
+  TIMx->CCER &= ~TIM_CCER_CC1E;
+ 8000d64:	6a04      	ldr	r4, [r0, #32]
+  tmpccmr1 |= (TIM_ICFilter << 4U);
+ 8000d66:	011b      	lsls	r3, r3, #4
+  TIMx->CCER &= ~TIM_CCER_CC1E;
+ 8000d68:	43bc      	bics	r4, r7
+  tmpccmr1 &= ~TIM_CCMR1_IC1F;
+ 8000d6a:	27f0      	movs	r7, #240	; 0xf0
+  TIMx->CCER &= ~TIM_CCER_CC1E;
+ 8000d6c:	6204      	str	r4, [r0, #32]
+  tmpccmr1 = TIMx->CCMR1;
+ 8000d6e:	6984      	ldr	r4, [r0, #24]
+  tmpccmr1 &= ~TIM_CCMR1_IC1F;
+ 8000d70:	43bc      	bics	r4, r7
+  tmpccmr1 |= (TIM_ICFilter << 4U);
+ 8000d72:	4323      	orrs	r3, r4
+  tmpccer &= ~(TIM_CCER_CC1P | TIM_CCER_CC1NP);
+ 8000d74:	240a      	movs	r4, #10
+ 8000d76:	43a1      	bics	r1, r4
+  tmpccer |= TIM_ICPolarity;
+ 8000d78:	430a      	orrs	r2, r1
+  TIMx->CCMR1 = tmpccmr1;
+ 8000d7a:	6183      	str	r3, [r0, #24]
+  TIMx->CCER = tmpccer;
+ 8000d7c:	6202      	str	r2, [r0, #32]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000d7e:	2270      	movs	r2, #112	; 0x70
+   tmpsmcr = TIMx->SMCR;
+ 8000d80:	6883      	ldr	r3, [r0, #8]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000d82:	4393      	bics	r3, r2
+ 8000d84:	001a      	movs	r2, r3
+   tmpsmcr |= InputTriggerSource | TIM_SLAVEMODE_EXTERNAL1;
+ 8000d86:	2347      	movs	r3, #71	; 0x47
+ 8000d88:	e7e7      	b.n	8000d5a <HAL_TIM_ConfigClockSource+0x10a>
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000d8a:	2270      	movs	r2, #112	; 0x70
+   tmpsmcr = TIMx->SMCR;
+ 8000d8c:	6883      	ldr	r3, [r0, #8]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000d8e:	4393      	bics	r3, r2
+ 8000d90:	001a      	movs	r2, r3
+   tmpsmcr |= InputTriggerSource | TIM_SLAVEMODE_EXTERNAL1;
+ 8000d92:	2307      	movs	r3, #7
+ 8000d94:	e7e1      	b.n	8000d5a <HAL_TIM_ConfigClockSource+0x10a>
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000d96:	2270      	movs	r2, #112	; 0x70
+   tmpsmcr = TIMx->SMCR;
+ 8000d98:	6883      	ldr	r3, [r0, #8]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000d9a:	4393      	bics	r3, r2
+ 8000d9c:	001a      	movs	r2, r3
+   tmpsmcr |= InputTriggerSource | TIM_SLAVEMODE_EXTERNAL1;
+ 8000d9e:	2317      	movs	r3, #23
+ 8000da0:	e7db      	b.n	8000d5a <HAL_TIM_ConfigClockSource+0x10a>
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000da2:	2270      	movs	r2, #112	; 0x70
+   tmpsmcr = TIMx->SMCR;
+ 8000da4:	6883      	ldr	r3, [r0, #8]
+   tmpsmcr &= ~TIM_SMCR_TS;
+ 8000da6:	4393      	bics	r3, r2
+ 8000da8:	001a      	movs	r2, r3
+   tmpsmcr |= InputTriggerSource | TIM_SLAVEMODE_EXTERNAL1;
+ 8000daa:	2327      	movs	r3, #39	; 0x27
+ 8000dac:	e7d5      	b.n	8000d5a <HAL_TIM_ConfigClockSource+0x10a>
+ 8000dae:	46c0      	nop			; (mov r8, r8)
+ 8000db0:	ffff0088 	.word	0xffff0088
+ 8000db4:	ffff0fff 	.word	0xffff0fff
+
+08000db8 <HAL_TIMEx_MasterConfigSynchronization>:
+  *         contains the selected trigger output (TRGO) and the Master/Slave 
+  *         mode.
+  * @retval HAL status
+  */
+HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization(TIM_HandleTypeDef *htim, TIM_MasterConfigTypeDef * sMasterConfig)
+{
+ 8000db8:	b530      	push	{r4, r5, lr}
+  /* Check the parameters */
+  assert_param(IS_TIM_MASTER_INSTANCE(htim->Instance));
+  assert_param(IS_TIM_TRGO_SOURCE(sMasterConfig->MasterOutputTrigger));
+  assert_param(IS_TIM_MSM_STATE(sMasterConfig->MasterSlaveMode));
+
+  __HAL_LOCK(htim);
+ 8000dba:	0004      	movs	r4, r0
+ 8000dbc:	343c      	adds	r4, #60	; 0x3c
+ 8000dbe:	7822      	ldrb	r2, [r4, #0]
+{
+ 8000dc0:	0003      	movs	r3, r0
+ 8000dc2:	2002      	movs	r0, #2
+  __HAL_LOCK(htim);
+ 8000dc4:	2a01      	cmp	r2, #1
+ 8000dc6:	d017      	beq.n	8000df8 <HAL_TIMEx_MasterConfigSynchronization+0x40>
+
+  htim->State = HAL_TIM_STATE_BUSY;
+ 8000dc8:	001d      	movs	r5, r3
+
+  /* Reset the MMS Bits */
+  htim->Instance->CR2 &= ~TIM_CR2_MMS;
+ 8000dca:	681b      	ldr	r3, [r3, #0]
+  htim->State = HAL_TIM_STATE_BUSY;
+ 8000dcc:	353d      	adds	r5, #61	; 0x3d
+ 8000dce:	7028      	strb	r0, [r5, #0]
+  htim->Instance->CR2 &= ~TIM_CR2_MMS;
+ 8000dd0:	685a      	ldr	r2, [r3, #4]
+ 8000dd2:	306e      	adds	r0, #110	; 0x6e
+ 8000dd4:	4382      	bics	r2, r0
+ 8000dd6:	605a      	str	r2, [r3, #4]
+  /* Select the TRGO source */
+  htim->Instance->CR2 |=  sMasterConfig->MasterOutputTrigger;
+ 8000dd8:	685a      	ldr	r2, [r3, #4]
+ 8000dda:	6808      	ldr	r0, [r1, #0]
+
+  /* Reset the MSM Bit */
+  htim->Instance->SMCR &= ~TIM_SMCR_MSM;
+  /* Set or Reset the MSM Bit */
+  htim->Instance->SMCR |= sMasterConfig->MasterSlaveMode;
+ 8000ddc:	6849      	ldr	r1, [r1, #4]
+  htim->Instance->CR2 |=  sMasterConfig->MasterOutputTrigger;
+ 8000dde:	4302      	orrs	r2, r0
+  htim->Instance->SMCR &= ~TIM_SMCR_MSM;
+ 8000de0:	2080      	movs	r0, #128	; 0x80
+  htim->Instance->CR2 |=  sMasterConfig->MasterOutputTrigger;
+ 8000de2:	605a      	str	r2, [r3, #4]
+  htim->Instance->SMCR &= ~TIM_SMCR_MSM;
+ 8000de4:	689a      	ldr	r2, [r3, #8]
+ 8000de6:	4382      	bics	r2, r0
+ 8000de8:	609a      	str	r2, [r3, #8]
+  htim->Instance->SMCR |= sMasterConfig->MasterSlaveMode;
+ 8000dea:	689a      	ldr	r2, [r3, #8]
+
+  htim->State = HAL_TIM_STATE_READY;
+
+  __HAL_UNLOCK(htim);
+ 8000dec:	2000      	movs	r0, #0
+  htim->Instance->SMCR |= sMasterConfig->MasterSlaveMode;
+ 8000dee:	430a      	orrs	r2, r1
+ 8000df0:	609a      	str	r2, [r3, #8]
+  htim->State = HAL_TIM_STATE_READY;
+ 8000df2:	2301      	movs	r3, #1
+ 8000df4:	702b      	strb	r3, [r5, #0]
+  __HAL_UNLOCK(htim);
+ 8000df6:	7020      	strb	r0, [r4, #0]
+
+  return HAL_OK;
+}
+ 8000df8:	bd30      	pop	{r4, r5, pc}
+
+08000dfa <HAL_TIMEx_CommutationCallback>:
+ 8000dfa:	4770      	bx	lr
+
+08000dfc <HAL_TIMEx_BreakCallback>:
+  UNUSED(htim);
+
+  /* NOTE : This function Should not be modified, when the callback is needed,
+            the HAL_TIMEx_BreakCallback could be implemented in the user file
+   */
+}
+ 8000dfc:	4770      	bx	lr
+
+08000dfe <SystemClock_Config>:
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+ 8000dfe:	b570      	push	{r4, r5, r6, lr}
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 8000e00:	2610      	movs	r6, #16
+{
+ 8000e02:	b090      	sub	sp, #64	; 0x40
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 8000e04:	2230      	movs	r2, #48	; 0x30
+ 8000e06:	2100      	movs	r1, #0
+ 8000e08:	a804      	add	r0, sp, #16
+ 8000e0a:	f000 f968 	bl	80010de <memset>
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 8000e0e:	0032      	movs	r2, r6
+ 8000e10:	2100      	movs	r1, #0
+ 8000e12:	4668      	mov	r0, sp
+ 8000e14:	f000 f963 	bl	80010de <memset>
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12;
+ 8000e18:	23a0      	movs	r3, #160	; 0xa0
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+ 8000e1a:	2402      	movs	r4, #2
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 8000e1c:	2501      	movs	r5, #1
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12;
+ 8000e1e:	039b      	lsls	r3, r3, #14
+  RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV1;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 8000e20:	a804      	add	r0, sp, #16
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL12;
+ 8000e22:	930e      	str	r3, [sp, #56]	; 0x38
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+ 8000e24:	9404      	str	r4, [sp, #16]
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 8000e26:	9507      	str	r5, [sp, #28]
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 8000e28:	9608      	str	r6, [sp, #32]
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 8000e2a:	940c      	str	r4, [sp, #48]	; 0x30
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 8000e2c:	f7ff fb36 	bl	800049c <HAL_RCC_OscConfig>
+  {
+    Error_Handler();
+  }
+  /**Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 8000e30:	2307      	movs	r3, #7
+ 8000e32:	9300      	str	r3, [sp, #0]
+                              |RCC_CLOCKTYPE_PCLK1;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 8000e34:	2300      	movs	r3, #0
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+ 8000e36:	0029      	movs	r1, r5
+ 8000e38:	4668      	mov	r0, sp
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 8000e3a:	9401      	str	r4, [sp, #4]
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 8000e3c:	9302      	str	r3, [sp, #8]
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 8000e3e:	9303      	str	r3, [sp, #12]
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+ 8000e40:	f7ff fd40 	bl	80008c4 <HAL_RCC_ClockConfig>
+  {
+    Error_Handler();
+  }
+}
+ 8000e44:	b010      	add	sp, #64	; 0x40
+ 8000e46:	bd70      	pop	{r4, r5, r6, pc}
+
+08000e48 <main>:
+{
+ 8000e48:	b570      	push	{r4, r5, r6, lr}
+ 8000e4a:	b08a      	sub	sp, #40	; 0x28
+  HAL_Init();
+ 8000e4c:	f7ff f9fa 	bl	8000244 <HAL_Init>
+  SystemClock_Config();
+ 8000e50:	f7ff ffd5 	bl	8000dfe <SystemClock_Config>
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+ 8000e54:	2214      	movs	r2, #20
+ 8000e56:	2100      	movs	r1, #0
+ 8000e58:	a805      	add	r0, sp, #20
+ 8000e5a:	f000 f940 	bl	80010de <memset>
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+ 8000e5e:	2080      	movs	r0, #128	; 0x80
+ 8000e60:	4b2e      	ldr	r3, [pc, #184]	; (8000f1c <main+0xd4>)
+ 8000e62:	0280      	lsls	r0, r0, #10
+ 8000e64:	6959      	ldr	r1, [r3, #20]
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, LD4_Pin|LD3_Pin, GPIO_PIN_RESET);
+ 8000e66:	25c0      	movs	r5, #192	; 0xc0
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+ 8000e68:	4301      	orrs	r1, r0
+ 8000e6a:	6159      	str	r1, [r3, #20]
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+ 8000e6c:	2180      	movs	r1, #128	; 0x80
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+ 8000e6e:	695a      	ldr	r2, [r3, #20]
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+ 8000e70:	0309      	lsls	r1, r1, #12
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+ 8000e72:	4002      	ands	r2, r0
+ 8000e74:	9201      	str	r2, [sp, #4]
+ 8000e76:	9a01      	ldr	r2, [sp, #4]
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+ 8000e78:	695a      	ldr	r2, [r3, #20]
+  HAL_GPIO_WritePin(GPIOC, LD4_Pin|LD3_Pin, GPIO_PIN_RESET);
+ 8000e7a:	00ad      	lsls	r5, r5, #2
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+ 8000e7c:	430a      	orrs	r2, r1
+ 8000e7e:	615a      	str	r2, [r3, #20]
+ 8000e80:	695b      	ldr	r3, [r3, #20]
+  HAL_GPIO_WritePin(GPIOC, LD4_Pin|LD3_Pin, GPIO_PIN_RESET);
+ 8000e82:	2200      	movs	r2, #0
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+ 8000e84:	400b      	ands	r3, r1
+ 8000e86:	9302      	str	r3, [sp, #8]
+  HAL_GPIO_WritePin(GPIOC, LD4_Pin|LD3_Pin, GPIO_PIN_RESET);
+ 8000e88:	0029      	movs	r1, r5
+ 8000e8a:	4825      	ldr	r0, [pc, #148]	; (8000f20 <main+0xd8>)
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+ 8000e8c:	9b02      	ldr	r3, [sp, #8]
+  HAL_GPIO_WritePin(GPIOC, LD4_Pin|LD3_Pin, GPIO_PIN_RESET);
+ 8000e8e:	f7ff fafb 	bl	8000488 <HAL_GPIO_WritePin>
+
+  /*Configure GPIO pin : B1_Pin */
+  GPIO_InitStruct.Pin = B1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+ 8000e92:	2090      	movs	r0, #144	; 0x90
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 8000e94:	2400      	movs	r4, #0
+  GPIO_InitStruct.Pin = B1_Pin;
+ 8000e96:	2601      	movs	r6, #1
+  GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
+ 8000e98:	4b22      	ldr	r3, [pc, #136]	; (8000f24 <main+0xdc>)
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+ 8000e9a:	a905      	add	r1, sp, #20
+ 8000e9c:	05c0      	lsls	r0, r0, #23
+  GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
+ 8000e9e:	9306      	str	r3, [sp, #24]
+  GPIO_InitStruct.Pin = B1_Pin;
+ 8000ea0:	9605      	str	r6, [sp, #20]
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 8000ea2:	9407      	str	r4, [sp, #28]
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+ 8000ea4:	f7ff fa40 	bl	8000328 <HAL_GPIO_Init>
+  /*Configure GPIO pins : LD4_Pin LD3_Pin */
+  GPIO_InitStruct.Pin = LD4_Pin|LD3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 8000ea8:	a905      	add	r1, sp, #20
+ 8000eaa:	481d      	ldr	r0, [pc, #116]	; (8000f20 <main+0xd8>)
+  GPIO_InitStruct.Pin = LD4_Pin|LD3_Pin;
+ 8000eac:	9505      	str	r5, [sp, #20]
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 8000eae:	9606      	str	r6, [sp, #24]
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 8000eb0:	9407      	str	r4, [sp, #28]
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 8000eb2:	9408      	str	r4, [sp, #32]
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 8000eb4:	f7ff fa38 	bl	8000328 <HAL_GPIO_Init>
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+ 8000eb8:	2210      	movs	r2, #16
+ 8000eba:	0021      	movs	r1, r4
+ 8000ebc:	a805      	add	r0, sp, #20
+ 8000ebe:	f000 f90e 	bl	80010de <memset>
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+ 8000ec2:	2208      	movs	r2, #8
+ 8000ec4:	0021      	movs	r1, r4
+ 8000ec6:	a803      	add	r0, sp, #12
+ 8000ec8:	f000 f909 	bl	80010de <memset>
+  htim3.Instance = TIM3;
+ 8000ecc:	4d16      	ldr	r5, [pc, #88]	; (8000f28 <main+0xe0>)
+ 8000ece:	4b17      	ldr	r3, [pc, #92]	; (8000f2c <main+0xe4>)
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+ 8000ed0:	0028      	movs	r0, r5
+  htim3.Instance = TIM3;
+ 8000ed2:	602b      	str	r3, [r5, #0]
+  htim3.Init.Prescaler = 1000-1;
+ 8000ed4:	4b16      	ldr	r3, [pc, #88]	; (8000f30 <main+0xe8>)
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+ 8000ed6:	60ac      	str	r4, [r5, #8]
+  htim3.Init.Prescaler = 1000-1;
+ 8000ed8:	606b      	str	r3, [r5, #4]
+  htim3.Init.Period = 1000-1;
+ 8000eda:	60eb      	str	r3, [r5, #12]
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+ 8000edc:	612c      	str	r4, [r5, #16]
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+ 8000ede:	61ac      	str	r4, [r5, #24]
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+ 8000ee0:	f7ff fe8e 	bl	8000c00 <HAL_TIM_Base_Init>
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+ 8000ee4:	2380      	movs	r3, #128	; 0x80
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+ 8000ee6:	a905      	add	r1, sp, #20
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+ 8000ee8:	015b      	lsls	r3, r3, #5
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+ 8000eea:	0028      	movs	r0, r5
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+ 8000eec:	9305      	str	r3, [sp, #20]
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+ 8000eee:	f7ff feaf 	bl	8000c50 <HAL_TIM_ConfigClockSource>
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+ 8000ef2:	a903      	add	r1, sp, #12
+ 8000ef4:	0028      	movs	r0, r5
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+ 8000ef6:	9403      	str	r4, [sp, #12]
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+ 8000ef8:	9404      	str	r4, [sp, #16]
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+ 8000efa:	f7ff ff5d 	bl	8000db8 <HAL_TIMEx_MasterConfigSynchronization>
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
+ 8000efe:	2180      	movs	r1, #128	; 0x80
+ 8000f00:	4807      	ldr	r0, [pc, #28]	; (8000f20 <main+0xd8>)
+ 8000f02:	0032      	movs	r2, r6
+ 8000f04:	0089      	lsls	r1, r1, #2
+ 8000f06:	f7ff fabf 	bl	8000488 <HAL_GPIO_WritePin>
+  HAL_TIM_Base_Start_IT(&htim3);
+ 8000f0a:	0028      	movs	r0, r5
+ 8000f0c:	f7ff fd76 	bl	80009fc <HAL_TIM_Base_Start_IT>
+	if(count == 100){
+ 8000f10:	2c64      	cmp	r4, #100	; 0x64
+ 8000f12:	d100      	bne.n	8000f16 <main+0xce>
+		count = 0;
+ 8000f14:	2400      	movs	r4, #0
+		count++;
+ 8000f16:	3401      	adds	r4, #1
+ 8000f18:	e7fa      	b.n	8000f10 <main+0xc8>
+ 8000f1a:	46c0      	nop			; (mov r8, r8)
+ 8000f1c:	40021000 	.word	0x40021000
+ 8000f20:	48000800 	.word	0x48000800
+ 8000f24:	10120000 	.word	0x10120000
+ 8000f28:	20000024 	.word	0x20000024
+ 8000f2c:	40000400 	.word	0x40000400
+ 8000f30:	000003e7 	.word	0x000003e7
+
+08000f34 <HAL_TIM_PeriodElapsedCallback>:
+
+}
+
+/* USER CODE BEGIN 4 */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_9);
+ 8000f34:	2180      	movs	r1, #128	; 0x80
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+ 8000f36:	b510      	push	{r4, lr}
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_9);
+ 8000f38:	0089      	lsls	r1, r1, #2
+ 8000f3a:	4802      	ldr	r0, [pc, #8]	; (8000f44 <HAL_TIM_PeriodElapsedCallback+0x10>)
+ 8000f3c:	f7ff faaa 	bl	8000494 <HAL_GPIO_TogglePin>
+}
+ 8000f40:	bd10      	pop	{r4, pc}
+ 8000f42:	46c0      	nop			; (mov r8, r8)
+ 8000f44:	48000800 	.word	0x48000800
+
+08000f48 <HAL_MspInit>:
+{
+  /* USER CODE BEGIN MspInit 0 */
+
+  /* USER CODE END MspInit 0 */
+
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 8000f48:	2001      	movs	r0, #1
+ 8000f4a:	4b0a      	ldr	r3, [pc, #40]	; (8000f74 <HAL_MspInit+0x2c>)
+{
+ 8000f4c:	b082      	sub	sp, #8
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 8000f4e:	6999      	ldr	r1, [r3, #24]
+ 8000f50:	4301      	orrs	r1, r0
+ 8000f52:	6199      	str	r1, [r3, #24]
+  __HAL_RCC_PWR_CLK_ENABLE();
+ 8000f54:	2180      	movs	r1, #128	; 0x80
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 8000f56:	699a      	ldr	r2, [r3, #24]
+  __HAL_RCC_PWR_CLK_ENABLE();
+ 8000f58:	0549      	lsls	r1, r1, #21
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 8000f5a:	4002      	ands	r2, r0
+ 8000f5c:	9200      	str	r2, [sp, #0]
+ 8000f5e:	9a00      	ldr	r2, [sp, #0]
+  __HAL_RCC_PWR_CLK_ENABLE();
+ 8000f60:	69da      	ldr	r2, [r3, #28]
+ 8000f62:	430a      	orrs	r2, r1
+ 8000f64:	61da      	str	r2, [r3, #28]
+ 8000f66:	69db      	ldr	r3, [r3, #28]
+ 8000f68:	400b      	ands	r3, r1
+ 8000f6a:	9301      	str	r3, [sp, #4]
+ 8000f6c:	9b01      	ldr	r3, [sp, #4]
+  /* System interrupt init*/
+
+  /* USER CODE BEGIN MspInit 1 */
+
+  /* USER CODE END MspInit 1 */
+}
+ 8000f6e:	b002      	add	sp, #8
+ 8000f70:	4770      	bx	lr
+ 8000f72:	46c0      	nop			; (mov r8, r8)
+ 8000f74:	40021000 	.word	0x40021000
+
+08000f78 <HAL_TIM_Base_MspInit>:
+* This function configures the hardware resources used in this example
+* @param htim_base: TIM_Base handle pointer
+* @retval None
+*/
+void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
+{
+ 8000f78:	b507      	push	{r0, r1, r2, lr}
+
+  if(htim_base->Instance==TIM3)
+ 8000f7a:	4b0b      	ldr	r3, [pc, #44]	; (8000fa8 <HAL_TIM_Base_MspInit+0x30>)
+ 8000f7c:	6802      	ldr	r2, [r0, #0]
+ 8000f7e:	429a      	cmp	r2, r3
+ 8000f80:	d110      	bne.n	8000fa4 <HAL_TIM_Base_MspInit+0x2c>
+  {
+  /* USER CODE BEGIN TIM3_MspInit 0 */
+
+  /* USER CODE END TIM3_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_TIM3_CLK_ENABLE();
+ 8000f82:	2002      	movs	r0, #2
+ 8000f84:	4a09      	ldr	r2, [pc, #36]	; (8000fac <HAL_TIM_Base_MspInit+0x34>)
+ 8000f86:	69d1      	ldr	r1, [r2, #28]
+ 8000f88:	4301      	orrs	r1, r0
+ 8000f8a:	61d1      	str	r1, [r2, #28]
+ 8000f8c:	69d3      	ldr	r3, [r2, #28]
+    /* TIM3 interrupt Init */
+    HAL_NVIC_SetPriority(TIM3_IRQn, 0, 0);
+ 8000f8e:	2200      	movs	r2, #0
+    __HAL_RCC_TIM3_CLK_ENABLE();
+ 8000f90:	4003      	ands	r3, r0
+ 8000f92:	9301      	str	r3, [sp, #4]
+    HAL_NVIC_SetPriority(TIM3_IRQn, 0, 0);
+ 8000f94:	300e      	adds	r0, #14
+ 8000f96:	0011      	movs	r1, r2
+    __HAL_RCC_TIM3_CLK_ENABLE();
+ 8000f98:	9b01      	ldr	r3, [sp, #4]
+    HAL_NVIC_SetPriority(TIM3_IRQn, 0, 0);
+ 8000f9a:	f7ff f971 	bl	8000280 <HAL_NVIC_SetPriority>
+    HAL_NVIC_EnableIRQ(TIM3_IRQn);
+ 8000f9e:	2010      	movs	r0, #16
+ 8000fa0:	f7ff f99e 	bl	80002e0 <HAL_NVIC_EnableIRQ>
+  /* USER CODE BEGIN TIM3_MspInit 1 */
+
+  /* USER CODE END TIM3_MspInit 1 */
+  }
+
+}
+ 8000fa4:	bd07      	pop	{r0, r1, r2, pc}
+ 8000fa6:	46c0      	nop			; (mov r8, r8)
+ 8000fa8:	40000400 	.word	0x40000400
+ 8000fac:	40021000 	.word	0x40021000
+
+08000fb0 <NMI_Handler>:
+ 8000fb0:	4770      	bx	lr
+
+08000fb2 <HardFault_Handler>:
+
+/**
+  * @brief This function handles Hard fault interrupt.
+  */
+void HardFault_Handler(void)
+{
+ 8000fb2:	e7fe      	b.n	8000fb2 <HardFault_Handler>
+
+08000fb4 <SVC_Handler>:
+ 8000fb4:	4770      	bx	lr
+
+08000fb6 <PendSV_Handler>:
+
+  /* USER CODE END PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 1 */
+
+  /* USER CODE END PendSV_IRQn 1 */
+}
+ 8000fb6:	4770      	bx	lr
+
+08000fb8 <SysTick_Handler>:
+
+/**
+  * @brief This function handles System tick timer.
+  */
+void SysTick_Handler(void)
+{
+ 8000fb8:	b510      	push	{r4, lr}
+  /* USER CODE BEGIN SysTick_IRQn 0 */
+
+  /* USER CODE END SysTick_IRQn 0 */
+  HAL_IncTick();
+ 8000fba:	f7ff f953 	bl	8000264 <HAL_IncTick>
+  /* USER CODE BEGIN SysTick_IRQn 1 */
+
+  /* USER CODE END SysTick_IRQn 1 */
+}
+ 8000fbe:	bd10      	pop	{r4, pc}
+
+08000fc0 <TIM3_IRQHandler>:
+
+/**
+  * @brief This function handles TIM3 global interrupt.
+  */
+void TIM3_IRQHandler(void)
+{
+ 8000fc0:	b510      	push	{r4, lr}
+  /* USER CODE BEGIN TIM3_IRQn 0 */
+
+  /* USER CODE END TIM3_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim3);
+ 8000fc2:	4802      	ldr	r0, [pc, #8]	; (8000fcc <TIM3_IRQHandler+0xc>)
+ 8000fc4:	f7ff fd28 	bl	8000a18 <HAL_TIM_IRQHandler>
+  /* USER CODE BEGIN TIM3_IRQn 1 */
+
+  /* USER CODE END TIM3_IRQn 1 */
+}
+ 8000fc8:	bd10      	pop	{r4, pc}
+ 8000fca:	46c0      	nop			; (mov r8, r8)
+ 8000fcc:	20000024 	.word	0x20000024
+
+08000fd0 <SystemInit>:
+  */
+void SystemInit(void)
+{
+  /* Reset the RCC clock configuration to the default reset state ------------*/
+  /* Set HSION bit */
+  RCC->CR |= (uint32_t)0x00000001U;
+ 8000fd0:	2101      	movs	r1, #1
+ 8000fd2:	4b11      	ldr	r3, [pc, #68]	; (8001018 <SystemInit+0x48>)
+
+#if defined (STM32F051x8) || defined (STM32F058x8)
+  /* Reset SW[1:0], HPRE[3:0], PPRE[2:0], ADCPRE and MCOSEL[2:0] bits */
+  RCC->CFGR &= (uint32_t)0xF8FFB80CU;
+ 8000fd4:	4811      	ldr	r0, [pc, #68]	; (800101c <SystemInit+0x4c>)
+  RCC->CR |= (uint32_t)0x00000001U;
+ 8000fd6:	681a      	ldr	r2, [r3, #0]
+ 8000fd8:	430a      	orrs	r2, r1
+ 8000fda:	601a      	str	r2, [r3, #0]
+  RCC->CFGR &= (uint32_t)0xF8FFB80CU;
+ 8000fdc:	685a      	ldr	r2, [r3, #4]
+ 8000fde:	4002      	ands	r2, r0
+ 8000fe0:	605a      	str	r2, [r3, #4]
+  /* Reset SW[1:0], HPRE[3:0], PPRE[2:0], ADCPRE, MCOSEL[2:0], MCOPRE[2:0] and PLLNODIV bits */
+  RCC->CFGR &= (uint32_t)0x08FFB80CU;
+#endif /* STM32F051x8 or STM32F058x8 */
+  
+  /* Reset HSEON, CSSON and PLLON bits */
+  RCC->CR &= (uint32_t)0xFEF6FFFFU;
+ 8000fe2:	681a      	ldr	r2, [r3, #0]
+ 8000fe4:	480e      	ldr	r0, [pc, #56]	; (8001020 <SystemInit+0x50>)
+ 8000fe6:	4002      	ands	r2, r0
+ 8000fe8:	601a      	str	r2, [r3, #0]
+
+  /* Reset HSEBYP bit */
+  RCC->CR &= (uint32_t)0xFFFBFFFFU;
+ 8000fea:	681a      	ldr	r2, [r3, #0]
+ 8000fec:	480d      	ldr	r0, [pc, #52]	; (8001024 <SystemInit+0x54>)
+ 8000fee:	4002      	ands	r2, r0
+ 8000ff0:	601a      	str	r2, [r3, #0]
+
+  /* Reset PLLSRC, PLLXTPRE and PLLMUL[3:0] bits */
+  RCC->CFGR &= (uint32_t)0xFFC0FFFFU;
+ 8000ff2:	685a      	ldr	r2, [r3, #4]
+ 8000ff4:	480c      	ldr	r0, [pc, #48]	; (8001028 <SystemInit+0x58>)
+ 8000ff6:	4002      	ands	r2, r0
+
+  /* Reset PREDIV[3:0] bits */
+  RCC->CFGR2 &= (uint32_t)0xFFFFFFF0U;
+ 8000ff8:	200f      	movs	r0, #15
+  RCC->CFGR &= (uint32_t)0xFFC0FFFFU;
+ 8000ffa:	605a      	str	r2, [r3, #4]
+  RCC->CFGR2 &= (uint32_t)0xFFFFFFF0U;
+ 8000ffc:	6ada      	ldr	r2, [r3, #44]	; 0x2c
+ 8000ffe:	4382      	bics	r2, r0
+ 8001000:	62da      	str	r2, [r3, #44]	; 0x2c
+#elif defined (STM32F030x6) || defined (STM32F030x8) || defined (STM32F031x6) || defined (STM32F038xx) || defined (STM32F030xC)
+  /* Reset USART1SW[1:0], I2C1SW and ADCSW bits */
+  RCC->CFGR3 &= (uint32_t)0xFFFFFEECU;
+#elif defined (STM32F051x8) || defined (STM32F058xx)
+  /* Reset USART1SW[1:0], I2C1SW, CECSW and ADCSW bits */
+  RCC->CFGR3 &= (uint32_t)0xFFFFFEACU;
+ 8001002:	6b1a      	ldr	r2, [r3, #48]	; 0x30
+ 8001004:	4809      	ldr	r0, [pc, #36]	; (800102c <SystemInit+0x5c>)
+ 8001006:	4002      	ands	r2, r0
+ 8001008:	631a      	str	r2, [r3, #48]	; 0x30
+#else
+ #warning "No target selected"
+#endif
+
+  /* Reset HSI14 bit */
+  RCC->CR2 &= (uint32_t)0xFFFFFFFEU;
+ 800100a:	6b5a      	ldr	r2, [r3, #52]	; 0x34
+ 800100c:	438a      	bics	r2, r1
+ 800100e:	635a      	str	r2, [r3, #52]	; 0x34
+
+  /* Disable all interrupts */
+  RCC->CIR = 0x00000000U;
+ 8001010:	2200      	movs	r2, #0
+ 8001012:	609a      	str	r2, [r3, #8]
+
+}
+ 8001014:	4770      	bx	lr
+ 8001016:	46c0      	nop			; (mov r8, r8)
+ 8001018:	40021000 	.word	0x40021000
+ 800101c:	f8ffb80c 	.word	0xf8ffb80c
+ 8001020:	fef6ffff 	.word	0xfef6ffff
+ 8001024:	fffbffff 	.word	0xfffbffff
+ 8001028:	ffc0ffff 	.word	0xffc0ffff
+ 800102c:	fffffeac 	.word	0xfffffeac
+
+08001030 <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 8001030:	480d      	ldr	r0, [pc, #52]	; (8001068 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 8001032:	4685      	mov	sp, r0
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 8001034:	480d      	ldr	r0, [pc, #52]	; (800106c <LoopForever+0x6>)
+  ldr r1, =_edata
+ 8001036:	490e      	ldr	r1, [pc, #56]	; (8001070 <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 8001038:	4a0e      	ldr	r2, [pc, #56]	; (8001074 <LoopForever+0xe>)
+  movs r3, #0
+ 800103a:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 800103c:	e002      	b.n	8001044 <LoopCopyDataInit>
+
+0800103e <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 800103e:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 8001040:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 8001042:	3304      	adds	r3, #4
+
+08001044 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 8001044:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 8001046:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 8001048:	d3f9      	bcc.n	800103e <CopyDataInit>
+  
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 800104a:	4a0b      	ldr	r2, [pc, #44]	; (8001078 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 800104c:	4c0b      	ldr	r4, [pc, #44]	; (800107c <LoopForever+0x16>)
+  movs r3, #0
+ 800104e:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 8001050:	e001      	b.n	8001056 <LoopFillZerobss>
+
+08001052 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 8001052:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 8001054:	3204      	adds	r2, #4
+
+08001056 <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 8001056:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 8001058:	d3fb      	bcc.n	8001052 <FillZerobss>
+
+/* Call the clock system intitialization function.*/
+  bl  SystemInit
+ 800105a:	f7ff ffb9 	bl	8000fd0 <SystemInit>
+/* Call static constructors */
+  bl __libc_init_array
+ 800105e:	f000 f811 	bl	8001084 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 8001062:	f7ff fef1 	bl	8000e48 <main>
+
+08001066 <LoopForever>:
+
+LoopForever:
+    b LoopForever
+ 8001066:	e7fe      	b.n	8001066 <LoopForever>
+  ldr   r0, =_estack
+ 8001068:	20002000 	.word	0x20002000
+  ldr r0, =_sdata
+ 800106c:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 8001070:	20000004 	.word	0x20000004
+  ldr r2, =_sidata
+ 8001074:	08001140 	.word	0x08001140
+  ldr r2, =_sbss
+ 8001078:	20000004 	.word	0x20000004
+  ldr r4, =_ebss
+ 800107c:	20000064 	.word	0x20000064
+
+08001080 <ADC1_COMP_IRQHandler>:
+ * @retval : None
+*/
+    .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 8001080:	e7fe      	b.n	8001080 <ADC1_COMP_IRQHandler>
+	...
+
+08001084 <__libc_init_array>:
+ 8001084:	b570      	push	{r4, r5, r6, lr}
+ 8001086:	2600      	movs	r6, #0
+ 8001088:	4d0c      	ldr	r5, [pc, #48]	; (80010bc <__libc_init_array+0x38>)
+ 800108a:	4c0d      	ldr	r4, [pc, #52]	; (80010c0 <__libc_init_array+0x3c>)
+ 800108c:	1b64      	subs	r4, r4, r5
+ 800108e:	10a4      	asrs	r4, r4, #2
+ 8001090:	42a6      	cmp	r6, r4
+ 8001092:	d109      	bne.n	80010a8 <__libc_init_array+0x24>
+ 8001094:	2600      	movs	r6, #0
+ 8001096:	f000 f82b 	bl	80010f0 <_init>
+ 800109a:	4d0a      	ldr	r5, [pc, #40]	; (80010c4 <__libc_init_array+0x40>)
+ 800109c:	4c0a      	ldr	r4, [pc, #40]	; (80010c8 <__libc_init_array+0x44>)
+ 800109e:	1b64      	subs	r4, r4, r5
+ 80010a0:	10a4      	asrs	r4, r4, #2
+ 80010a2:	42a6      	cmp	r6, r4
+ 80010a4:	d105      	bne.n	80010b2 <__libc_init_array+0x2e>
+ 80010a6:	bd70      	pop	{r4, r5, r6, pc}
+ 80010a8:	00b3      	lsls	r3, r6, #2
+ 80010aa:	58eb      	ldr	r3, [r5, r3]
+ 80010ac:	4798      	blx	r3
+ 80010ae:	3601      	adds	r6, #1
+ 80010b0:	e7ee      	b.n	8001090 <__libc_init_array+0xc>
+ 80010b2:	00b3      	lsls	r3, r6, #2
+ 80010b4:	58eb      	ldr	r3, [r5, r3]
+ 80010b6:	4798      	blx	r3
+ 80010b8:	3601      	adds	r6, #1
+ 80010ba:	e7f2      	b.n	80010a2 <__libc_init_array+0x1e>
+ 80010bc:	08001138 	.word	0x08001138
+ 80010c0:	08001138 	.word	0x08001138
+ 80010c4:	08001138 	.word	0x08001138
+ 80010c8:	0800113c 	.word	0x0800113c
+
+080010cc <memcpy>:
+ 80010cc:	2300      	movs	r3, #0
+ 80010ce:	b510      	push	{r4, lr}
+ 80010d0:	429a      	cmp	r2, r3
+ 80010d2:	d100      	bne.n	80010d6 <memcpy+0xa>
+ 80010d4:	bd10      	pop	{r4, pc}
+ 80010d6:	5ccc      	ldrb	r4, [r1, r3]
+ 80010d8:	54c4      	strb	r4, [r0, r3]
+ 80010da:	3301      	adds	r3, #1
+ 80010dc:	e7f8      	b.n	80010d0 <memcpy+0x4>
+
+080010de <memset>:
+ 80010de:	0003      	movs	r3, r0
+ 80010e0:	1882      	adds	r2, r0, r2
+ 80010e2:	4293      	cmp	r3, r2
+ 80010e4:	d100      	bne.n	80010e8 <memset+0xa>
+ 80010e6:	4770      	bx	lr
+ 80010e8:	7019      	strb	r1, [r3, #0]
+ 80010ea:	3301      	adds	r3, #1
+ 80010ec:	e7f9      	b.n	80010e2 <memset+0x4>
+	...
+
+080010f0 <_init>:
+ 80010f0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80010f2:	46c0      	nop			; (mov r8, r8)
+ 80010f4:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80010f6:	bc08      	pop	{r3}
+ 80010f8:	469e      	mov	lr, r3
+ 80010fa:	4770      	bx	lr
+
+080010fc <_fini>:
+ 80010fc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80010fe:	46c0      	nop			; (mov r8, r8)
+ 8001100:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8001102:	bc08      	pop	{r3}
+ 8001104:	469e      	mov	lr, r3
+ 8001106:	4770      	bx	lr
