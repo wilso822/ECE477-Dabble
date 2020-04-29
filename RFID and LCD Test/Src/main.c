@@ -201,7 +201,7 @@ int main(void)
 	  //flipping
 	  //the
 	  //switches
-/*
+
 	  flip_switch(1);
 	  HAL_Delay(500);
 	  HAL_ADC_Start(&hadc1);
@@ -256,7 +256,6 @@ int main(void)
 	  sprintf(str, "       %d %d %d    %d", array[3], array[4], array[5], adc_val3);
 	  writeCommand(LINE_THREE);
 	  writeString(20, str);
-*/
 
 	  //code
 	  //for
@@ -287,8 +286,9 @@ int main(void)
 	  //For
 	  //Testing
 	  //RFID Reader
-/*
-	  if(MFRC522_Check(CardID) == MI_OK){
+	  /*
+	  MFRC522_Status_t status = MFRC522_Check(CardID);
+	  if(status == MI_OK){
 		  LED_Off(LED_RED);
 		  LED_On(LED_GREEN);
 		  flag = 1;
@@ -315,7 +315,7 @@ int main(void)
 		  writeCommand(LINE_TWO);
 		  writeString(20, yes_card);
 	  }
-*/
+	  */
 
   }
   /* USER CODE END 3 */
