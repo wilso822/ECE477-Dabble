@@ -76,10 +76,11 @@ TIM_HandleTypeDef htim3;
 UART_HandleTypeDef huart5;
 
 /* USER CODE BEGIN PV */
-enum game_state{start, scan, place_row, place_col, confirm, board_check, end, state_error, display_msg};
+enum game_state{reset, start, set_score, scan, place_row, place_col, confirm, board_check, end, state_error, display_msg, game_end};
 enum button{up, down, enter};
 enum board_status{init, valid, invalid, error};
 enum tile_type{norm, dl, tl, dw, tw};
+enum reason_end{too_many_passes, over_score_limit};
 uint8_t CardID[5];
 int count = 0;
 uint8_t MSG1[20] = "                    ";
@@ -115,6 +116,7 @@ uint8_t check_but(uint8_t);
 char decode_ID(uint8_t ID[5]);
 uint8_t get_score(char letter);
 uint8_t get_tile(uint8_t row, uint8_t col);
+int get_best_players(uint8_t num_players);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -142,6 +144,34 @@ void display_four_lines(char string_1[20], char string_2[20], char string_3[20],
 
 }
 
+void display_game_end(uint8_t num_players, uint8_t reason){
+	int best_players = get_best_players(num_players);
+	sprintf(string_1, " P1: %03d    P2: %03d ", player_scores[0], player_scores[1]);
+	sprintf(string_4, " P3: %03d    P4: %03d ", player_scores[2], player_scores[3]);
+	//4 way tie
+	if((best_players >> 24) != 0){
+		sprintf(string_2, "How'd everyone win??");
+	}
+	//3 way tie
+	else if((best_players >> 16) != 0){
+		sprintf(string_2, "Players: %d %d %d tied ", (best_players >> 16) & 0xff, (best_players >> 8) & 0xff, (best_players) & 0xff);
+	}
+	//2 way tie
+	else if((best_players) >> 8 != 0){
+		sprintf(string_2, "Players: %d %d tied   ", (best_players >> 8) & 0xff, (best_players) & 0xff);
+	}
+	else{
+		sprintf(string_2, "   Player %d: Won!   ", best_players);
+	}
+
+	if(reason == too_many_passes){
+		sprintf(string_3, "there were 6 passes ");
+	}
+	else if(reason == over_score_limit){
+		sprintf(string_3, "  beat score limit  ");
+	}
+	display_four_lines(string_1, string_2, string_3, string_4);
+}
 uint8_t check_but(uint8_t option){
 	if(option == up && HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_11) == 0){
 		return 1;
@@ -605,6 +635,25 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 	/* Receive one byte in interrupt mode */
 }
+
+int get_best_players(uint8_t num_players){
+	int best_players = 0;
+	uint8_t max_score = 0;
+
+	for(int i = 0; i < num_players; i++){
+		if(player_scores[i] > max_score){
+			max_score = player_scores[i];
+		}
+	}
+
+	for(int i = 0; i < num_players; i++){
+		if(player_scores[i] == max_score){
+			best_players = best_players << 8 | (i + 1);
+		}
+	}
+
+	return best_players;
+}
 /* USER CODE END 0 */
 
 /**
@@ -645,36 +694,20 @@ int main(void)
   Initialize_CFAH2004AP();
   Initialize_CGRAM();
 
-  uint8_t curr_state = start;
-  uint8_t num_players = 2;
-  uint8_t curr_player = 1;
-  uint8_t row = 1;
-  uint8_t col = 1;
-  char letter = '\0';
-  char board_letter = '\0';
+  uint8_t curr_state = reset;
+  uint8_t num_players;
+  uint8_t curr_player;
+  uint8_t row;
+  uint8_t col;
+  char letter;
+  char board_letter;
   struct letter_info placed_word[9] = {0};
-  uint8_t word_len = 0;
+  uint8_t word_len;
   uint8_t check_flag;
-  int score_gain = 0;
-
-  HAL_Delay(1);
-  HAL_UART_Transmit(&huart5, reset_board, 83, 1000);
-  HAL_UART_Receive_IT(&huart5, &in, 1);
-
-  while(1){
-	if(check != init){
-	  break;
-	}
-	sprintf(string_1, "  Setting up Wi-Fi  ");
-	sprintf(string_2, "Connection, plz wait");
-	display_two_lines(string_1, string_2);
-	HAL_Delay(100);
-  }
-
-  if(check != valid){
-	  curr_state = state_error;
-  }
-  HAL_UART_Receive_IT(&huart5, &in, 1);
+  int score_gain;
+  uint8_t num_cons_passes;
+  uint8_t pass_flag;
+  int score_limit;
 
   /* USER CODE END 2 */
 
@@ -685,7 +718,58 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	if(curr_state == start){
+	  if(curr_state == reset){
+		  num_players = 2;
+		  curr_player = 1;
+		  row = 1;
+		  col = 1;
+		  letter = '\0';
+		  board_letter = '\0';
+		  word_len = 0;
+		  score_gain = 0;
+		  num_cons_passes = 0;
+		  pass_flag = 0;
+		  check = init;
+		  score_limit = 0;
+
+		  for(int i = 0; i < 4; i++){
+			  player_scores[i] = 0;
+		  }
+
+		  for(int i = 0; i < 81; i++){
+			  curr_board[i] = '0';
+			  prev_board[i] = '0';
+		  }
+
+			for(int i = 0; i < 9; i++){
+				placed_word[i].letter = 0;
+				placed_word[i].row = 0;
+				placed_word[i].col = 0;
+			}
+
+		  HAL_Delay(1);
+		  HAL_UART_Transmit(&huart5, reset_board, 83, 1000);
+		  HAL_UART_Receive_IT(&huart5, &in, 1);
+
+			sprintf(string_1, "  Setting up Wi-Fi  ");
+			sprintf(string_2, "Connection, plz wait");
+			display_two_lines(string_1, string_2);
+
+		  while(1){
+			if(check != init){
+			  break;
+			}
+			HAL_Delay(100);
+		  }
+
+		  if(check != valid){
+			  curr_state = state_error;
+		  }
+		  HAL_UART_Receive_IT(&huart5, &in, 1);
+
+		  curr_state = start;
+	  }
+	  else if(curr_state == start){
 		if(check_but(up) && num_players < 4){
 			num_players++;
 		}
@@ -693,30 +777,76 @@ int main(void)
 			num_players--;
 		}
 		else if(check_but(enter)){
-			curr_state = scan;
+			curr_state = set_score;
 			HAL_Delay(200);
 		}
 		sprintf(string_1, "  select number of  ");
 		sprintf(string_2, "  players: %d        ", num_players);
 		display_two_lines(string_1, string_2);
 
-		HAL_Delay(50);
-	}
+		HAL_Delay(100);
+	  }
+	  else if(curr_state == set_score){
+			if(check_but(up) && score_limit < 1000){
+				score_limit += 100;
+			}
+			else if(check_but(down) && score_limit > 0){
+				score_limit -= 100;
+			}
+			else if(check_but(enter)){
+				curr_state = scan;
+				HAL_Delay(200);
+			}
+			sprintf(string_1, " select this game's ");
+			if(score_limit == 0){
+				sprintf(string_2, " score limit: none  ", score_limit);
+			}
+			else{
+				sprintf(string_2, " score limit: %04d  ", score_limit);
+			}
+			display_two_lines(string_1, string_2);
+
+			HAL_Delay(100);
+	  }
 	else if(curr_state == scan){
+		sprintf(string_1, "  Player %d: please  ", curr_player);
+		sprintf(string_2, "  scan a letter or  ");
+		sprintf(string_3, "  press enter to    ");
+		sprintf(string_4, "  pass your turn    ");
+		display_four_lines(string_1, string_2, string_3, string_4);
 		MFRC522_Status_t status = MFRC522_Check(CardID);
 		while(status != MI_OK){
-			sprintf(string_1, " P1: %03d    P2: %03d ", player_scores[0], player_scores[1]);
-			sprintf(string_2, "  Player %d: please  ", curr_player);
-			sprintf(string_3, "  scan a letter     ");
-			sprintf(string_4, " P3: %03d    P4: %03d ", player_scores[2], player_scores[3]);
-			display_four_lines(string_1, string_2, string_3, string_4);
+			if(check_but(enter)){
+				pass_flag = 1;
+				break;
+			}
 			status = MFRC522_Check(CardID);
 		}
-		board_letter = decode_ID(CardID);
-		curr_state = place_row;
-		HAL_Delay(200);
-		row = 1;
-		col = 1;
+		if(pass_flag == 1){
+			curr_player = (curr_player % num_players) + 1;
+			for(int i = 0; i < 9; i++){
+				placed_word[i].letter = 0;
+				placed_word[i].row = 0;
+				placed_word[i].col = 0;
+			}
+			word_len = 0;
+			num_cons_passes++;
+			if(num_cons_passes >= 6){
+				curr_state = game_end;
+				display_game_end(num_players, too_many_passes);
+				HAL_Delay(500);
+			}
+			HAL_Delay(200);
+			pass_flag = 0;
+		}
+		else{
+			board_letter = decode_ID(CardID);
+			curr_state = place_row;
+			HAL_Delay(200);
+			row = 1;
+			col = 1;
+			num_cons_passes = 0;
+		}
 	}
 	else if(curr_state == place_row){
 		if(check_but(up) && row < 9){
@@ -790,21 +920,26 @@ int main(void)
 	else if(curr_state == display_msg){
 		if(check_flag == valid){
 			score_gain = update_scores(placed_word, word_len);
-			player_scores[curr_player-1] += score_gain;
+			player_scores[curr_player - 1] += score_gain;
 			sprintf(string_1, " Player %d gains %03d ", curr_player, score_gain);
-			sprintf(string_2, " for %03d total pts  ", player_scores[curr_player-1]);
-			curr_player = (curr_player % num_players) + 1;
-			curr_state = scan;
+			sprintf(string_2, " for %03d total pts  ", player_scores[curr_player - 1]);
+			if(player_scores[curr_player - 1] >= score_limit && score_limit != 0){
+				curr_state = game_end;
+			}
+			else{
+				curr_player = (curr_player % num_players) + 1;
+				curr_state = scan;
+			}
 
 		}
 		else if(check_flag == invalid){
-			sprintf(string_1, " You fucked up kid  ");
-			sprintf(string_2, " run that shit back ");
+			sprintf(string_1, "This move is invalid");
+			sprintf(string_2, "  Please try again  ");
 			curr_state = scan;
 		}
 		else{
-			sprintf(string_1, "  Shit is on fire   ");
-			sprintf(string_2, "  run while you can ");
+			sprintf(string_1, " There was an error ");
+			sprintf(string_2, " in Wi-Fi connection");
 			curr_state = state_error;
 		}
 
@@ -816,12 +951,24 @@ int main(void)
 		word_len = 0;
 		display_two_lines(string_1, string_2);
 		HAL_Delay(2000);
+		if(player_scores[curr_player - 1] >= score_limit && score_limit != 0){
+			display_game_end(num_players, over_score_limit);
+		}
 	}
 	else if(curr_state == state_error){
 		sprintf(string_1, "  There's been an   ");
 		sprintf(string_2, "  error oh no :(    ");
 		display_two_lines(string_1, string_2);
 		HAL_Delay(50);
+	}
+	else if(curr_state == game_end){
+		if(check_but(enter)){
+			curr_state = reset;
+
+			HAL_Delay(200);
+		}
+		HAL_Delay(50);
+
 	}
   }
 
