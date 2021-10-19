@@ -5,8 +5,12 @@ Hello and welcome to the code used during the different stages of our project Pr
 https://www.youtube.com/watch?v=A4Cfdl4giOg
 (Here is a youtube video explaining the entire project)
 
+
 ![Image](https://github.com/wilso822/ECE477-Dabble/blob/master/Dabble%20Pic.png)
+
 Figure 1: Picture of the Boards, Tiles, and some of the peripherals used
+
+
 
 ![Block Diagram](https://user-images.githubusercontent.com/46980468/116935554-7ec44180-ac34-11eb-8820-01d0f1df6bb3.png)
 
