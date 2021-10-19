@@ -9,4 +9,5 @@ https://www.youtube.com/watch?v=A4Cfdl4giOg
 Figure 1: Picture of the Boards, Tiles, and some of the peripherals used
 
 ![Block Diagram](https://user-images.githubusercontent.com/46980468/116935554-7ec44180-ac34-11eb-8820-01d0f1df6bb3.png)
+
 Figure 2: Block Diagram showing the communication of the peripherals
